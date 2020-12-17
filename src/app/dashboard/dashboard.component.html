@@ -1,20 +1,23 @@
 <style>
-    ::placeholder { /* Firefox, Chrome, Opera */ 
-        color: blue; 
-    } 
-  
-    :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-        color: red; 
-    } 
-  
-    ::-ms-input-placeholder { /* Microsoft Edge */ 
-        color: orange; 
-    } 
+    ::placeholder {
+        /* Firefox, Chrome, Opera */
+        color: blue;
+    }
+
+    :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: red;
+    }
+
+    ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: orange;
+    }
 </style>
- <div class="main-content">
+<div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col"> 
+            <div class="col">
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">Raise Ticket</h4>
@@ -23,72 +26,80 @@
                     <div class="card-body">
                         <form>
                             <div class="row">
-                               
-                                 <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Name" class="inp">
-                                    </mat-form-field>
-                                </div> 
+
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Mobile Number">
+                                        <input matInput type="text" placeholder="Name" name="name"
+                                            [(ngModel)]="username" class="inp">
                                     </mat-form-field>
-                                </div> 
-                                 <div class="col-md-6">
+                                </div>
+                                <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Email address" type="email">
+                                        <input matInput type="text" placeholder="Mobile Number" name="mobilenumber"
+                                            [(ngModel)]="mobilenumber">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Email address" name="email" [(ngModel)]="email"
+                                            type="email">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="problemtype" class="label">Problem Type:</label>&nbsp;
-                                    <select name="problemType" class ="selectt" >
-                                            <option value="" disabled selected hidden>select</option>
-                                            <option value="login">login</option> 
-                                            <option value="register">registration</option> 
-                                            <option value="buffering">video buffering</option> 
-                                            <option value="buffering">other</option> 
-                                        </select>
+                                    <select name="problemType" [(ngModel)]="problemtype" class="select">
+                                        <option value="select" disabled selected hidden>select</option>
+                                        <option value="login">login</option> 
+                                        <option value="register">registration</option> 
+                                        <option value="buffering">video buffering</option> 
+                                        <option value="buffering">other</option> 
+                                    </select>
                                 </div>
-                                
+
                             </div>
                             <div class="row ">
                                 <div class="col-md-6 ">
-                                    <label for="assginee"  class="label">Select Assingee:</label>&nbsp;
-                                    <select name="selectAssignee" class="selectt" >
-                                        <option value="" disabled selected hidden>select assginee</option>
-                                            <option value="A">Jyothi</option> 
-                                            <option value="B">Neha</option> 
-                                            <option value="C">Rinki</option> 
-                                        </select>
-                                   
+                                    <label for="assginee" class="label">Select Assingee:</label>&nbsp;
+                                    <select name="assginee" [(ngModel)]="assginee" class="select">
+                                        <option value="select assginee" disabled selected hidden>select assginee
+                                        </option>
+                                        <option value="Jyothi">Jyothi</option> 
+                                        <option value="Neha">Neha</option> 
+                                        <option value="Rinki">Rinki</option> 
+                                    </select>
+
                                 </div>
-                                                                <div class="col-md-6 ">
+                                <div class="col-md-6 ">
                                     <mat-form-field class="example-full-width ">
-                                        <input matInput placeholder="Estimated Time " type="text ">
+                                        <input matInput placeholder="Estimated Time " name="estimatedtime"
+                                            [(ngModel)]="estimatedtime" type="text ">
                                     </mat-form-field>
-                                </div> 
+                                </div>
                             </div>
-                           
+
                             <div class="row ">
                                 <div class="col-md-12 ">
-                                    <label  class="label">Problem description</label>
-                                    <mat-form-field class="example-full-width ">
-                                        <textarea matInput placeholder="Exlain why the probelm arises"></textarea>
+                                    <label class="label">Problem description</label>
+                                    <mat-form-field name="problem" class="example-full-width ">
+                                        <textarea matInput placeholder="Exlain why the probelm arises"
+                                            name="description" [(ngModel)]="description" type="description"></textarea>
                                     </mat-form-field>
-                                  
+
                                 </div>
                             </div>
-                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Create Ticket</button>
+                            <button mat-raised-button type="submit" (click)="postticket()"
+                                class="btn btn-danger pull-right">Create
+                                Ticket</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>
-             </div>
-            
+            </div>
+
         </div>
-        </div>
-</div>  
- <!-- <div class="col-md-8">  
+    </div>
+</div>
+<!-- <div class="col-md-8">  
     <div class="card">
         <div class="card-header card-header-danger">
             <h4 class="card-title">Edit Profile</h4>
