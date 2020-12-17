@@ -1,0 +1,172 @@
+<style>
+    ::placeholder { /* Firefox, Chrome, Opera */ 
+        color: blue; 
+    } 
+  
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+        color: red; 
+    } 
+  
+    ::-ms-input-placeholder { /* Microsoft Edge */ 
+        color: orange; 
+    } 
+</style>
+ <div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col"> 
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Raise Ticket</h4>
+                        <p class="card-category">raise new ticket here</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                               
+                                 <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Name" class="inp">
+                                    </mat-form-field>
+                                </div> 
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Mobile Number">
+                                    </mat-form-field>
+                                </div> 
+                                 <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Email address" type="email">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="problemtype" class="label">Problem Type:</label>&nbsp;
+                                    <select name="problemType" class ="selectt" >
+                                            <option value="" disabled selected hidden>select</option>
+                                            <option value="login">login</option> 
+                                            <option value="register">registration</option> 
+                                            <option value="buffering">video buffering</option> 
+                                            <option value="buffering">other</option> 
+                                        </select>
+                                </div>
+                                
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-6 ">
+                                    <label for="assginee"  class="label">Select Assingee:</label>&nbsp;
+                                    <select name="selectAssignee" class="selectt" >
+                                        <option value="" disabled selected hidden>select assginee</option>
+                                            <option value="A">Jyothi</option> 
+                                            <option value="B">Neha</option> 
+                                            <option value="C">Rinki</option> 
+                                        </select>
+                                   
+                                </div>
+                                                                <div class="col-md-6 ">
+                                    <mat-form-field class="example-full-width ">
+                                        <input matInput placeholder="Estimated Time " type="text ">
+                                    </mat-form-field>
+                                </div> 
+                            </div>
+                           
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <label  class="label">Problem description</label>
+                                    <mat-form-field class="example-full-width ">
+                                        <textarea matInput placeholder="Exlain why the probelm arises"></textarea>
+                                    </mat-form-field>
+                                  
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Create Ticket</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+             </div>
+            
+        </div>
+        </div>
+</div>  
+ <!-- <div class="col-md-8">  
+    <div class="card">
+        <div class="card-header card-header-danger">
+            <h4 class="card-title">Edit Profile</h4>
+            <p class="card-category">Complete your profile</p>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-5">
+                      <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Company (disabled)" disabled>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Username">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="Email address" type="email">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Fist Name" type="text">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Last Name" type="text">
+                      </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Adress" type="text">
+                      </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="City" type="text">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Country" type="text">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Postal Code" type="text">
+                      </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                      <label>About Me</label>
+                      <mat-form-field class="example-full-width">
+                         <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."></textarea>
+                       </mat-form-field>
+                        <!-- <div class="form-group">
+
+                            <div class="form-group">
+                                <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                <textarea class="form-control" rows="5"></textarea>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+  </div> -->

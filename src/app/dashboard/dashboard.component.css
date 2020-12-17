@@ -1,0 +1,15 @@
+.selectt {
+    border:1px solid rgb(135, 143, 135);
+    padding:3px 20px;
+    border-radius: 5px;
+    color: rgb(80, 70, 70);
+
+}
+.inp{
+    color: rgb(11, 115, 129);
+    font-size: 20px;
+
+}
+.label{
+    color:rgba(80, 74, 74, 0.712);
+}
