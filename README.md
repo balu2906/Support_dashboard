@@ -5,3 +5,4 @@
 #### -> Clone or downloade this project
 #### -> run `npm i` being inside this project.
 #### -> run `ng serve` inside this project.
+#### -------------
