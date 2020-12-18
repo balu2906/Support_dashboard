@@ -2,20 +2,26 @@ import { Component, OnInit } from '@angular/core';
 
 declare const $: any;
 declare interface RouteInfo {
-    path: string;
-    title: string;
-    icon: string;
-    class: string;
+  path: string;
+  title: string;
+  icon: string;
+  class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    // { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-    { path: '/table-list', title: 'All Tickets',  icon:'content_paste', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
+  { path: '/dashboard', title: 'Raise Tickets', icon: 'assignment_turned_in', class: '' },
+  // { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
+  { path: '/table-list', title: 'Open Tickets', icon: 'import_contacts', class: '' },
+  { path: '/resolved-tickets', title: 'Resolved Tickets', icon: 'content_paste', class: '' },
+  { path: '/closed-tickets', title: 'Closed Tickets', icon: 'cancel', class: '' },
+  { path: '/open-alerts', title: 'Open Alerts', icon: 'add_task', class: '' },
+  { path: '/closed-alerts', title: 'Closed Alerts', icon: 'close_alert', class: '' },
+
+
+  // { path: '/typography', title: 'Typography', icon: 'library_books', class: '' },
+  // { path: '/icons', title: 'Icons', icon: 'bubble_chart', class: '' },
+  // { path: '/maps', title: 'Maps', icon: 'location_on', class: '' },
+  // { path: '/notifications', title: 'Notifications', icon: 'notifications', class: '' },
+  // { path: '/upgrade', title: 'Upgrade to PRO', icon: 'unarchive', class: 'active-pro' },
 ];
 
 @Component({
@@ -30,12 +36,12 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
-    console.log("menuitem menu items",this.menuItems)
+    console.log("menuitem menu items", this.menuItems)
   }
   isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
-      }
-      return true;
+    if ($(window).width() > 991) {
+      return false;
+    }
+    return true;
   };
 }

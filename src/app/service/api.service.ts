@@ -1,11 +1,15 @@
 import { environment } from '../../environments/environment';
 
 export class ApiService {
-  public static timer = 30000;
   public static API = {
-    // DATA APT URL's
+    //GET 
     GET_TABLE_DATA: environment.apiUrl + '/table_data',
-    POST_TICKET:environment.apiUrl + '/post_ticket',
+    GET_RESOLVED_DATA: environment.apiUrl + '/resolved_data',
+    GET_CLOSED_DATA: environment.apiUrl + '/closed_data',
+    GET_OPEN_ALERTS_DATA: environment.apiUrl + '/open_alerts_data',
+    GET_CLOSED_ALERTS_DATA: environment.apiUrl + '/closed_alerts_data',
 
+    //POST
+    POST_TICKET: environment.apiUrl + '/post_ticket',
   }
 }
