@@ -10,6 +10,6 @@ export class ApiService {
     GET_CLOSED_ALERTS_DATA: environment.apiUrl + '/closed_alerts_data',
 
     //POST
-    POST_TICKET: environment.apiUrl + '/post_ticket',
+    POST_TICKET: environment.apiUrl + '/ticket/create_ticket',
   }
 }

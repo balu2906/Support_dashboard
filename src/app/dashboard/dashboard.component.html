@@ -24,31 +24,39 @@
                         <p class="card-category">raise new ticket here</p>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
                             <div class="row">
 
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" placeholder="Name" name="name"
-                                            [(ngModel)]="username" class="inp">
+                                        <input matInput type="text" formControlName="username" placeholder="Name"
+                                            name="name" class="inp">
                                     </mat-form-field>
+                                    <span class="alert" *ngIf="f.username.touched && f.username.errors?.required">
+                                        Username is required</span>
+
                                 </div>
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput type="text" placeholder="Mobile Number" name="mobilenumber"
-                                            [(ngModel)]="mobilenumber">
+                                        <input matInput type="number" formControlName="mobilenumber"
+                                            placeholder="Mobile Number" name="mobilenumber">
                                     </mat-form-field>
+                                    <span class="alert"
+                                        *ngIf="f.mobilenumber.touched && f.mobilenumber.errors?.required">
+                                        mobilenumber is required</span>
                                 </div>
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Email address" name="email" [(ngModel)]="email"
+                                        <input matInput placeholder="Email address" formControlName="email" name="email"
                                             type="email">
                                     </mat-form-field>
+                                    <span class="alert" *ngIf="f.email.touched && f.email.errors?.required">
+                                        email is required</span>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="problemtype" class="label">Problem Type:</label>&nbsp;
-                                    <select name="problemType" [(ngModel)]="problemtype" class="select">
-                                        <option value="select" disabled selected hidden>select</option>
+                                    <select name="problemType" formControlName="problemtype" class="select">
+                                        <option value="select" name="select" disabled selected>select</option>
                                         <option value="login">login</option> 
                                         <option value="register">registration</option> 
                                         <option value="buffering">video buffering</option> 
@@ -59,9 +67,10 @@
                             </div>
                             <div class="row ">
                                 <div class="col-md-6 ">
-                                    <label for="assginee" class="label">Select Assingee:</label>&nbsp;
-                                    <select name="assginee" [(ngModel)]="assginee" class="select">
-                                        <option value="select assginee" disabled selected hidden>select assginee
+                                    <label for="assignee" class="label">Select Assingee:</label>&nbsp;
+                                    <select name="assignee" formControlName="assignee" class="select">
+                                        <option value="select" name="select assignee" disabled selected>
+                                            select assignee
                                         </option>
                                         <option value="Jyothi">Jyothi</option> 
                                         <option value="Neha">Neha</option> 
@@ -69,26 +78,25 @@
                                     </select>
 
                                 </div>
-                                <div class="col-md-6 ">
-                                    <mat-form-field class="example-full-width ">
-                                        <input matInput placeholder="Estimated Time " name="estimatedtime"
-                                            [(ngModel)]="estimatedtime" type="text ">
-                                    </mat-form-field>
-                                </div>
                             </div>
 
                             <div class="row ">
                                 <div class="col-md-12 ">
                                     <label class="label">Problem description</label>
                                     <mat-form-field name="problem" class="example-full-width ">
-                                        <textarea matInput placeholder="Exlain why the probelm arises"
-                                            name="description" [(ngModel)]="description" type="description"></textarea>
+                                        <textarea matInput formControlName="description"
+                                            placeholder="Exlain why the probelm arises" name="description"
+                                            type="description"></textarea>
                                     </mat-form-field>
+                                    <span class="alert"
+                                            *ngIf="f.description.touched && f.description.errors?.required">
+                                            description is required</span>
+
 
                                 </div>
                             </div>
                             <button mat-raised-button type="submit" (click)="postticket()"
-                                class="btn btn-danger pull-right">Create
+                                [disabled]="!profileForm.valid" class="btn btn-danger pull-right">Create
                                 Ticket</button>
                             <div class="clearfix"></div>
                         </form>

@@ -22,14 +22,16 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-<<<<<<< HEAD
+// <<<<<<< HEAD
 import { ResolvedTicketsComponent } from './resolved-tickets/resolved-tickets.component';
 import { ClosedTicketsComponent } from './closed-tickets/closed-tickets.component';
 import { OpenAlertsComponent } from './open-alerts/open-alerts.component';
 import { ClosedAlertsComponent } from './closed-alerts/closed-alerts.component';
-=======
+// =======
 import {LoginComponent} from './login/login.component';
->>>>>>> df08fe4707ee225b99cd229c641e49c8d829c1dc
+import { ToastrModule } from 'ngx-toastr';
+
+// >>>>>>> df08fe4707ee225b99cd229c641e49c8d829c1dc
 
 @NgModule({
   imports: [
@@ -42,19 +44,23 @@ import {LoginComponent} from './login/login.component';
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+    }),
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-top-right'
     })
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-<<<<<<< HEAD
+// <<<<<<< HEAD
     ResolvedTicketsComponent,
     ClosedTicketsComponent,
     OpenAlertsComponent,
     ClosedAlertsComponent,
-=======
+// =======
     LoginComponent
->>>>>>> df08fe4707ee225b99cd229c641e49c8d829c1dc
+// >>>>>>> df08fe4707ee225b99cd229c641e49c8d829c1dc
 
   ],
   providers: [],

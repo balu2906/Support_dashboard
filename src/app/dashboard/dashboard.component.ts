@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../service/service';
+import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 
@@ -13,37 +14,53 @@ import * as Chartist from 'chartist';
   // providers: [DatePipe]
 })
 export class DashboardComponent implements OnInit {
-  username: any;
-  mobilenumber: any;
-  email: any;
-  problemtype: any = "select";
-  assginee: any = "select assginee";
-  description: any;
-  estimatedtime: any;
-  // myDate:any = new Date();
-  constructor(public Service: Service,) {
-    // this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+  mobilenumber = "^(\\+\\d{1,3}[- ]?)?\\d{10}$";
+  profileForm: FormGroup = this.fb.group({
+    username: ['', Validators.required],
+    mobilenumber: ['', [Validators.required, Validators.pattern(this.mobilenumber)]],
+    email: ['', Validators.required],
+    problemtype: ['select', Validators.required],
+    assignee: ['select', Validators.required],
+    description: ['', Validators.required]
+  });
+
+
+  constructor(public Service: Service, private toastr: ToastrService, private fb: FormBuilder) {
   }
 
   ngOnInit() {
     /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+
+  }
+
+  onSubmit() {
+    // TODO: Use EventEmitter with form value
+    console.warn(this.profileForm.value);
+  }
+
+  get f() {
+    return this.profileForm.controls;
   }
 
   postticket() {
+    console.log(this.profileForm.value, this.profileForm.get('username').value);
+
     const userData = {
-      name: this.username,
-      contact_no: this.mobilenumber,
-      email: this.email,
-      problemtype: this.problemtype,
-      assginee: this.assginee,
-      description: this.description,
-      estimatedtime: this.estimatedtime
+      name: this.profileForm.get('username').value,
+      mobileNumber: this.profileForm.get('mobilenumber').value,
+      email: this.profileForm.get('email').value,
+      problemtype: this.profileForm.get('problemtype').value,
+      assignee: this.profileForm.get('assignee').value,
+      description: this.profileForm.get('description').value,
 
     }
     this.Service.postticket(userData).subscribe(userData => {
-      console.log("userdata is hereeeeeeeeeeeee", userData)
+      console.log("userdata is hereeeeeeeeeeeee", userData);
+      this.toastr.success("Ticket created successfully");
     }, err => {
-      console.log("errorrrrrrrrrrrrrrrrr");
+      console.log("error", err);
+
+      this.toastr.error("Error while create ticket");
 
     })
   }
