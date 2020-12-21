@@ -1,0 +1,9 @@
+.input-color{
+    background: linear-gradient(60deg, #ef5350, #e53935);
+}
+.close-size{
+    padding: 3px;
+    font-size: 15px;
+    font-weight: 100;
+    border-radius: 5px;
+}  
