@@ -9,20 +9,26 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
   styleUrls: ['./closed-tickets.component.css']
 })
 export class ClosedTicketsComponent implements OnInit {
+  closedtickets : any = [];
 
   constructor(private http: HttpClient,
     public Service: Service,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.getclosedtickets();
   }
 
   getclosedtickets() {
     this.Service.getclosedtickets().subscribe(data => {
+      this.closedtickets = data;
+      console.log("closed tickets dataaaaa", this.closedtickets);
       console.log("CLOSED DATA TICKETSSSSSS", data)
     }, err => {
       console.log("CLOSEDD TICKETS ERRORRRRRRRRRRRRRRR");
 
     })
   }
+
+
 }

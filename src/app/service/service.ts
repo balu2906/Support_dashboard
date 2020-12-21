@@ -12,6 +12,9 @@ export class Service {
   gettableData() {
     return this.http.get(ApiService.API.GET_TABLE_DATA);
   }
+  getrsv(id) {
+    return this.http.get(ApiService.API.GET_RSVDATA_ID + '/' + id);
+  }
   postticket(data) {
     console.log(data, ApiService.API.POST_TICKET);
     return this.http.post('http://localhost:5000/ticket/create_ticket', data);
@@ -20,6 +23,10 @@ export class Service {
   //RESOLVED TICKETS
   getresolvedtickets() {
     return this.http.get(ApiService.API.GET_RESOLVED_DATA);
+  }
+
+  getclose(id) {
+    return this.http.get(ApiService.API.GET_CLSDATA_ID + '/' + id);
   }
 
   //CLOSED TICKETS

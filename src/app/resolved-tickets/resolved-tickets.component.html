@@ -12,45 +12,49 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>
-                                        Ticket ID
-                                    </th>
-                                    <th>
-                                        Assignee
-                                    </th>
-                                    <th>
-                                        Description
-                                    </th>
-                                    <th>
-                                        Resolved Date
-                                    </th>
-                                    <th>
-                                        Strikes
-                                    </th>
+                                    <th>Ticket ID</th>
+                                    <th>Assignee</th>
+                                    <th>Description</th>
+                                    <th>Resolved Date</th>
+                                    <th>Strikes</th>
+                                    <th>Action</th>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            reg35435
-                                        </td>
-                                        <td>
-                                            jyothi
-                                        </td>
-                                        <td>
-                                            registration issue
-                                        </td>
-                                        <td>
-                                            13/12/2020
-                                        </td>
-                                        <td class="text-primary">
-                                            3
-                                        </td>
+                                    <tr *ngFor="let item of resolvedtickets; let i=index">
+                                        <td>{{item._id}}</td>
+                                        <td>{{item.assignee}}</td>
+                                        <td>{{item.description}}</td>
+                                        <td>{{item.createdAt | date}}</td>
+                                        <td class="text-primary">{{item.strikes}}</td>
+                                        <td><button class=" btn-primary close-size" (click)="closepopup(item._id)">
+                                                Close</button></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="popup" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header input-color">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Are you sure to close this ticket?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="closed(selected);">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
