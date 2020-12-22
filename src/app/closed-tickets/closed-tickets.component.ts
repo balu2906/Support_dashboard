@@ -10,6 +10,27 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
 })
 export class ClosedTicketsComponent implements OnInit {
   closedtickets : any = [];
+  resolvedtickets:any =[];
+ selected:any;
+  asigne:any =[];
+  strike:any = [];
+  query = "'Assignee':asigne";
+assignee = {
+  "jyothi" : '',
+  "Rinki" : '',
+  "neha" : '',
+}
+strikes = {
+    'n' : '',
+    'u' : '',
+    'su' : ''
+}
+strikesMap = {
+  'n' : 1,
+  'u' : 2,
+  'su' : 3
+}
+
 
   constructor(private http: HttpClient,
     public Service: Service,
@@ -29,6 +50,25 @@ export class ClosedTicketsComponent implements OnInit {
 
     })
   }
+  changestrike(){
+    this.strike = [];
+    Object.keys(this.strikes).filter(key=>this.strikes[key] == true)
+    .forEach(ele=>{
+      this.strike.push(this.strikesMap[ele]);
+    });
+console.log("str on ch",this.strikes,this.strike);
+
+    this.strike = this.strike.filter(function(elem, index, self) {
+     return index === self.indexOf(elem);
+    })
+  }
+
+  changeassignee(){
+    this.asigne = (Object.keys(this.assignee).filter(key=>this.assignee[key] == true))
+    console.log("assignees",this.asigne);
+
+    
+  } 
 
 
 }

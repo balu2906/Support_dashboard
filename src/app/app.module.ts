@@ -24,7 +24,7 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 // <<<<<<< HEAD
 // import { ResolvedTicketsComponent } from './resolved-tickets/resolved-tickets.component';
-import { ClosedTicketsComponent } from './closed-tickets/closed-tickets.component';
+//import { ClosedTicketsComponent } from './closed-tickets/closed-tickets.component';
 import { OpenAlertsComponent } from './open-alerts/open-alerts.component';
 import { ClosedAlertsComponent } from './closed-alerts/closed-alerts.component';
 import {LoginComponent} from './login/login.component';
@@ -69,7 +69,7 @@ import { ToastrModule } from 'ngx-toastr';
     AdminLayoutComponent,
 // <<<<<<< HEAD
     // ResolvedTicketsComponent,
-    ClosedTicketsComponent,
+   // ClosedTicketsComponent,
     OpenAlertsComponent,
     ClosedAlertsComponent,
     LoginComponent

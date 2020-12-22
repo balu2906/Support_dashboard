@@ -1,21 +1,47 @@
 <head></head>
+
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <!-- <app-filter></app-filter>   -->
-                <div>
-                    <app-filter></app-filter>
-                </div>
+                    <div class="checkbox col-md-10">
+                        <span class="label-new">
+                        <ul class="ngc">
+                            <li class="list">
+                                
+                                <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1" class="inp asignee1" type="checkbox" ><label class="blue">Jyothi</label>
+                            </li>
+                            <!-- {{selected.jyothi}}{{selected.neha}}{{selected.rinki}} -->
+                    
+                            <li class="list ">
+                                
+                                <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2" class="inp asignee2" type="checkbox" value="neha" ><label class="red">Neha</label>
+                            </li>
+                    
+                            <li class="last rinki">
+                                <input (change)="changeassignee()"  [(ngModel)]="assignee.rinki" id="name3" class="inp asignee3" type="checkbox" value="rinki" ><label class="purpul">Rinki</label>
+                            </li>
+                            <li class="strike">
+                            <input (change)="changestrike()"  [(ngModel)]="strikes.n" id="strike1" class="inp striker" type="checkbox" value="1" ><label class="black">1</label>
+                        </li>
+                        <li class="strike">
+                            <input (change)="changestrike()"  [(ngModel)]="strikes.u" id="strike2" class="inp striker" type="checkbox" value="2"><label class="black">2</label>
+                        </li>
+                        <li class="strike">
+                            <input (change)="changestrike()"  [(ngModel)]="strikes.su" id="strike3" class="inp striker" type="checkbox" value="3" ><label class="black">3</label>
+                        </li>
+                        <li  class="strike" style="font-weight: bold;color: rgb(17, 117, 231);font-size: 13px;">STRIKES</li>
+                      </ul>
+                        </span>
+                    </div>
+                    <div class="butdiv col-lg-10"><button class="btn btn-success float-right">close all</button>
+                        <button class="btn btn-success float-right">close</button></div>
+                
                 <div class="card">
                    
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Open Tickets</h4>
-<!-- <<<<<<< HEAD -->
-                        <!-- <h4>{{message}}</h4> -->
-<!-- ======= -->
-                        <!-- <button class="submit" (click)="gettableData()">click me</button> -->
-<!-- >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267 -->
+
                         <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
@@ -23,36 +49,6 @@
                           
                             <table class="table">
                                 <thead class=" text-primary">
-<!-- <<<<<<< HEAD
-                                    <th>
-                                        Ticket ID
-                                    </th>
-                                    <th>
-                                        Assignee
-                                    </th>
-                                    <th>
-                                        Description
-                                    </th>
-                                    <th>
-                                        Date
-                                    </th>
-                                    <th>
-                                        remainingtime
-                                    </th>
-                                    <th>
-                                        Stikes
-                                    </th>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let customer of users;let i = index">
-                                        <!-- <td scope="row">{{i+1}}</td> 
-                                        <td>{{customer.id}}</td>
-                                        <td>{{customer.Assignee}}</td>
-                                        <td>{{customer.Description}}</td>
-                                        <td>{{customer.date}}</td>
-                                        <td>{{customer.remainingtime}}</td>
-                                        <td class="text-primary">{{customer.strikes}}</td>
-======= -->
                                     <!-- <th><input type="checkbox"/></th> -->
                                     <th>Ticket ID </th>
                                     <th>Assignee</th>
@@ -63,7 +59,7 @@
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of opentickets; let i=index">
+                                    <tr *ngFor="let item of opentickets | filter:'assignee':asigne:'strikes':strike; let i=index">
                                         <!-- <td> <input type="checkbox"/> </td> -->
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
@@ -73,7 +69,7 @@
                                         <td class="text-primary">{{item.strikes}}</td>
                                         <td><button class=" btn-primary resolve"
                                                 (click)="resolvepopup(item._id)">Resolve</button></td>
-<!-- >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267 -->
+
                                     </tr>
         
                                 </tbody>

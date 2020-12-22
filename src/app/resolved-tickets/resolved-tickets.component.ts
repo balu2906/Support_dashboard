@@ -19,51 +19,6 @@ export class ResolvedTicketsComponent implements OnInit {
   asigne:any =[];
   strike:any = [];
   query = "'Assignee':asigne";
-//   users=[{
-//     id:'123',
-//     email:'abc@gmail.com',
-//     Assignee: 'Jyothi',
-//     Description : 'ksdjhfkjsadf',
-//     date:'12/12/2020',
-//     remainingtime : '23:0:0',
-//     Strikes : '1',
-// // >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
-
-//   },{
-//     id:'1234',
-//     email:'xyz@hotmail.com',
-//     Assignee: 'Jyothi',
-//     Description : 'ksdjhfkjsadf',
-//     date:'12/12/2020',
-//     remainingtime : '23:0:0',
-//     Strikes : '3'
-//   },{
-//     id:'12345',
-//     email:'jsgsbh@kk.com',
-//     Assignee: 'neha',
-//     Description : 'ksdjhfkjsadf',
-//     date:'12/12/2020',
-//     remainingtime : '23:0:0',
-//     Strikes : '1'
-//   },{
-//     id:'123456',
-//     email:'test@gmail.com',
-//     Assignee: 'Rinki',
-//     Description : 'ksdjhfkjsadf',
-//     date:'12/12/2020',
-//     remainingtime : '23:0:0',
-//     Strikes : '2'
-//   },
-//   {
-//     id:'123456',
-//     email:'tst@gmail.com',
-//     Assignee: 'Rinki',
-//     Description : 'ksdjhfkjsadf',
-//     date:'12/12/2020',
-//     remainingtime : '23:0:0',
-//     Strikes : '3'
-//   }
-// ]
 assignee = {
   "jyothi" : '',
   "Rinki" : '',
@@ -144,7 +99,7 @@ console.log("str on ch",this.strikes,this.strike);
       window.location.reload();
       console.log("closedd ticket iddddddddd", data);
     }, err => {
-      console.log("error in closedticket iddddddd");
+      console.log("error in closedticket iddddddd")
     })
   }
 

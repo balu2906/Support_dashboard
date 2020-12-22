@@ -19,7 +19,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { FilterComponent } from '../../filter/filter.component';
 import { FilterPipe } from '../../utils/filter.pipe';
-import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.component'
+import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.component';
+import { ClosedTicketsComponent } from '../../closed-tickets/closed-tickets.component';
  
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.
     UpgradeComponent,
     FilterComponent,
     FilterPipe,
-    ResolvedTicketsComponent
+    ResolvedTicketsComponent,
+    ClosedTicketsComponent
   ],
   exports:[FilterComponent]
 })
