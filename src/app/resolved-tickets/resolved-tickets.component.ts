@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-resolved-tickets',
@@ -9,6 +11,7 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
   styleUrls: ['./resolved-tickets.component.css']
 })
 export class ResolvedTicketsComponent implements OnInit {
+<<<<<<< HEAD
   asigne:any =[];
   strike:any = [];
   query = "'Assignee':asigne";
@@ -21,6 +24,10 @@ export class ResolvedTicketsComponent implements OnInit {
     remainingtime : '23:0:0',
     Strikes : '1'
     
+=======
+  resolvedtickets: any = [];
+  selected: any;
+>>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
 
   },{
     id:'1234',
@@ -76,16 +83,24 @@ strikesMap = {
   
   constructor(private http: HttpClient,
     public Service: Service,
+<<<<<<< HEAD
     private fb: FormBuilder) {
 
      }
+=======
+    private fb: FormBuilder,
+    private router: Router) { }
+>>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
 
   ngOnInit(): void {
+    this.getresolvedtickets();
   }
 
   getresolvedtickets() {
     this.Service.getresolvedtickets().subscribe(data => {
-      console.log("RESOLVED DATA TICKETSSSSSS", data)
+      this.resolvedtickets = data;
+      console.log("resolved dataaaaa", this.resolvedtickets);
+      console.log("RESOLVED DATA TICKETSSSSSS", data);
     }, err => {
       console.log("RESOLVEDDD ERRORRRRRRRRRRRRRRR");
 
@@ -117,4 +132,19 @@ console.log("str on ch",this.strikes,this.strike);
   }
   
 
+  closepopup(id: any) {
+    this.selected = id;
+    jQuery("#popup").modal("show");
+  }
+
+  closed(id: any) {
+    console.log("fdfggrtytghfvhbghmbnbnbvnbnb");
+    this.Service.getclose(id).subscribe(data => {
+      // this.router.navigate(['/closed-tickets']);
+      window.location.reload();
+      console.log("closedd ticket iddddddddd", data);
+    }, err => {
+      console.log("error in closedticket iddddddd");
+    })
+  }
 

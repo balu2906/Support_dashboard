@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
+<<<<<<< HEAD
 import {SharedService} from '../shared/shared.service'
+=======
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+>>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
 
 
 
@@ -67,8 +71,11 @@ export class TableListComponent implements OnInit {
   }
 ]
 
+  opentickets: any = [];
+  selected: any;
   constructor(private http: HttpClient,
     public Service: Service,
+<<<<<<< HEAD
     private fb: FormBuilder,private shared:SharedService) { }
   
 
@@ -100,15 +107,39 @@ export class TableListComponent implements OnInit {
      })
 
   
-  }
+=======
+    private fb: FormBuilder,
+    private router: Router) { }
 
+  ngOnInit() {
+    this.gettableData()
+>>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
+  }
 
   gettableData() {
     this.Service.gettableData().subscribe(data => {
-      console.log("sssssssssssssssssssssssss", data)
+      this.opentickets = data;
+      console.log("ttttttttttttttttttttt", this.opentickets)
+      console.log("OPEN TICKETS DATAAAA", data)
     }, err => {
-      console.log("sdfghjkl");
+      console.log("ERROR IN OPEN TICKETS DATAAAA");
 
+    })
+  }
+
+  resolvepopup(id: any) {
+    this.selected = id;
+    jQuery("#popup").modal("show");
+  }
+  
+  rsv(id: any) {
+    console.log("slkdfjaslkdfjlaksdfjlkasdfj");
+    this.Service.getrsv(id).subscribe(data => {
+      console.log("resolved ticket iddddddddd", data);
+      // this.router.navigate(['/resolved-tickets']);
+      window.location.reload();
+    }, err => {
+      console.log("error in rsv iddddddd");
     })
   }
 }
