@@ -33,7 +33,7 @@ export class FilterPipe implements PipeTransform {
       
       
       for(var j = 0;j<value2.length;j++){
-       var arr2 = result.filter(item => item[field2].toLowerCase() == value2[j]);
+       var arr2 = result.filter(item => item[field2] == value2[j]);
        arr2.forEach(ele =>{
          re.push(ele)
        })
@@ -59,7 +59,7 @@ export class FilterPipe implements PipeTransform {
       
       let strikess:any = [];
       for(var k = 0;k<value2.length;k++){
-        let arr =  items.filter(item=> item[field2].toLowerCase() == value2[k]);
+        let arr =  items.filter(item=> item[field2] == value2[k]);
         console.log("strike results",arr);
         
         arr.forEach(ele=>{

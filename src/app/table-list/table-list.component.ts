@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
-<<<<<<< HEAD
+// <<<<<<< HEAD
 import {SharedService} from '../shared/shared.service'
-=======
+// =======
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
->>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
+// >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
+import * as $ from 'jquery'
+declare var jQuery:any;
 
 
 
@@ -25,58 +27,58 @@ export class TableListComponent implements OnInit {
     'u' : 2,
     'su' : 3
   }
-  users=[{
-    id:'123',
-    email:'abc@gmail.com',
-    Assignee: 'Jyothi',
-    Description : 'ksdjhfkjsadf',
-    date:'12/12/2020',
-    remainingtime : '23:0:0',
-    strikes : '1'
+//   users=[{
+//     id:'123',
+//     email:'abc@gmail.com',
+//     Assignee: 'Jyothi',
+//     Description : 'ksdjhfkjsadf',
+//     date:'12/12/2020',
+//     remainingtime : '23:0:0',
+//     strikes : '1'
     
 
-  },{
-    id:'1234',
-    email:'xyz@hotmail.com',
-    Assignee: 'Jyothi',
-    Description : 'ksdjhfkjsadf',
-    date:'12/12/2020',
-    remainingtime : '23:0:0',
-    strikes : '3'
-  },{
-    id:'12345',
-    email:'jsgsbh@kk.com',
-    Assignee: 'neha',
-    Description : 'ksdjhfkjsadf',
-    date:'12/12/2020',
-    remainingtime : '23:0:0',
-    strikes : '1'
-  },{
-    id:'123456',
-    email:'test@gmail.com',
-    Assignee: 'Rinki',
-    Description : 'ksdjhfkjsadf',
-    date:'12/12/2020',
-    remainingtime : '23:0:0',
-    strikes : '2'
-  },
-  {
-    id:'123456',
-    email:'tst@gmail.com',
-    Assignee: 'Rinki',
-    Description : 'ksdjhfkjsadf',
-    date:'12/12/2020',
-    remainingtime : '23:0:0',
-    strikes : '3'
-  }
-]
+//   },{
+//     id:'1234',
+//     email:'xyz@hotmail.com',
+//     Assignee: 'Jyothi',
+//     Description : 'ksdjhfkjsadf',
+//     date:'12/12/2020',
+//     remainingtime : '23:0:0',
+//     strikes : '3'
+//   },{
+//     id:'12345',
+//     email:'jsgsbh@kk.com',
+//     Assignee: 'neha',
+//     Description : 'ksdjhfkjsadf',
+//     date:'12/12/2020',
+//     remainingtime : '23:0:0',
+//     strikes : '1'
+//   },{
+//     id:'123456',
+//     email:'test@gmail.com',
+//     Assignee: 'Rinki',
+//     Description : 'ksdjhfkjsadf',
+//     date:'12/12/2020',
+//     remainingtime : '23:0:0',
+//     strikes : '2'
+//   },
+//   {
+//     id:'123456',
+//     email:'tst@gmail.com',
+//     Assignee: 'Rinki',
+//     Description : 'ksdjhfkjsadf',
+//     date:'12/12/2020',
+//     remainingtime : '23:0:0',
+//     strikes : '3'
+//   }
+// ]
 
   opentickets: any = [];
   selected: any;
   constructor(private http: HttpClient,
     public Service: Service,
-<<<<<<< HEAD
-    private fb: FormBuilder,private shared:SharedService) { }
+// <<<<<<< HEAD
+    private fb: FormBuilder,private shared:SharedService, private router: Router) { }
   
 
   ngOnInit() : void {
@@ -107,13 +109,13 @@ export class TableListComponent implements OnInit {
      })
 
   
-=======
-    private fb: FormBuilder,
-    private router: Router) { }
-
-  ngOnInit() {
+// =======
+    // private fb: FormBuilder,
+    // private router: Router) { }
+  
+  // ngOnInit() {
     this.gettableData()
->>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
+// >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
   }
 
   gettableData() {

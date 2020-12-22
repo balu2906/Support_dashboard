@@ -49,31 +49,6 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
-<<<<<<< HEAD
-                                    <th>
-                                        Ticket ID
-                                    </th>
-                                    <th>
-                                        Assignee
-                                    </th>
-                                    <th>
-                                        Description
-                                    </th>
-                                    <th>
-                                        Resolved Date
-                                    </th>
-                                    <th>
-                                        Strikes
-                                    </th>
-                                    <tr *ngFor="let customer of users | filter:'Assignee':asigne:'Strikes':strike;let i = index">
-                                            <!-- <td scope="row">{{i+1}}</td> -->
-                                            <td>{{customer.id}}</td>
-                                            <td>{{customer.Assignee}}</td>
-                                            <td>{{customer.Description}}</td>
-                                            <td>{{customer.date}}</td>
-                                            <td class="text-primary">{{customer.Strikes}}</td>
-                                     </tr>
-=======
                                 <thead class=" text-primary">
                                     <th>Ticket ID</th>
                                     <th>Assignee</th>
@@ -83,7 +58,7 @@
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of resolvedtickets; let i=index">
+                                    <tr *ngFor="let item of resolvedtickets | filter:'assignee':asigne:'strikes':strike; let i=index">
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
                                         <td>{{item.description}}</td>
@@ -93,7 +68,7 @@
                                                 Close</button></td>
                                     </tr>
                                 </tbody>
->>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
+<!-- >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267 -->
                             </table>
                         </div>
                     </div>
