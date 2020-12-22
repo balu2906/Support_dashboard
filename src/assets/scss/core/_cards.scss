@@ -3,7 +3,7 @@
 .card {
   border: 0;
   margin-bottom: 30px;
-  margin-top: 30px;
+  margin-top: 35px;
   margin-left:0px;
   border-radius: $border-radius-large;
   color: $gray-dark;
@@ -493,7 +493,7 @@
 
       &:not(.card-header-icon):not(.card-header-text):not(.card-header-image){
         border-radius: $border-radius-base;
-        margin-top: -20px;
+        margin-top: 20px;
         padding: 15px;
       }
 

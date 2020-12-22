@@ -17,10 +17,14 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
-
+import { FilterComponent } from '../../filter/filter.component';
+import { FilterPipe } from '../../utils/filter.pipe';
+import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.component'
+ 
 @NgModule({
   imports: [
     CommonModule,
+    
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     ReactiveFormsModule,
@@ -29,7 +33,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule,
+    MatTooltipModule
   ],
   declarations: [
     DashboardComponent,
@@ -40,7 +44,11 @@ import {MatSelectModule} from '@angular/material/select';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-  ]
+    FilterComponent,
+    FilterPipe,
+    ResolvedTicketsComponent
+  ],
+  exports:[FilterComponent]
 })
 
 export class AdminLayoutModule {}
