@@ -22,14 +22,13 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-<<<<<<< HEAD
-import { ResolvedTicketsComponent } from './resolved-tickets/resolved-tickets.component';
+// import { ResolvedTicketsComponent } from './resolved-tickets/resolved-tickets.component';
 import { ClosedTicketsComponent } from './closed-tickets/closed-tickets.component';
 import { OpenAlertsComponent } from './open-alerts/open-alerts.component';
 import { ClosedAlertsComponent } from './closed-alerts/closed-alerts.component';
-=======
 import {LoginComponent} from './login/login.component';
->>>>>>> df08fe4707ee225b99cd229c641e49c8d829c1dc
+import {AdminLayoutModule} from './layouts/admin-layout/admin-layout.module';
+// import { FilterPipe } from './utils/filter.pipe'
 
 @NgModule({
   imports: [
@@ -42,19 +41,17 @@ import {LoginComponent} from './login/login.component';
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    }),
+    AdminLayoutModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-<<<<<<< HEAD
-    ResolvedTicketsComponent,
+    // ResolvedTicketsComponent,
     ClosedTicketsComponent,
     OpenAlertsComponent,
     ClosedAlertsComponent,
-=======
     LoginComponent
->>>>>>> df08fe4707ee225b99cd229c641e49c8d829c1dc
 
   ],
   providers: [],

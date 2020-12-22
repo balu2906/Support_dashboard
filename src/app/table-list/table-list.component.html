@@ -1,14 +1,22 @@
+<head></head>
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+                <!-- <app-filter></app-filter>   -->
+                <div>
+                    <app-filter></app-filter>
+                </div>
                 <div class="card">
+                   
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Open Tickets</h4>
+                        <!-- <h4>{{message}}</h4> -->
                         <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
+                          
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>
@@ -24,33 +32,23 @@
                                         Date
                                     </th>
                                     <th>
-                                        Remaining Time
+                                        remainingtime
                                     </th>
                                     <th>
-                                        Strikes
+                                        Stikes
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            log35435
-                                        </td>
-                                        <td>
-                                            Swetha
-                                        </td>
-                                        <td>
-                                            login issue
-                                        </td>
-                                        <td>
-                                            09/12/2020
-                                        </td>
-                                        <td>
-                                            5:00pm
-                                        </td>
-                                        <td class="text-primary">
-                                            5
-                                        </td>
+                                    <tr *ngFor="let customer of users;let i = index">
+                                        <!-- <td scope="row">{{i+1}}</td> -->
+                                        <td>{{customer.id}}</td>
+                                        <td>{{customer.Assignee}}</td>
+                                        <td>{{customer.Description}}</td>
+                                        <td>{{customer.date}}</td>
+                                        <td>{{customer.remainingtime}}</td>
+                                        <td class="text-primary">{{customer.strikes}}</td>
                                     </tr>
+        
                                 </tbody>
                             </table>
                         </div>
