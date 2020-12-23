@@ -9,17 +9,58 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
   styleUrls: ['./open-alerts.component.css']
 })
 export class OpenAlertsComponent implements OnInit {
-
+  openalerts:any = []
+  selected:any;
+  asigne:any =[];
+  strike:any = [];
+  query = "'Assignee':asigne";
+assignee = {
+  "jyothi" : '',
+  "Rinki" : '',
+  "neha" : '',
+}
+strikes = {
+    'n' : '',
+    'u' : '',
+    'su' : ''
+}
+strikesMap = {
+  'n' : 1,
+  'u' : 2,
+  'su' : 3
+}
   constructor(private http: HttpClient,
     public Service: Service,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.getopenalerts()
   }
 
+  changestrike(){
+    this.strike = [];
+    Object.keys(this.strikes).filter(key=>this.strikes[key] == true)
+    .forEach(ele=>{
+      this.strike.push(this.strikesMap[ele]);
+    });
+console.log("str on ch",this.strikes,this.strike);
 
+    this.strike = this.strike.filter(function(elem, index, self) {
+     return index === self.indexOf(elem);
+    })
+  }
+
+  changeassignee(){
+    this.asigne = (Object.keys(this.assignee).filter(key=>this.assignee[key] == true))
+    console.log("assignees",this.asigne);
+
+    
+  } 
   getopenalerts() {
     this.Service.getopenalerts().subscribe(data => {
+      this.openalerts =data;
+      console.log("open alerts", this.openalerts);
+      
       console.log("OPEN ALERTS DATAAA", data)
     }, err => {
       console.log("OPEN ALERTS ERRORRRRRRRRRRRRRRR");

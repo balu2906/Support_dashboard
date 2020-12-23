@@ -30,16 +30,13 @@
                             <input (change)="changestrike()"  [(ngModel)]="strikes.u" id="strike2" class="inp striker" type="checkbox" value="2"><label class="black">2</label>
                         </li>
                         <li class="strike">
-                        <input (change)="changestrike()"  [(ngModel)]="strikes.su" id="strike3" class="inp striker" type="checkbox" value="3" ><label class="black">3</label>
-                    </li>
-                    <li  class="strike" style="font-weight: bold;color: rgb(17, 117, 231);font-size: 13px;">STRIKES</li>
-                </ul>
+                            <input (change)="changestrike()"  [(ngModel)]="strikes.su" id="strike3" class="inp striker" type="checkbox" value="3" ><label class="black">3</label>
+                        </li>
+                        <li  class="strike" style="font-weight: bold;color: rgb(17, 117, 231);font-size: 13px;">STRIKES</li>
+                      </ul>
                         </span>
                     </div>
                 </div>
-
-                <div class="butdiv col-lg-10"><button class="btn btn-success float-right">close all</button>
-                    <button class="btn btn-success float-right">close</button></div>
                 <div class="card">
                     <div class="card-header card-header-danger mt-20">
                         <h4 class="card-title ">Resolved Tickets</h4>
@@ -59,13 +56,13 @@
                                     <!-- <th>Action</th> -->
                                 </thead>
                                 <tbody>
-<!-- <<<<<<< lakshmi-tcheckbox -->
-                                    <tr *ngFor="let item of resolvedtickets; let i=index">
+
+                                    <!-- <tr *ngFor="let item of resolvedtickets; let i=index"> -->
+                                        
+
+                                    <tr *ngFor="let item of resolvedtickets | filter:'assignee':asigne:'strikes':strike; let i=index">
                                         <td> <input type="checkbox" [value]="item._id" (change)="checkAllfn($event)" />
                                         </td>
-<!-- ======= -->
-                                    <tr *ngFor="let item of resolvedtickets | filter:'assignee':asigne:'strikes':strike; let i=index">
-<!-- >>>>>>> main -->
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
                                         <td>{{item.description}}</td>
@@ -76,7 +73,7 @@
                                                 Close</button></td> -->
                                     </tr>
                                 </tbody>
-<!-- >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267 -->
+
                             </table>
                         </div>
                     </div>

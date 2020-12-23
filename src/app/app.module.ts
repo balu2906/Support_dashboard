@@ -22,16 +22,14 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-// <<<<<<< lakshmi-tcheckbox
-import { ResolvedTicketsComponent } from './resolved-tickets/resolved-tickets.component';
-import { ClosedTicketsComponent } from './closed-tickets/closed-tickets.component';
-import { OpenAlertsComponent } from './open-alerts/open-alerts.component';
-import { ClosedAlertsComponent } from './closed-alerts/closed-alerts.component';
+// // <<<<<<< lakshmi-tcheckbox
+// import { ResolvedTicketsComponent } from './resolved-tickets/resolved-tickets.component';
+// import { ClosedTicketsComponent } from './closed-tickets/closed-tickets.component';
+// import { OpenAlertsComponent } from './open-alerts/open-alerts.component';
+// import { ClosedAlertsComponent } from './closed-alerts/closed-alerts.component';
 import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HighchartsChartModule } from 'highcharts-angular';
-// =======
-// <<<<<<< HEAD
 // import { ResolvedTicketsComponent } from './resolved-tickets/resolved-tickets.component';
 // import { ClosedTicketsComponent } from './closed-tickets/closed-tickets.component';
 // import { OpenAlertsComponent } from './open-alerts/open-alerts.component';
@@ -39,8 +37,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 // import {LoginComponent} from './login/login.component';
 // import {AdminLayoutModule} from './layouts/admin-layout/admin-layout.module';
 // import { FilterPipe } from './utils/filter.pipe'
-// =======
-// <<<<<<< HEAD
+
 // import { ResolvedTicketsComponent } from './resolved-tickets/resolved-tickets.component';
 // import { ClosedTicketsComponent } from './closed-tickets/closed-tickets.component';
 // import { OpenAlertsComponent } from './open-alerts/open-alerts.component';
@@ -48,15 +45,14 @@ import { HighchartsChartModule } from 'highcharts-angular';
 // // =======
 // import {LoginComponent} from './login/login.component';
 // import { ToastrModule } from 'ngx-toastr';
-
-// >>>>>>> df08fe4707ee225b99cd229c641e49c8d829c1dc
-// >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
-// >>>>>>> main
+// import {LoginComponent} from './login/login.component';
+import {AdminLayoutModule} from './layouts/admin-layout/admin-layout.module';
+// import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    // HighchartsChartModule,
+    HighchartsChartModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -66,43 +62,23 @@ import { HighchartsChartModule } from 'highcharts-angular';
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
-// <<<<<<< HEAD
+
     AdminLayoutModule,
-// =======
+
     ToastrModule.forRoot({
       timeOut: 1000,
       positionClass: 'toast-top-right'
     })
-// >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
+
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-// <<<<<<< lakshmi-tcheckbox
-    ResolvedTicketsComponent,
-    ClosedTicketsComponent,
-    OpenAlertsComponent,
-    ClosedAlertsComponent,
-    // TypographyComponent,
-    LoginComponent
-// =======
-// <<<<<<< HEAD
-    // ResolvedTicketsComponent,
-//     ClosedTicketsComponent,
-//     OpenAlertsComponent,
-//     ClosedAlertsComponent,
-//     LoginComponent
-// // =======
-// <<<<<<< HEAD
     // ResolvedTicketsComponent,
     // ClosedTicketsComponent,
     // OpenAlertsComponent,
     // ClosedAlertsComponent,
-// =======
-    // LoginComponent
-// >>>>>>> df08fe4707ee225b99cd229c641e49c8d829c1dc
-// >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
-// >>>>>>> main
+    LoginComponent
 
   ],
   providers: [],

@@ -24,7 +24,10 @@ import { HighchartsChartModule } from 'highcharts-angular';
 // =======
 import { FilterComponent } from '../../filter/filter.component';
 import { FilterPipe } from '../../utils/filter.pipe';
-import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.component'
+import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.component';
+import { ClosedTicketsComponent } from '../../closed-tickets/closed-tickets.component';
+import { ClosedAlertsComponent } from '../../closed-alerts/closed-alerts.component';
+import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
  
 // >>>>>>> main
 @NgModule({
@@ -57,7 +60,10 @@ import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.
     UpgradeComponent,
     FilterComponent,
     FilterPipe,
-    ResolvedTicketsComponent
+    ResolvedTicketsComponent,
+    ClosedTicketsComponent,
+    ClosedAlertsComponent,
+    OpenAlertsComponent
   ],
   exports:[FilterComponent]
 })
