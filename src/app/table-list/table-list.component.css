@@ -79,4 +79,29 @@ label{
     font-weight: 100;
     border-radius: 5px;
 }  
-/* >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267 */
+textarea{
+    
+border:solid 1px #ccc;
+font-size:1.3em; 
+font-family:"";
+color:rgb(133, 192, 189); 
+    
+}
+textarea:focus{
+    outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #719ECE;
+}
+p{
+    color:rgb(255, 102, 0);
+    font-size:1.3em;
+    font-weight: bold;
+}
+select{
+    color:rgb(1, 238, 226); 
+}
+select:focus{
+    outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #719ECE;
+}

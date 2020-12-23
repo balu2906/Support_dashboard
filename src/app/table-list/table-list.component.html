@@ -34,8 +34,6 @@
                       </ul>
                         </span>
                     </div>
-                    <div class="butdiv col-lg-10"><button class="btn btn-success float-right">close all</button>
-                        <button class="btn btn-success float-right">close</button></div>
                 
                 <div class="card">
                    
@@ -91,11 +89,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body text-center">
+            <div class="modal-body pop-body">
                 <p>Are you sure to resolve this ticket?</p>
+                <form [formGroup]="popupForm">
+                    <textarea rows="4" cols="45" type="text" formControlName="description" name="solution" placeholder="description"></textarea>
+                    <div class="col-md-6">
+                        <label for="problemtype" class="label">Solved By:</label>&nbsp;
+                        <select name="problemType" formControlName="solvedby" class="select">
+                            <option value="select" name="select" disabled selected>select</option>
+                            <option value="login">supportTeam</option> 
+                            <option value="register">DesignatedPerson</option> 
+                        </select>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="rsv(selected)">Yes</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="rsv(selected)">Confirm</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
         </div>

@@ -36,6 +36,11 @@ export class TableListComponent implements OnInit {
    'u' : 2,
    'su' : 3
  }
+ popupForm: FormGroup = this.fb.group({
+  description: ['', Validators.required],
+  solvedby: ['select', Validators.required],
+});
+
   constructor(private http: HttpClient,
     public Service: Service,
 // <<<<<<< HEAD
