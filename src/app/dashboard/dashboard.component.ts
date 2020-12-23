@@ -42,7 +42,10 @@ export class DashboardComponent implements OnInit {
     return this.profileForm.controls;
   }
 
+  loading_spinner: Boolean = false;
   postticket() {
+    this.loading_spinner = true;
+
     console.log(this.profileForm.value, this.profileForm.get('username').value);
 
     const userData = {
@@ -52,11 +55,11 @@ export class DashboardComponent implements OnInit {
       problemtype: this.profileForm.get('problemtype').value,
       assignee: this.profileForm.get('assignee').value,
       description: this.profileForm.get('description').value,
-
     }
     this.Service.postticket(userData).subscribe(userData => {
       console.log("userdata is hereeeeeeeeeeeee", userData);
       this.toastr.success("Ticket created successfully");
+      this.loading_spinner = false;
     }, err => {
       console.log("error", err);
 

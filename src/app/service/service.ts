@@ -43,4 +43,9 @@ export class Service {
   getclosedalerts() {
     return this.http.get(ApiService.API.GET_CLOSED_ALERTS_DATA);
   }
+
+  //TYPOGRAPHY
+  getChartinfo() {
+    return this.http.get(ApiService.API.GET_CHART_INFO);
+  }
 }

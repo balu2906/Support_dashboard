@@ -9,33 +9,38 @@
                         <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive overflow-body">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <!-- <th><input type="checkbox"/></th> -->
+                                    <th><input type="checkbox" /></th>
                                     <th>Ticket ID </th>
                                     <th>Assignee</th>
                                     <th>Description</th>
                                     <th>Date</th>
                                     <th>Remaining Time</th>
                                     <th>Strikes</th>
-                                    <th>Action</th>
+                                    <!-- <th>Action</th> -->
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of opentickets; let i=index">
-                                        <!-- <td> <input type="checkbox"/> </td> -->
+                                        <td> <input type="checkbox" [value]="item._id" (change)="checkAllfn($event)" />
+                                        </td>
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
                                         <td>{{item.description}}</td>
                                         <td>{{item.createdAt | date}}</td>
                                         <td>{{item.createdAt | date:'shortTime'}}</td>
                                         <td class="text-primary">{{item.strikes}}</td>
-                                        <td><button class=" btn-primary resolve"
-                                                (click)="resolvepopup(item._id)">Resolve</button></td>
+                                        <!-- <td><button class=" btn-primary resolve"
+                                                (click)="resolvepopup(item._id)">Resolve</button></td> -->
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-primary resolve" (click)="resolvepopup()"> Resolve</button>
+                        <button class="btn btn-warning mrBtn"> Alert</button>
                     </div>
                 </div>
             </div>
@@ -56,7 +61,7 @@
                 <p>Are you sure to resolve this ticket?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="rsv(selected)">Yes</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="rsv()">Yes</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
         </div>

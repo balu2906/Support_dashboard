@@ -10,6 +10,8 @@ export class ApiService {
     GET_CLOSED_DATA: environment.apiUrl + '/ticket/closed_tickets',
     GET_OPEN_ALERTS_DATA: environment.apiUrl + '/open_alerts_data',
     GET_CLOSED_ALERTS_DATA: environment.apiUrl + '/closed_alerts_data',
+    GET_CHART_INFO : environment.apiUrl + '/covidinfo',
+
 
     //POST
     POST_TICKET: environment.apiUrl + '/ticket/create_ticket',
