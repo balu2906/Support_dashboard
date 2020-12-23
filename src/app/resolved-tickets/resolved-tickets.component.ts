@@ -3,8 +3,14 @@ import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import * as $ from 'jquery'
-declare var jQuery:any;
+// <<<<<<< lakshmi-tcheckbox
+import * as $ from 'jquery';
+declare var jQuery: any;
+
+// =======
+// import * as $ from 'jquery'
+// declare var jQuery:any;
+// // >>>>>>> main
 
 
 @Component({
@@ -13,6 +19,12 @@ declare var jQuery:any;
   styleUrls: ['./resolved-tickets.component.css']
 })
 export class ResolvedTicketsComponent implements OnInit {
+// <<<<<<< lakshmi-tcheckbox
+//   resolvedtickets: any = [];
+//   selected: any;
+  Checklist: any = [];
+
+// =======
 // <<<<<<< HEAD
  resolvedtickets:any =[];
  selected:any;
@@ -28,6 +40,7 @@ export class ResolvedTicketsComponent implements OnInit {
 //     remainingtime : '23:0:0',
 //     Strikes : '1',
 // // >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
+// >>>>>>> main
 
 //   },{
 //     id:'1234',
@@ -96,6 +109,24 @@ strikesMap = {
     this.getresolvedtickets();
   }
 
+
+  checkAllfn(ev: any) {
+    if (ev.target.checked) {
+      this.Checklist.push(ev.target.value);
+    }
+    else {
+      var i = 0;
+      this.Checklist.forEach(ele => {
+        if (ele == ev.target.value) {
+          this.Checklist.splice(i, 1);
+        }
+        i++;
+      });;
+    }
+    console.log("checklistttttttttttttt", this.Checklist);
+  }
+
+
   getresolvedtickets() {
     this.Service.getresolvedtickets().subscribe(data => {
       this.resolvedtickets = data;
@@ -132,20 +163,25 @@ console.log("str on ch",this.strikes,this.strike);
   
   
 
-  closepopup(id: any) {
-    this.selected = id;
+  closepopup() {
     jQuery("#popup").modal("show");
   }
+  closed() {
+    this.Checklist.forEach(element => {
+      this.Service.getclose(element).subscribe(data => {
+        let i = 0;
+        this.resolvedtickets.forEach(ele => {
+          if (ele._id == element) {
+            this.resolvedtickets.splice(i, 1);
+          }
+          i++;
+        });
+      }, err => {
+        console.log("error in closedticket iddddddd");
+      })
 
-  closed(id: any) {
-    console.log("fdfggrtytghfvhbghmbnbnbvnbnb");
-    this.Service.getclose(id).subscribe(data => {
-      // this.router.navigate(['/closed-tickets']);
-      window.location.reload();
-      console.log("closedd ticket iddddddddd", data);
-    }, err => {
-      console.log("error in closedticket iddddddd");
-    })
+    });
+
   }
 
 }

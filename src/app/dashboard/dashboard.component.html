@@ -88,16 +88,19 @@
                                             placeholder="Exlain why the probelm arises" name="description"
                                             type="description"></textarea>
                                     </mat-form-field>
-                                    <span class="alert"
-                                            *ngIf="f.description.touched && f.description.errors?.required">
-                                            description is required</span>
+                                    <span class="alert" *ngIf="f.description.touched && f.description.errors?.required">
+                                        description is required</span>
 
 
                                 </div>
                             </div>
                             <button mat-raised-button type="submit" (click)="postticket()"
-                                [disabled]="!profileForm.valid" class="btn btn-danger pull-right">Create
-                                Ticket</button>
+                                [disabled]="!profileForm.valid" class="btn btn-danger pull-right">
+                                <span  *ngIf="loading_spinner">Creating
+                                    Ticket...</span>
+                                <span *ngIf="!loading_spinner">Create
+                                    Ticket</span>
+                            </button>
                             <div class="clearfix"></div>
                         </form>
                     </div>

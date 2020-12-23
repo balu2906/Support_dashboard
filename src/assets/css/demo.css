@@ -37,3 +37,16 @@
   position: absolute;
   width: 260px;
 }
+
+.mrBtn {
+  margin-right: 580px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 100;
+  border-radius: 5px;
+}
+.overflow-body {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 400px;
+}

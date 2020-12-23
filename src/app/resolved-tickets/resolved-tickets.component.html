@@ -47,30 +47,42 @@
                         <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive overflow-body">
                             <table class="table">
                                 <thead class=" text-primary">
+                                    <th><input type="checkbox" /></th>
                                     <th>Ticket ID</th>
                                     <th>Assignee</th>
                                     <th>Description</th>
                                     <th>Resolved Date</th>
                                     <th>Strikes</th>
-                                    <th>Action</th>
+                                    <!-- <th>Action</th> -->
                                 </thead>
                                 <tbody>
+<!-- <<<<<<< lakshmi-tcheckbox -->
+                                    <tr *ngFor="let item of resolvedtickets; let i=index">
+                                        <td> <input type="checkbox" [value]="item._id" (change)="checkAllfn($event)" />
+                                        </td>
+<!-- ======= -->
                                     <tr *ngFor="let item of resolvedtickets | filter:'assignee':asigne:'strikes':strike; let i=index">
+<!-- >>>>>>> main -->
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
                                         <td>{{item.description}}</td>
                                         <td>{{item.createdAt | date}}</td>
                                         <td class="text-primary">{{item.strikes}}</td>
-                                        <td><button class=" btn-primary close-size" (click)="closepopup(item._id)">
-                                                Close</button></td>
+                                        <!-- <td><button class=" btn-primary close-size"
+                                             (click)="closepopup(item._id)">
+                                                Close</button></td> -->
                                     </tr>
                                 </tbody>
 <!-- >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267 -->
                             </table>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-primary resolve" (click)="closepopup()"> Close</button>
+                        <button class="btn btn-warning mrBtn"> Alert</button>
                     </div>
                 </div>
             </div>
@@ -91,8 +103,7 @@
                 <p>Are you sure to close this ticket?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal"
-                    (click)="closed(selected);">Yes</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="closed();">Yes</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
         </div>

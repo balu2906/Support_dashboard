@@ -6,9 +6,17 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
 import {SharedService} from '../shared/shared.service'
 // =======
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-// >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
-import * as $ from 'jquery'
-declare var jQuery:any;
+// <<<<<<< lakshmi-tcheckbox
+import * as _ from 'underscore';
+import * as $ from 'jquery';
+declare var jQuery: any;
+
+
+// =======
+// // >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
+// import * as $ from 'jquery'
+// declare var jQuery:any;
+// >>>>>>> main
 
 
 
@@ -75,6 +83,9 @@ export class TableListComponent implements OnInit {
 
   opentickets: any = [];
   selected: any;
+  checkAll: any;
+  Clist: any = [];
+
   constructor(private http: HttpClient,
     public Service: Service,
 // <<<<<<< HEAD
@@ -98,6 +109,26 @@ export class TableListComponent implements OnInit {
            this.strikes.push(this.strikesMap[ele]);
          });
 
+// <<<<<<< lakshmi-tcheckbox
+  ngOnInit() {
+    this.gettableData();
+  }
+
+  checkAllfn(ev: any) {
+    if (ev.target.checked) {
+      this.Clist.push(ev.target.value);
+    }
+    else {
+      var i = 0;
+      this.Clist.forEach(ele => {
+        if (ele == ev.target.value) {
+          this.Clist.splice(i, 1);
+        }
+        i++;
+      });;
+    }
+    console.log("clisttttttttttttttttttt", this.Clist);
+// =======
          this.strikes = this.strikes.filter(function(elem, index, self) {
           return index === self.indexOf(elem);
       })
@@ -116,10 +147,13 @@ export class TableListComponent implements OnInit {
   // ngOnInit() {
     this.gettableData()
 // >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
+// >>>>>>> main
   }
+
 
   gettableData() {
     this.Service.gettableData().subscribe(data => {
+      // let opentickets : any = [];
       this.opentickets = data;
       console.log("ttttttttttttttttttttt", this.opentickets)
       console.log("OPEN TICKETS DATAAAA", data)
@@ -129,19 +163,23 @@ export class TableListComponent implements OnInit {
     })
   }
 
-  resolvepopup(id: any) {
-    this.selected = id;
+  resolvepopup() {
     jQuery("#popup").modal("show");
   }
-  
-  rsv(id: any) {
-    console.log("slkdfjaslkdfjlaksdfjlkasdfj");
-    this.Service.getrsv(id).subscribe(data => {
-      console.log("resolved ticket iddddddddd", data);
-      // this.router.navigate(['/resolved-tickets']);
-      window.location.reload();
-    }, err => {
-      console.log("error in rsv iddddddd");
-    })
+  rsv() {
+    this.Clist.forEach(ele => {
+      this.Service.getrsv(ele).subscribe(data => {
+        let i = 0;
+        this.opentickets.forEach(element => {
+          if (element._id == ele) {
+            this.opentickets.splice(i, 1);
+          }
+          i++;
+        });
+      }, err => {
+        console.log("error in rsv iddddddd");
+      })
+    });
+
   }
 }

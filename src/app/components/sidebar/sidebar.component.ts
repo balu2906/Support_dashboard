@@ -17,7 +17,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/closed-alerts', title: 'Closed Alerts', icon: 'close_alert', class: '' },
 
 
-  // { path: '/typography', title: 'Typography', icon: 'library_books', class: '' },
+  { path: '/typography', title: 'Typography', icon: 'library_books', class: '' },
   // { path: '/icons', title: 'Icons', icon: 'bubble_chart', class: '' },
   // { path: '/maps', title: 'Maps', icon: 'location_on', class: '' },
   // { path: '/notifications', title: 'Notifications', icon: 'notifications', class: '' },
