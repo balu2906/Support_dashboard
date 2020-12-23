@@ -1,0 +1,53 @@
+.list {
+    float: left;
+    /* margin-left:10px; */
+    list-style-type:none;
+    font-size:large;
+    
+}
+.inp{
+    margin-right: 10px;
+    margin-left:10px;
+}
+.last{
+    list-style-type:none;
+}
+label{
+    font-weight:bold;
+}
+.asignee1{
+    border: blue !important;
+    outline:1px solid blue;
+}
+
+.asignee2{
+    outline: 2px solid red;
+}
+.asignee3{
+    outline:1px solid rgb(2, 155, 23);
+}
+.blue{
+    color:blue;   
+}
+.red{
+    color: red;
+    /* font-weight: bold; */
+}
+.purpul{
+    color: rgb(7, 241, 19)
+}
+.strike{
+    float: right;
+    margin-top:-30px;
+    list-style-type:none;
+}
+.checkbox{
+    /* border:1px solid red; */
+    width:78%;
+}
+.black{
+    color: black;
+}
+.striker{
+    outline: 1px solid black;
+}
