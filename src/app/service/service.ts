@@ -13,7 +13,7 @@ export class Service {
     return this.http.get(ApiService.API.GET_TABLE_DATA);
   }
   getrsv(id) {
-    return this.http.get(ApiService.API.GET_RSVDATA_ID + '/' + id);
+    return this.http.post(ApiService.API.GET_RSVDATA_ID + `/${id}`, id);
   }
   postticket(data) {
     console.log(data, ApiService.API.POST_TICKET);
@@ -26,7 +26,7 @@ export class Service {
   }
 
   getclose(id) {
-    return this.http.get(ApiService.API.GET_CLSDATA_ID + '/' + id);
+    return this.http.post(ApiService.API.GET_CLSDATA_ID + `/${id}` , id);
   }
 
   //CLOSED TICKETS
@@ -35,9 +35,22 @@ export class Service {
   }
 
   //OPEN ALERTS
-  getopenalerts() {
-    return this.http.get(ApiService.API.GET_OPEN_ALERTS_DATA);
+  getallalerts() {
+    return this.http.get(ApiService.API.GET_ALL_ALERTS_DATA);
   }
+  saveAttendalert(data: any) {
+    return this.http.post(ApiService.API.PUT_ATTENDALERT_ID,data);
+  }
+
+  saveResolvealert(data: any) {
+    return this.http.post(ApiService.API.PUT_RESOLVEALERT_ID,data);
+  }
+
+  saveConfirmalert(data: any) {
+    return this.http.post(ApiService.API.PUT_CONFIRMALERT_ID,data);
+  }
+
+  
 
   //CLOSED ALERTS
   getclosedalerts() {
@@ -48,4 +61,9 @@ export class Service {
   getChartinfo() {
     return this.http.get(ApiService.API.GET_CHART_INFO);
   }
+
+  //alerts charts
+  // getalertChartinfo() {
+  //   return this.http.get(ApiService.API.GETALERTS_CHARTINFO);
+  // }
 }

@@ -3,6 +3,7 @@ import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import * as _ from 'underscore';
 import * as $ from 'jquery';
 declare var jQuery: any;
@@ -20,10 +21,11 @@ export class TableListComponent implements OnInit {
 
   opentickets: any = [];
   selected: any;
-  checkAll: any;
+  checkAll: any = false;
   Clist: any = [];
 
-  constructor(private http: HttpClient,
+
+  constructor(private http: HttpClient, private toastr: ToastrService,
     public Service: Service,
     private fb: FormBuilder,
     private router: Router) { }
@@ -32,20 +34,41 @@ export class TableListComponent implements OnInit {
     this.gettableData();
   }
 
-  checkAllfn(ev: any) {
-    if (ev.target.checked) {
-      this.Clist.push(ev.target.value);
+  // checkAllfn(ev: any) {
+  //   if (ev.target.checked) {
+  //     this.Clist.push(ev.target.value);
+  //   }
+  //   else {
+  //     var i = 0;
+  //     this.Clist.forEach(ele => {
+  //       if (ele == ev.target.value) {
+  //         this.Clist.splice(i, 1);
+  //       }
+  //       i++;
+  //     });;
+  //   }
+  //   console.log("clisttttttttttttttttttt", this.Clist);
+  //   this.checkAll = ev.target.checked
+  // }
+
+  checkAllfn(event: any) {
+    this.opentickets.map((el: any) => {
+      el.checked = event.target.checked
+    })
+    console.log(this.opentickets);
+    this.checkAll = event.target.checked
+  }
+  checkSingle(item: any, i: any, event: any) {
+    const checkedArray = _.filter(this.opentickets, (e: any) => {
+      return e.checked == true
+    })
+    console.log(checkedArray, "checked items isssssss")
+    this.checkAll = checkedArray.length === this.opentickets.length ? true : false
+    console.log(this.checkAll);
+    console.log(this.opentickets);
+    if (event.target.checked) {
+      this.Clist.push(item._id);
     }
-    else {
-      var i = 0;
-      this.Clist.forEach(ele => {
-        if (ele == ev.target.value) {
-          this.Clist.splice(i, 1);
-        }
-        i++;
-      });;
-    }
-    console.log("clisttttttttttttttttttt", this.Clist);
   }
 
 
@@ -74,7 +97,9 @@ export class TableListComponent implements OnInit {
           }
           i++;
         });
+        this.toastr.success("Ticket is resolved successful.");
       }, err => {
+        this.toastr.error("Failed to resolve ticket.");
         console.log("error in rsv iddddddd");
       })
     });

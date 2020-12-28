@@ -1,0 +1,29 @@
+.input-color{
+    background: linear-gradient(60deg, #ef5350, #e53935);
+}
+.close-size{
+    padding: 3px;
+    font-size: 15px;
+    font-weight: 100;
+    border-radius: 5px;
+}  
+.resolve{
+    padding: 6px;
+    font-size: 15px;
+    font-weight: 100;
+    border-radius: 5px;
+    margin-left: 4;
+}  
+
+textarea{
+    border:solid 1px #ccc;
+    font-size:1.3em; 
+    font-family:"";
+    color:rgb(0, 8, 8); 
+        
+    }
+textarea:focus{
+    outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #719ECE;
+    }
