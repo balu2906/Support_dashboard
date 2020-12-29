@@ -11,12 +11,12 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatRippleModule} from '@angular/material/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatSelectModule} from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 // <<<<<<< lakshmi-tcheckbox
 import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -24,13 +24,16 @@ import { HighchartsChartModule } from 'highcharts-angular';
 // =======
 import { FilterComponent } from '../../filter/filter.component';
 import { FilterPipe } from '../../utils/filter.pipe';
-import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.component'
- 
+import { ResolvedTicketsComponent } from '../../resolved-tickets/resolved-tickets.component';
+// import { ClosedTicketsComponent } from '../../closed-tickets/closed-tickets.component';
+// import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
+// import { ClosedAlertsComponent } from '../../closed-alerts/closed-alerts.component';
+
 // >>>>>>> main
 @NgModule({
   imports: [
     CommonModule,
-    
+
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     ReactiveFormsModule,
@@ -39,12 +42,12 @@ import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-// <<<<<<< lakshmi-tcheckbox
+    // <<<<<<< lakshmi-tcheckbox
     HighchartsChartModule,
     MatTooltipModule,
-// =======
+    // =======
     MatTooltipModule
-// >>>>>>> main
+    // >>>>>>> main
   ],
   declarations: [
     DashboardComponent,
@@ -57,9 +60,12 @@ import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.
     UpgradeComponent,
     FilterComponent,
     FilterPipe,
-    ResolvedTicketsComponent
+    ResolvedTicketsComponent,
+    // ClosedTicketsComponent,
+    // OpenAlertsComponent,
+    // ClosedAlertsComponent,
   ],
-  exports:[FilterComponent]
+  exports: [FilterComponent]
 })
 
-export class AdminLayoutModule {}
+export class AdminLayoutModule { }
