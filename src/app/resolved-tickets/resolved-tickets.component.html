@@ -88,18 +88,36 @@
 </div>
 
 
-<div class="modal" id="popup" tabindex="-1" role="dialog">
+<div class="modal " id="popup" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header input-color">
+            <!-- <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <div class="modal-body text-center">
-                <p>Are you sure to close this ticket?</p>
+            </div> -->
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p >Are you sure to close this ticket?</p>
+                <form [formGroup]="popupForm">
+                    <textarea rows="4" cols="48" type="text" formControlName="description" name="solution" placeholder="description"></textarea><br><br>
+                   <div class="box"> 
+                      <label for="problemtype" class="label">Solved By:</label>&nbsp;
+                       <select name="problemType" formControlName="solvedby" class="select">
+                           <option value="" name="" disabled selected>select a Person</option>
+                           <option value="jyothi">Jyothi</option> 
+                           <option value="neha">Neha</option>
+                           <option value="rinki">Rinki</option> 
+                       </select> 
+                     
+                         
+                   </div>
+               </form> 
             </div>
             <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-primary" (click)="postpopup()">formdata</button> -->
                 <button type="button" class="btn btn-success" data-dismiss="modal" (click)="closed();">Yes</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>

@@ -1,4 +1,6 @@
-<head></head>
+<head>
+   
+</head>
 
 <div class="main-content">
     <div class="container-fluid">
@@ -54,14 +56,14 @@
                                     <th>Assignee</th>
                                     <th>Description</th>
                                     <th>Date</th>
-                                    <th>Remaining Time</th>
+                                    <!-- <th>Remaining Time</th> -->
                                     <th>Strikes</th>
                                     <!-- <th>Action</th> -->
                                 </thead>
                                 <tbody>
 
                                     <tr *ngFor="let item of opentickets | filter:'assignee':asigne:'strikes':strike; let i=index">
-                                        <td> <input type="checkbox" [value]="item._id" (change)="checkAllfn($event)" />
+                                        <td> <input type="checkbox" class="check" [value]="item._id" (change)="checkAllfn($event)" />
                                         </td>
 
                                     <!-- <tr *ngFor="let item of opentickets | filter:'assignee':asigne:'strikes':strike; let i=index"> -->
@@ -71,12 +73,12 @@
                                         <td>{{item.assignee}}</td>
                                         <td>{{item.description}}</td>
                                         <td>{{item.createdAt | date}}</td>
-                                        <td>{{item.createdAt | date:'shortTime'}}</td>
+                                        <!-- <td>{{item.createdAt | date:'shortTime'}}</td> -->
                                         <td class="text-primary">{{item.strikes}}</td>
                                         <!-- <td><button class=" btn-primary resolve"
                                                 (click)="resolvepopup(item._id)">Resolve</button></td> -->
-                                        <td><button class=" btn-primary resolve"
-                                                (click)="resolvepopup(item._id)">Resolve</button></td>
+                                        <!-- <td><button class=" btn-primary resolve"
+                                                (click)="resolvepopup(item._id)">Resolve</button></td> -->
 
                                     </tr>
         
@@ -84,9 +86,12 @@
                              </table>
                             </div>
                         </div>
+                        <p class ="err">Please Select atleast one checkbox</p>
                         <div class="modal-footer">
+                         
                           <button class="btn-primary resolve" (click)="resolvepopup()"> Resolve</button>
                           <button class="btn btn-warning mrBtn"> Alert</button>
+                         
                         </div>
                 </div>
             </div>
@@ -106,22 +111,12 @@
             </div>
             <div class="modal-body pop-body">
                 <p>Are you sure to resolve this ticket?</p>
-                <form [formGroup]="popupForm">
-                    <textarea rows="4" cols="45" type="text" formControlName="description" name="solution" placeholder="description"></textarea>
-                    <div class="col-md-6">
-                        <label for="problemtype" class="label">Solved By:</label>&nbsp;
-                        <select name="problemType" formControlName="solvedby" class="select">
-                            <option value="select" name="select" disabled selected>select</option>
-                            <option value="login">supportTeam</option> 
-                            <option value="register">DesignatedPerson</option> 
-                        </select>
-                    </div>
-                </form>
+                  
+                
             </div>
             <div class="modal-footer">
 
                 <!-- <button type="button" class="btn btn-success" data-dismiss="modal" (click)="rsv()">Yes</button> -->
-
                 <button type="button" class="btn btn-success" data-dismiss="modal" (click)="rsv(selected)">Confirm</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
@@ -129,3 +124,4 @@
     </div>
 </div>
 </div>
+<!-- <script src="../../assets/js/custom.js"></script> -->

@@ -79,29 +79,9 @@ label{
     font-weight: 100;
     border-radius: 5px;
 }  
-textarea{
-    
-border:solid 1px #ccc;
-font-size:1.3em; 
-font-family:"";
-color:rgb(133, 192, 189); 
-    
-}
-textarea:focus{
-    outline: none !important;
-    border-color: #719ECE;
-    box-shadow: 0 0 10px #719ECE;
-}
-p{
-    color:rgb(255, 102, 0);
-    font-size:1.3em;
+.err{
+    font-size: 14px;
     font-weight: bold;
-}
-select{
-    color:rgb(1, 238, 226); 
-}
-select:focus{
-    outline: none !important;
-    border-color: #719ECE;
-    box-shadow: 0 0 10px #719ECE;
+    color: red;
+    display: none;
 }

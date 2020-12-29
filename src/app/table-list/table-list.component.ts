@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 //import {SharedService} from '../shared/shared.service'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 // <<<<<<< lakshmi-tcheckbox
 import * as _ from 'underscore';
 import * as $ from 'jquery';
@@ -50,16 +51,13 @@ export class TableListComponent implements OnInit {
    'u' : 2,
    'su' : 3
  }
- popupForm: FormGroup = this.fb.group({
-  description: ['', Validators.required],
-  solvedby: ['select', Validators.required],
-});
+ 
 
 
   constructor(private http: HttpClient,
     public Service: Service,
 // <<<<<<< HEAD
-    private fb: FormBuilder, private router: Router) { }
+    private fb: FormBuilder, private router: Router,private toastr: ToastrService) { }
   
 
 //   ngOnInit() : void {
@@ -132,18 +130,37 @@ export class TableListComponent implements OnInit {
   }
 
   resolvepopup() {
-    jQuery("#popup").modal("show");
+    if(this.Clist.length == 0){
+      this.toastr.error("please select atleast one ticket");
+      // console.log("please click at least one checkbox");
+      return false;
+    }
+    else{
+      jQuery("#popup").modal("show");
+    }
   }
   rsv() {
+    console.log("kjhdkjdfjkgkj");
+    // console.log("resolving id's",this.Clist);
+    
+    const rsvid ={
+     ids : this.Clist
+    }
+    console.log("resolved id's ",rsvid);
+    
     this.Clist.forEach(ele => {
-      this.Service.getrsv(ele).subscribe(data => {
-        let i = 0;
-        this.opentickets.forEach(element => {
-          if (element._id == ele) {
-            this.opentickets.splice(i, 1);
-          }
-          i++;
-        });
+      console.log("jhjhjh");
+      
+      this.Service.getrsv(rsvid).subscribe(data => {
+        // let i = 0;
+        // this.opentickets.forEach(element => {
+        //   if (element._id == ele) {
+        //     this.opentickets.splice(i, 1);
+        //   }
+        //   i++;
+        // });
+        console.log("entered to resolve dataa ");
+        
       }, err => {
         console.log("error in rsv iddddddd");
       })
@@ -168,5 +185,5 @@ console.log("str on ch",this.strikes,this.strike);
     console.log("assignees",this.asigne);
 
     
-  }  
+  }
 }

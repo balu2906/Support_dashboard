@@ -4565,6 +4565,7 @@ button.close {
   overflow: hidden; }
 
 .modal {
+  border-radius: 50%;
   position: fixed;
   top: 0;
   right: 0;
@@ -11102,7 +11103,7 @@ fieldset[disabled] .form-group .form-control {
   padding: 0.625rem 0;
   margin-bottom: 20px;
   color: #555;
-  background-color: #fff !important;
+  /* background-color: #fff !important; */
   -webkit-box-shadow: 0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15);
           box-shadow: 0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15); }
   .navbar .dropdown-item:hover,
@@ -11287,7 +11288,7 @@ fieldset[disabled] .form-group .form-control {
     .navbar.bg-dark .navbar-toggler .navbar-toggler-icon {
       background-color: #fff; }
   .navbar.navbar-transparent {
-    background-color: transparent !important;
+    background-color: blue;
     -webkit-box-shadow: none;
             box-shadow: none;
     padding-top: 25px; }
@@ -12822,7 +12823,10 @@ h2.title {
 .wrapper {
   position: relative;
   top: 0;
-  height: 100vh; }
+  height: 100vh;
+  background-color:black;
+}
+
 
 .sidebar {
   position: fixed;

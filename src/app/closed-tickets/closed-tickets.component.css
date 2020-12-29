@@ -63,6 +63,7 @@ label{
 /* ======= */
 .input-color{
     background: linear-gradient(60deg, #ef5350, #e53935);
+    /* background-color:green; */
 }
 .close-size{
     padding: 3px;
