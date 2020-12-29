@@ -80,8 +80,7 @@
                                         <th>Assignee</th>
                                         <th>Description</th>
                                         <th>Date</th>
-                                        <!-- <th>Remaining Time</th>
-                                    <th>Strikes</th>-->
+                                        <th>Strikes</th>
                                     </thead>
                                     <tbody>
 
@@ -103,16 +102,11 @@
                                             <td>{{item.assignee}}</td>
                                             <td>{{item.description}}</td>
                                             <td>{{item.createdAt | date}}</td>
-                                            <!-- <td>{{item.createdAt | date:'shortTime'}}</td> -->
                                             <td class="text-primary">{{item.strikes}}</td>
 
-                                            <td><button class=" btn-primary resolve"
-                                                    (click)="resolvepopup(item._id)">Resolve</button></td>
+                                            <!-- <td><button class=" btn-primary resolve"
+                                                    (click)="resolvepopup(item._id)">Resolve</button></td> -->
 
-                                            <!-- <td><button class=" btn-primary resolve"
-                                                (click)="resolvepopup(item._id)">Resolve</button></td> -->
-                                            <!-- <td><button class=" btn-primary resolve"
-                                                (click)="resolvepopup(item._id)">Resolve</button></td>  -->
 
 
                                         </tr>
