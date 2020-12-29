@@ -72,9 +72,9 @@
                                         <option value="select" name="select assignee" disabled selected>
                                             select assignee
                                         </option>
-                                        <option value="Jyothi">Jyothi</option> 
-                                        <option value="Neha">Neha</option> 
-                                        <option value="Rinki">Rinki</option> 
+                                        <option value="Jyothi">jyothi</option> 
+                                        <option value="Neha">neha</option> 
+                                        <option value="Rinki">rinki</option> 
                                     </select>
 
                                 </div>
@@ -96,7 +96,7 @@
                             </div>
                             <button mat-raised-button type="submit" (click)="postticket()"
                                 [disabled]="!profileForm.valid" class="btn btn-danger pull-right">
-                                <span  *ngIf="loading_spinner">Creating
+                                <span *ngIf="loading_spinner">Creating
                                     Ticket...</span>
                                 <span *ngIf="!loading_spinner">Create
                                     Ticket</span>

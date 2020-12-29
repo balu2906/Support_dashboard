@@ -4,7 +4,11 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+// <<<<<<< HEAD
 import * as _ from 'underscore';
+// =======
+
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
 import * as $ from 'jquery';
 declare var jQuery: any;
 
@@ -20,11 +24,13 @@ export class ResolvedTicketsComponent implements OnInit {
   Checklist: any = [];
   checkAll: any = false;
 
+
  resolvedtickets:any =[];
  selected:any;
   asigne:any =[];
   strike:any = [];
   query = "'Assignee':asigne";
+
 
 assignee = {
   "jyothi" : '',
@@ -41,15 +47,22 @@ strikesMap = {
   'u' : 2,
   'su' : 3
 }
-
+popupForm: FormGroup = this.fb.group({
+  description: [''],
+  solvedby: [''],
+});
   
   constructor(private http: HttpClient,
+// <<<<<<< HEAD
     public Service: Service,private toastr:ToastrService,
+// =======
+
+
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
     private fb: FormBuilder,
     private router: Router) {
 
      }
-
 
   ngOnInit(): void {
     this.getresolvedtickets();
@@ -130,26 +143,75 @@ console.log("str on ch",this.strikes,this.strike);
   
 
   closepopup() {
-    jQuery("#popup").modal("show");
+    if(this.Checklist.length == 0){
+      this.toastr.error("please select atleast one ticket");
+      // console.log("please click at least one checkbox");
+      return false;
+      
+    }else{
+      jQuery("#popup").modal("show");
+    }
   }
   closed() {
-    this.Checklist.forEach(element => {
-      this.Service.getclose(element).subscribe(data => {
+    // this.Checklist.forEach(element => {
+      // console.log("enter to closed",element);
+      const popdata ={
+        reason :  this.popupForm.get('description').value,
+        closedBy : this.popupForm.get('solvedby').value,
+        ids : this.Checklist
+
+      }
+      console.log("popupdata",popdata);
+      this.Service.getclose(popdata).subscribe(data => {
         let i = 0;
-        this.resolvedtickets.forEach(ele => {
-          if (ele._id == element) {
-            this.resolvedtickets.splice(i, 1);
-          }
-          i++;
-        });
+// <<<<<<< HEAD
+        // this.resolvedtickets.forEach(ele => {
+        //   if (ele._id == element) {
+        //     this.resolvedtickets.splice(i, 1);
+        //   }
+        //   i++;
+        // });
         this.toastr.success("Ticket is resolved successful.");
+// =======
+        console.log("entered post id");
+        // this.resolvedtickets.forEach(ele => {
+          
+          
+        //   if (ele._id == element) {
+        //     this.resolvedtickets.splice(i, 1);
+        //   }
+        //   i++;
+        // });
+        // console.log("closing id",element);
+        
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
       }, err => {
         this.toastr.error("Failed to resolve ticket.");
         console.log("error in closedticket iddddddd");
       })
 
-    });
+    // });
 
   }
+  // postpopup(){
+  //   this.loading_spinner = true;
 
+  //   const popdata ={
+  //     reason :  this.popupForm.get('description').value,
+  //     closedBy : this.popupForm.get('solvedby').value
+  //   }
+  //   console.log("popupdata",popdata);
+  //   this.Service.postpopup(popdata).subscribe(popdata => {
+  //     console.log("popdata is here",popdata);
+  //     // this.toastr.success("popup created successfully");
+  //     // this.loading_spinner = false;
+  //   }, err => {
+  //     console.log("error in popdata", err);
+
+  //     // this.toastr.error("Error while creating popticket");
+
+  //   })
+    
+  // }
 }
+  

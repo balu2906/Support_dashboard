@@ -1,7 +1,46 @@
 <div class="main-content">
     <div class="container-fluid">
+        <div class="checkbox col-md-10">
+            <span class="label-new">
+                <ul class="ngc">
+                    <li class="list">
+
+                        <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1" class="inp asignee1"
+                            type="checkbox"><label class="blue">Jyothi</label>
+                    </li>
+                    <!-- {{selected.jyothi}}{{selected.neha}}{{selected.rinki}} -->
+
+                    <li class="list ">
+
+                        <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2" class="inp asignee2"
+                            type="checkbox" value="neha"><label class="red">Neha</label>
+                    </li>
+
+                    <li class="last rinki">
+                        <input (change)="changeassignee()" [(ngModel)]="assignee.rinki" id="name3" class="inp asignee3"
+                            type="checkbox" value="rinki"><label class="purpul">Rinki</label>
+                    </li>
+                    <li class="strike">
+                        <input (change)="changestrike()" [(ngModel)]="strikes.n" id="strike1" class="inp striker"
+                            type="checkbox" value="1"><label class="black">1</label>
+                    </li>
+                    <li class="strike">
+                        <input (change)="changestrike()" [(ngModel)]="strikes.u" id="strike2" class="inp striker"
+                            type="checkbox" value="2"><label class="black">2</label>
+                    </li>
+                    <li class="strike">
+                        <input (change)="changestrike()" [(ngModel)]="strikes.su" id="strike3" class="inp striker"
+                            type="checkbox" value="3"><label class="black">3</label>
+                    </li>
+                    <li class="strike" style="font-weight: bold;color: rgb(17, 117, 231);font-size: 13px;">STRIKES
+                    </li>
+                </ul>
+            </span>
+        </div>
         <div class="row">
+
             <div class="col-md-12">
+                <!-- <<<<<<< HEAD -->
                 <button class="btn btn-warning mr-4" (click)="alertsbutton('attended',false,alrtname, 'opened')">Open
                     Alerts</button>
                 <button class="btn btn-success mr-4"
@@ -11,7 +50,15 @@
                 <button class="btn btn-danger" (click)="alertsbutton('confirmed',true,alrtname, 'confirmed')">
                     Confirmed</button>
             </div>
+
             <div class="col-md-12">
+                <!-- ======= -->
+                <div>
+                    <!-- <app-filter></app-filter> -->
+
+
+                </div>
+                <!-- >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b -->
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">{{state}}</h4>
@@ -22,6 +69,7 @@
                         <div class="table-responsive overflow-body">
                             <table class="table">
                                 <thead class=" text-primary">
+                                    <!-- <<<<<<< HEAD -->
                                     <!-- <th *ngIf="alertType != 'all'"><input type="checkbox" [(ngModel)]="checkAll"
                                             [checked]="checkAll" (change)="checkAllfn($event)" /></th> -->
                                     <th>Ticket ID</th>
@@ -31,7 +79,9 @@
                                     <th>Strikes</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of allalerts; let i=index">
+                                    <tr
+                                        *ngFor="let item of allalerts | filter:'alert.strikes':asigne:'strikes':strike; let i=index">
+                                        <!-- <tr *ngFor="let item of allalerts; let i=index"> -->
                                         <td *ngIf="alertType != 'all'"> <input type="checkbox" [value]="item._id"
                                                 [(ngModel)]="item.checked" [checked]="item.checked"
                                                 (change)="singleCheckFn($event, item, i)" />

@@ -19,5 +19,8 @@ export class ApiService {
 
     //POST
     POST_TICKET: environment.apiUrl + '/ticket/create_ticket',
+
+    //post popup
+    POST_POPUP:environment.apiUrl +'/ticket/close',
   }
 }

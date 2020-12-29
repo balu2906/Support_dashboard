@@ -1,52 +1,135 @@
-<head></head>
+<head>
+
+</head>
+
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div>
+                <!-- <div>
                     <app-filter></app-filter>
+                </div> -->
+
+                <div class="checkbox col-md-10">
+                    <span class="label-new">
+                        <ul class="ngc">
+                            <li class="list">
+
+                                <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1"
+                                    class="inp asignee1" type="checkbox"><label class="blue">Jyothi</label>
+                            </li>
+                            <!-- {{selected.jyothi}}{{selected.neha}}{{selected.rinki}} -->
+
+                            <li class="list ">
+
+                                <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2"
+                                    class="inp asignee2" type="checkbox" value="neha"><label class="red">Neha</label>
+                            </li>
+
+                            <li class="last rinki">
+                                <input (change)="changeassignee()" [(ngModel)]="assignee.rinki" id="name3"
+                                    class="inp asignee3" type="checkbox" value="rinki"><label
+                                    class="purpul">Rinki</label>
+                            </li>
+                            <li class="strike">
+                                <input (change)="changestrike()" [(ngModel)]="strikes.n" id="strike1"
+                                    class="inp striker" type="checkbox" value="1"><label class="black">1</label>
+                            </li>
+                            <li class="strike">
+                                <input (change)="changestrike()" [(ngModel)]="strikes.u" id="strike2"
+                                    class="inp striker" type="checkbox" value="2"><label class="black">2</label>
+                            </li>
+                            <li class="strike">
+                                <input (change)="changestrike()" [(ngModel)]="strikes.su" id="strike3"
+                                    class="inp striker" type="checkbox" value="3"><label class="black">3</label>
+                            </li>
+                            <li class="strike" style="font-weight: bold;color: rgb(17, 117, 231);font-size: 13px;">
+                                STRIKES</li>
+                        </ul>
+                    </span>
                 </div>
+
+
                 <div class="card">
-                   
+
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Open Tickets</h4>
+
                     </div>
-                    <div class="card-body">
+                    <!-- <div class="card-body">
                         <div class="table-responsive overflow-body">
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th><input type="checkbox" (change)="checkAllfn($event)"  [(ngModel)]="checkAll" [checked]="checkAll" /></th>
 
-                                    <th>Ticket ID </th>
-                                    <th>Assignee</th>
-                                    <th>Description</th>
-                                    <th>Date</th>
-                                    <th>Remaining Time</th>
-                                    <th>Strikes</th>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let item of opentickets; let i=index">
-                                        <td> <input type="checkbox" [(ngModel)]="item.checked" [checked]="item.checked"
-                                                (change)="checkSingle(item, i, $event)" />
-                                        </td>
-                                        <td>{{item._id}}</td>
-                                        <td>{{item.assignee}}</td>
-                                        <td>{{item.description}}</td>
-                                        <td>{{item.createdAt | date}}</td>
-                                        <td>{{item.createdAt | date:'shortTime'}}</td>
-                                        <td class="text-primary">{{item.strikes}}</td>
-                                        <td><button class=" btn-primary resolve"
-                                                (click)="resolvepopup(item._id)">Resolve</button></td>
-                                    </tr>
-        
-                                </tbody>
-                            </table>
+
+
+                    </div> -->
+                    <div class="card-body">
+                        <div class="table-responsive overflow-body">
+
+                            <div class="table-responsive">
+
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <th><input type="checkbox" (change)="checkAllfn($event)" [(ngModel)]="checkAll"
+                                                [checked]="checkAll" /></th>
+                                        <!-- <th><input type="checkbox"/></th>
+                                    <th><input type="checkbox" /></th> -->
+                                        <th>Ticket ID </th>
+                                        <th>Assignee</th>
+                                        <th>Description</th>
+                                        <th>Date</th>
+                                        <!-- <th>Remaining Time</th>
+                                    <th>Strikes</th>-->
+                                    </thead>
+                                    <tbody>
+
+                                        <tr
+                                            *ngFor="let item of opentickets | filter:'assignee':asigne:'strikes':strike; let i=index">
+                                            <td> <input type="checkbox" [(ngModel)]="item.checked"
+                                                    [checked]="item.checked" (change)="checkSingle(item, i, $event)" />
+
+
+                                                <!-- <tr *ngFor="let item of opentickets | filter:'assignee':asigne:'strikes':strike; let i=index">
+                                        <td> <input type="checkbox" class="check" [value]="item._id" (change)="checkAllfn($event)" /> -->
+
+                                            </td>
+
+                                            <!-- <tr *ngFor="let item of opentickets | filter:'assignee':asigne:'strikes':strike; let i=index"> -->
+                                            <!-- <td> <input type="checkbox"/> </td> -->
+
+                                            <td>{{item._id}}</td>
+                                            <td>{{item.assignee}}</td>
+                                            <td>{{item.description}}</td>
+                                            <td>{{item.createdAt | date}}</td>
+                                            <!-- <td>{{item.createdAt | date:'shortTime'}}</td> -->
+                                            <td class="text-primary">{{item.strikes}}</td>
+
+                                            <td><button class=" btn-primary resolve"
+                                                    (click)="resolvepopup(item._id)">Resolve</button></td>
+
+                                            <!-- <td><button class=" btn-primary resolve"
+                                                (click)="resolvepopup(item._id)">Resolve</button></td> -->
+                                            <!-- <td><button class=" btn-primary resolve"
+                                                (click)="resolvepopup(item._id)">Resolve</button></td>  -->
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- <p class ="err">Please Select atleast one checkbox</p> -->
+                        <div class="modal-footer">
+
+                            <button class="btn-primary resolve" (click)="resolvepopup()"> Resolve</button>
+                            <button class="btn btn-warning mrBtn"> Alert</button>
+
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn-primary resolve" (click)="resolvepopup()"> Resolve</button>
-                        <button class="btn btn-warning mrBtn"> Alert</button>
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -62,13 +145,20 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body text-center">
+            <div class="modal-body pop-body">
                 <p>Are you sure to resolve this ticket?</p>
+
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="rsv()">Yes</button>
+
+                <!-- <button type="button" class="btn btn-success" data-dismiss="modal" (click)="rsv()">Yes</button> -->
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="rsv(selected)">Confirm</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- <script src="../../assets/js/custom.js"></script> -->

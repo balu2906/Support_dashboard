@@ -3,7 +3,37 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <app-filter></app-filter>
+                    <!-- <app-filter></app-filter> -->
+                    <div class="checkbox col-md-10">
+                        <span class="label-new">
+                        <ul class="ngc">
+                            <li class="list">
+                                
+                                <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1" class="inp asignee1" type="checkbox" ><label class="blue">Jyothi</label>
+                            </li>
+                            <!-- {{selected.jyothi}}{{selected.neha}}{{selected.rinki}} -->
+                    
+                            <li class="list ">
+                                
+                                <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2" class="inp asignee2" type="checkbox" value="neha" ><label class="red">Neha</label>
+                            </li>
+                    
+                            <li class="last rinki">
+                                <input (change)="changeassignee()"  [(ngModel)]="assignee.rinki" id="name3" class="inp asignee3" type="checkbox" value="rinki" ><label class="purpul">Rinki</label>
+                            </li>
+                            <li class="strike">
+                            <input (change)="changestrike()"  [(ngModel)]="strikes.n" id="strike1" class="inp striker" type="checkbox" value="1" ><label class="black">1</label>
+                        </li>
+                        <li class="strike">
+                            <input (change)="changestrike()"  [(ngModel)]="strikes.u" id="strike2" class="inp striker" type="checkbox" value="2"><label class="black">2</label>
+                        </li>
+                        <li class="strike">
+                            <input (change)="changestrike()"  [(ngModel)]="strikes.su" id="strike3" class="inp striker" type="checkbox" value="3" ><label class="black">3</label>
+                        </li>
+                        <li  class="strike" style="font-weight: bold;color: rgb(17, 117, 231);font-size: 13px;">STRIKES</li>
+                      </ul>
+                        </span>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="card-header card-header-danger">
@@ -22,7 +52,8 @@
                                     <th>Strikes</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of closedtickets; let i=index">
+                                    <tr *ngFor="let item of closedtickets | filter:'assignee':asigne:'strikes':strike; let i=index">
+                                        <!-- <tr *ngFor="let item of closedtickets; let i=index"> -->
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
                                         <td>{{item.description}}</td>

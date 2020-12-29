@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
-// <<<<<<< HEAD
-import {SharedService} from '../shared/shared.service'
-// =======
+//import {SharedService} from '../shared/shared.service'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+
 import * as _ from 'underscore';
 import * as $ from 'jquery';
 declare var jQuery: any;
@@ -20,97 +19,93 @@ declare var jQuery: any;
 
 
 
+
 @Component({
   selector: 'app-table-list',
   templateUrl: './table-list.component.html',
   styleUrls: ['./table-list.component.css']
 })
 export class TableListComponent implements OnInit {
-  message:any;
-  filters:any[];
-  strikes:any = [];
-  //peoplefilter:any = [];
-  strikesMap = {
-    'n' : 1,
-    'u' : 2,
-    'su' : 3
-  }
-//   users=[{
-//     id:'123',
-//     email:'abc@gmail.com',
-//     Assignee: 'Jyothi',
-//     Description : 'ksdjhfkjsadf',
-//     date:'12/12/2020',
-//     remainingtime : '23:0:0',
-//     strikes : '1'
-    
-
-//   },{
-//     id:'1234',
-//     email:'xyz@hotmail.com',
-//     Assignee: 'Jyothi',
-//     Description : 'ksdjhfkjsadf',
-//     date:'12/12/2020',
-//     remainingtime : '23:0:0',
-//     strikes : '3'
-//   },{
-//     id:'12345',
-//     email:'jsgsbh@kk.com',
-//     Assignee: 'neha',
-//     Description : 'ksdjhfkjsadf',
-//     date:'12/12/2020',
-//     remainingtime : '23:0:0',
-//     strikes : '1'
-//   },{
-//     id:'123456',
-//     email:'test@gmail.com',
-//     Assignee: 'Rinki',
-//     Description : 'ksdjhfkjsadf',
-//     date:'12/12/2020',
-//     remainingtime : '23:0:0',
-//     strikes : '2'
-//   },
-//   {
-//     id:'123456',
-//     email:'tst@gmail.com',
-//     Assignee: 'Rinki',
-//     Description : 'ksdjhfkjsadf',
-//     date:'12/12/2020',
-//     remainingtime : '23:0:0',
-//     strikes : '3'
-//   }
-// ]
-
+  resolvedtickets:any =[];
   opentickets: any = [];
-  selected: any;
-  checkAll: any = false;
+// <<<<<<< HEAD
+//   selected: any;
+//   checkAll: any = false;
+//   Clist: any = [];
+
+
+//   constructor(private http: HttpClient, private toastr: ToastrService,
+// =======
+
+  checkAll: any;
   Clist: any = [];
 
+  selected:any;
+   asigne:any =[];
+   strike:any = [];
+   query = "'Assignee':asigne";
+ assignee = {
+   "jyothi" : '',
+   "Rinki" : '',
+   "neha" : '',
+ }
+ strikes = {
+     'n' : '',
+     'u' : '',
+     'su' : ''
+ }
+ strikesMap = {
+   'n' : 1,
+   'u' : 2,
+   'su' : 3
+ }
+ 
 
-  constructor(private http: HttpClient, private toastr: ToastrService,
+
+  constructor(private http: HttpClient,
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
     public Service: Service,
 // <<<<<<< HEAD
-    private fb: FormBuilder,private shared:SharedService, private router: Router) { }
+    private fb: FormBuilder, private router: Router,private toastr: ToastrService) { }
   
 
+// <<<<<<< HEAD
   ngOnInit() : void {
     this.gettableData();
-      this.shared.SharingData.subscribe(data=>{
-        this.filters = (Object.keys(data).filter(key=>data[key] == true));
+//       this.shared.SharingData.subscribe(data=>{
+//         this.filters = (Object.keys(data).filter(key=>data[key] == true));
+// // =======
+//   ngOnInit() : void {
+// <<<<<<< HEAD
+//       this.shared.SharingData.subscribe(data=>{
+//         this.filters = (Object.keys(data).filter(key=>data[key] == true));
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
         
-        this.message = data;
-      console.log("assignees",this.filters);
+//         this.message = data;
+//       console.log("assignees",this.filters);
       
-     })
-     this.shared.Sharingstrike.subscribe(strike =>{
-      (Object.keys(strike).filter(key=>{
-         if(strike[key] == true){
-           return key;
-         }}
-         )).forEach(ele=>{
-           this.strikes.push(this.strikesMap[ele]);
-         });
-        })
+// <<<<<<< HEAD
+//      })
+//      this.shared.Sharingstrike.subscribe(strike =>{
+//       (Object.keys(strike).filter(key=>{
+//          if(strike[key] == true){
+//            return key;
+//          }}
+//          )).forEach(ele=>{
+//            this.strikes.push(this.strikesMap[ele]);
+//          });
+//         })
+// =======
+//      })
+//      this.shared.Sharingstrike.subscribe(strike =>{
+//       (Object.keys(strike).filter(key=>{
+//          if(strike[key] == true){
+//            return key;
+//          }}
+//          )).forEach(ele=>{
+//            this.strikes.push(this.strikesMap[ele]);
+//          });
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
 
 // <<<<<<< lakshmi-tcheckbox
       }
@@ -154,12 +149,9 @@ export class TableListComponent implements OnInit {
     }
     console.log("clisttttttttttttttttttt", this.Clist);
 // =======
-         this.strikes = this.strikes.filter(function(elem, index, self) {
-          return index === self.indexOf(elem);
-      })
-       console.log("strikes",this.strikes);
       // var peoplefilter = (this.filters,this.strikes);
       //  console.log("after",peoplefilter);
+// <<<<<<< HEAD
   }
 
 
@@ -176,10 +168,26 @@ export class TableListComponent implements OnInit {
   }
 
   resolvepopup() {
-    jQuery("#popup").modal("show");
+    if(this.Clist.length == 0){
+      this.toastr.error("please select atleast one ticket");
+      // console.log("please click at least one checkbox");
+      return false;
+    }
+    else{
+      jQuery("#popup").modal("show");
+    }
   }
   rsv() {
+    console.log("kjhdkjdfjkgkj");
+    // console.log("resolving id's",this.Clist);
+    
+    const rsvid ={
+     ids : this.Clist
+    }
+    console.log("resolved id's ",rsvid);
+    
     this.Clist.forEach(ele => {
+// <<<<<<< HEAD
       this.Service.getrsv(ele).subscribe(data => {
         let i = 0;
         this.opentickets.forEach(element => {
@@ -189,11 +197,44 @@ export class TableListComponent implements OnInit {
           i++;
         });
         this.toastr.success("Ticket is resolved successful.");
+// =======
+//       console.log("jhjhjh");
+      
+//       this.Service.getrsv(rsvid).subscribe(data => {
+//         // let i = 0;
+//         // this.opentickets.forEach(element => {
+//         //   if (element._id == ele) {
+//         //     this.opentickets.splice(i, 1);
+//         //   }
+//         //   i++;
+//         // });
+//         console.log("entered to resolve dataa ");
+        
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
       }, err => {
         this.toastr.error("Failed to resolve ticket.");
         console.log("error in rsv iddddddd");
       })
     });
 
+  }
+  changestrike(){
+    this.strike = [];
+    Object.keys(this.strikes).filter(key=>this.strikes[key] == true)
+    .forEach(ele=>{
+      this.strike.push(this.strikesMap[ele]);
+    });
+console.log("str on ch",this.strikes,this.strike);
+
+    this.strike = this.strike.filter(function(elem, index, self) {
+     return index === self.indexOf(elem);
+    })
+  }
+
+  changeassignee(){
+    this.asigne = (Object.keys(this.assignee).filter(key=>this.assignee[key] == true))
+    console.log("assignees",this.asigne);
+
+    
   }
 }

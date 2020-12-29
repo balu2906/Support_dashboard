@@ -24,12 +24,21 @@ import { HighchartsChartModule } from 'highcharts-angular';
 // =======
 import { FilterComponent } from '../../filter/filter.component';
 import { FilterPipe } from '../../utils/filter.pipe';
+// <<<<<<< HEAD
 import { ResolvedTicketsComponent } from '../../resolved-tickets/resolved-tickets.component';
 // import { ClosedTicketsComponent } from '../../closed-tickets/closed-tickets.component';
 // import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
 // import { ClosedAlertsComponent } from '../../closed-alerts/closed-alerts.component';
 
-// >>>>>>> main
+// =======
+// import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.component';
+import { ClosedTicketsComponent } from '../../closed-tickets/closed-tickets.component';
+// import { ClosedAlertsComponent } from '../../closed-alerts/closed-alerts.component';
+// import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
+import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
+ 
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
+// // >>>>>>> main
 @NgModule({
   imports: [
     CommonModule,
@@ -61,9 +70,15 @@ import { ResolvedTicketsComponent } from '../../resolved-tickets/resolved-ticket
     FilterComponent,
     FilterPipe,
     ResolvedTicketsComponent,
-    // ClosedTicketsComponent,
-    // OpenAlertsComponent,
+// <<<<<<< HEAD
+    ClosedTicketsComponent,
+     OpenAlertsComponent,
     // ClosedAlertsComponent,
+// =======
+//     ClosedTicketsComponent,
+//     ClosedAlertsComponent,
+//     OpenAlertsComponent
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
   ],
   exports: [FilterComponent]
 })
