@@ -1,0 +1,31 @@
+                  
+      <div class="checkbox">
+        <span class="label-new">
+          <ul class="ngc">
+            <li class="list">
+                
+                <input (change)="change()" [(ngModel)]="assignee.jyothi" id="name1" class="inp asignee1" type="checkbox" ><label class="blue">Jyothi</label>
+            </li>
+            <!-- {{selected.jyothi}}{{selected.neha}}{{selected.rinki}} -->
+      
+            <li class="list ">
+                
+                <input (change)="change()" [(ngModel)]="assignee.neha" id="name2" class="inp asignee2" type="checkbox" value="neha" ><label class="red">Neha</label>
+            </li>
+      
+            <li class="last rinki">
+                <input (change)="change()"  [(ngModel)]="assignee.rinki" id="name3" class="inp asignee3" type="checkbox" value="rinki" ><label class="purpul">Rinki</label>
+            </li>
+            <li class="strike">
+              <input (change)="change()"  [(ngModel)]="strikes.n" id="strike1" class="inp striker" type="checkbox" value="1" ><label class="black">strike1</label>
+          </li>
+          <li class="strike">
+            <input (change)="change()"  [(ngModel)]="strikes.u" id="strike2" class="inp striker" type="checkbox" value="2"><label class="black">strike2</label>
+        </li>
+        <li class="strike">
+          <input (change)="change()"  [(ngModel)]="strikes.su" id="strike3" class="inp striker" type="checkbox" value="3" ><label class="black">strike3</label>
+      </li>
+          </ul>
+      
+        </span>
+      </div> 

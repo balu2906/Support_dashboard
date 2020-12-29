@@ -1,25 +1,28 @@
+<head></head>
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+                <div>
+                    <app-filter></app-filter>
+                </div>
                 <div class="card">
+                   
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Open Tickets</h4>
-                        <!-- <button class="submit" (click)="gettableData()">click me</button> -->
-                        <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive overflow-body">
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th><input type="checkbox" (change)="checkAllfn($event)"  [(ngModel)]="checkAll" [checked]="checkAll" /></th>
+
                                     <th>Ticket ID </th>
                                     <th>Assignee</th>
                                     <th>Description</th>
                                     <th>Date</th>
                                     <th>Remaining Time</th>
                                     <th>Strikes</th>
-                                    <!-- <th>Action</th> -->
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of opentickets; let i=index">
@@ -32,9 +35,10 @@
                                         <td>{{item.createdAt | date}}</td>
                                         <td>{{item.createdAt | date:'shortTime'}}</td>
                                         <td class="text-primary">{{item.strikes}}</td>
-                                        <!-- <td><button class=" btn-primary resolve"
-                                                (click)="resolvepopup(item._id)">Resolve</button></td> -->
+                                        <td><button class=" btn-primary resolve"
+                                                (click)="resolvepopup(item._id)">Resolve</button></td>
                                     </tr>
+        
                                 </tbody>
                             </table>
                         </div>

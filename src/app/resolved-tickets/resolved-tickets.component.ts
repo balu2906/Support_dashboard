@@ -9,23 +9,47 @@ import * as $ from 'jquery';
 declare var jQuery: any;
 
 
-
 @Component({
   selector: 'app-resolved-tickets',
   templateUrl: './resolved-tickets.component.html',
   styleUrls: ['./resolved-tickets.component.css']
 })
 export class ResolvedTicketsComponent implements OnInit {
-  resolvedtickets: any = [];
-  selected: any;
+//   resolvedtickets: any = [];
+//   selected: any;
   Checklist: any = [];
   checkAll: any = false;
 
+ resolvedtickets:any =[];
+ selected:any;
+  asigne:any =[];
+  strike:any = [];
+  query = "'Assignee':asigne";
 
-  constructor(private http: HttpClient, private toastr: ToastrService,
-    public Service: Service,
+assignee = {
+  "jyothi" : '',
+  "Rinki" : '',
+  "neha" : '',
+}
+strikes = {
+    'n' : '',
+    'u' : '',
+    'su' : ''
+}
+strikesMap = {
+  'n' : 1,
+  'u' : 2,
+  'su' : 3
+}
+
+  
+  constructor(private http: HttpClient,
+    public Service: Service,private toastr:ToastrService,
     private fb: FormBuilder,
-    private router: Router) { }
+    private router: Router) {
+
+     }
+
 
   ngOnInit(): void {
     this.getresolvedtickets();
@@ -79,6 +103,31 @@ export class ResolvedTicketsComponent implements OnInit {
 
     })
   }
+  changestrike(){
+    this.strike = [];
+    Object.keys(this.strikes).filter(key=>this.strikes[key] == true)
+    .forEach(ele=>{
+      this.strike.push(this.strikesMap[ele]);
+    });
+console.log("str on ch",this.strikes,this.strike);
+
+    this.strike = this.strike.filter(function(elem, index, self) {
+     return index === self.indexOf(elem);
+    })
+  }
+
+  changeassignee(){
+    this.asigne = (Object.keys(this.assignee).filter(key=>this.assignee[key] == true))
+    console.log("assignees",this.asigne);
+
+    
+  }  
+    
+    // this.shared.SharingData.next(this.assignee);
+    // this.shared.Sharingstrike.next(this.strikes);
+    
+  
+  
 
   closepopup() {
     jQuery("#popup").modal("show");
