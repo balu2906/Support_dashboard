@@ -15,120 +15,13 @@ import * as Highcharts from 'highcharts';
 })
 export class TypographyComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options = {
-    // series: [{
-    //   data: [1, 2, 3],
-    //   type: 'line'
-    // }]
-    chart: {
-      plotBorderWidth: null,
-      plotShadow: false
-    },
-    title: {
-      text: 'Browser market shares at a specific website, 2014'
-    },
-    tooltip: {
-      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
+  chartOptions: Highcharts.Options;
+  AlertchartOptions: Highcharts.Options;
 
-        dataLabels: {
-          enabled: false
-        },
-
-        showInLegend: true
-      }
-    },
-    series: [{
-      type: 'pie',
-      name: 'Browser share',
-      data: [
-        ['Opentickets', 45.0],
-        ['Resolvedtickets', 26.8],
-        {
-          name: 'Chrome',
-          y: 12.8,
-          sliced: true,
-          selected: true
-        },
-        ['Safari', 8.5],
-        ['Opera', 6.2],
-        ['Others', 0.7]
-      ]
-    }]
-  };
-  // chartOptionsBar: Highcharts.Options = {
-  //   // series: [{
-  //   //   data: [1, 2, 3],
-  //   //   type: 'line'
-  //   // }]
-  //   chart: {
-  //     type: 'bar'
-  //   },
-  //   title: {
-  //     text: 'Historic World Population by Region'
-  //   },
-  //   subtitle: {
-  //     text: 'Source: Wikipedia.org'
-  //   },
-  //   legend: {
-  //     layout: 'vertical',
-  //     align: 'left',
-  //     verticalAlign: 'top',
-  //     x: 250,
-  //     y: 100,
-  //     floating: true,
-  //     borderWidth: 1,
-  //   },
-  //   xAxis: {
-  //     categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'], title: {
-  //       text: null
-  //     }
-  //   },
-  //   yAxis: {
-  //     min: 0, title: {
-  //       text: 'Population (millions)', align: 'high'
-  //     },
-  //     labels: {
-  //       overflow: 'justify'
-  //     }
-  //   },
-  //   tooltip: {
-  //     valueSuffix: ' millions'
-  //   },
-  //   plotOptions: {
-  //     bar: {
-  //       dataLabels: {
-  //         enabled: true
-  //       }
-  //     },
-  //     series: {
-  //       stacking: 'normal'
-  //     }
-  //   },
-  //   credits: {
-  //     enabled: false
-  //   },
-  //   series: [
-  //     {
-  //       name: 'Year 1800',
-  //       data: [107, 31, 635, 203, 2]
-  //     },
-  //     {
-  //       name: 'Year 1900',
-  //       data: [133, 156, 947, 408, 6]
-  //     },
-  //     {
-  //       name: 'Year 2008',
-  //       data: [973, 914, 4054, 732, 34]
-  //     }
-  //   ]
-  // };
-
-
+  ChartData: any = [];
+  AlertChartData: any = [];
+  tableData: any = [];
+  alertsData: any = [];
   constructor(public Service: Service,
     private fb: FormBuilder,
     private router: Router,
@@ -136,79 +29,213 @@ export class TypographyComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getChartinfo();
+    this.getalertChartinfo();
   }
-  // barChartPopulation() {
-  //   HighCharts.chart('barChart', {
+
+
+  getChartsList() {
+    this.chartOptions = {
+      chart: {
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Raising ticket highcharts'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          colors: ['#699100', '#007D91', '#FF0000'],
+          allowPointSelect: true,
+          cursor: 'pointer',
+
+          dataLabels: {
+            enabled: false
+          },
+
+          showInLegend: true
+        }
+      },
+
+      series: [
+        {
+          type: 'pie',
+          name: 'Browser share',
+          color: '#00FF00',
+          data:
+            this.ChartData
+
+        }]
+    };
+  }
+  getChartinfo() {
+    this.Service.getChartinfo().subscribe((data: any) => {
+      this.tableData = data
+      console.log('tickets chart data displays hereeee', this.tableData);
+      let Opentickets = 0;
+      let ResovledTickets = 0;
+      let ClosedTickets = 0
+
+      this.tableData.forEach(element => {
+        if (!element.status) {
+          Opentickets++
+        } else if (element.status === 1) {
+          ResovledTickets++
+        } else if (element.status === 2) {
+          ClosedTickets++
+        }
+      });
+      this.ChartData.push(['Opentickets', +((Opentickets / (this.tableData.length)) * 100).toFixed(1)], ['Resolvedtickets', +((ResovledTickets / (this.tableData.length)) * 100).toFixed(1)], ['Closedtickets', +((ClosedTickets / (this.tableData.length)) * 100).toFixed(1)])
+      console.log(this.ChartData, 'chart data', Opentickets, ResovledTickets, ClosedTickets)
+      this.getChartsList();
+
+    })
+  }
+
+
+
+  //alertschart
+  getAlertChartsList() {
+    this.AlertchartOptions = {
+      chart: {
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Raising Alert highcharts'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          colors: ['#699100', '#007D91', '#FF0000', '#00ff00'],
+          allowPointSelect: true,
+          cursor: 'pointer',
+
+          dataLabels: {
+            enabled: false
+          },
+
+          showInLegend: true
+        }
+      },
+
+      series: [
+        {
+          type: 'pie',
+          name: 'Browser share',
+          color: '#00FF00',
+          data:
+            this.AlertChartData
+
+        }]
+    };
+  }
+
+  getalertChartinfo() {
+    this.Service.getallalerts().subscribe((data: any) => {
+      this.alertsData = data
+      console.log('alertss chart data displays hereeee', this.alertsData);
+      let OpenAlerts = 0;
+      let AttendedAlerts = 0;
+      let ResolvedAlerts = 0;
+      let ConfirmedAlerts = 0;
+
+      this.alertsData.forEach(element => {
+        if (element.attended == false) {
+          OpenAlerts++
+        }
+        if (element.attended == true) {
+          AttendedAlerts++
+        }
+        if (element.resolved === true) {
+          ResolvedAlerts++
+        }
+        if (element.confirmed === true) {
+          ConfirmedAlerts++
+        }
+      });
+      this.AlertChartData.push(['OpenAlerts', +((OpenAlerts / (this.alertsData.length)) * 100).toFixed(1)], ['Attendedalerts', +((AttendedAlerts / (this.alertsData.length)) * 100).toFixed(1)], ['Resolvedalerts', +((ResolvedAlerts / (this.alertsData.length)) * 100).toFixed(1)], ['Confirmedalerts', +((ConfirmedAlerts / (this.alertsData.length)) * 100).toFixed(1)])
+      console.log(this.AlertChartData, 'chart data', OpenAlerts, AttendedAlerts, ResolvedAlerts, ConfirmedAlerts)
+      this.getAlertChartsList();
+
+    })
+  }
+
+  // getChartsListBar() {
+  //   this.chartOptionsBar = {
   //     chart: {
-  //       type: 'bar'
+  //       type: 'column'
   //     },
   //     title: {
-  //       text: 'Covid Information Highcharts'
+  //       text: 'Stacked column chart'
   //     },
   //     xAxis: {
-  //       categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania', 'India'],
+  //       categories: ['Resolved By', 'Closed By', 'Closedtickets']
   //     },
   //     yAxis: {
   //       min: 0,
   //       title: {
-  //         text: 'Population (millions)',
-  //         align: 'high'
-  //       },
-  //     },
-  //     tooltip: {
-  //       valueSuffix: ' millions'
-  //     },
-  //     plotOptions: {
-  //       bar: {
-  //         dataLabels: {
-  //           enabled: true
-  //         },
-  //         states: {
-  //           inactive: {
-  //             opacity: 1
-  //           }
-  //         },
+  //         text: 'Total Ticket BarChart Consumption'
   //       }
   //     },
-  //     series: [
-  //       // {
-  //       // type: undefined,
-  //       // name: 'Year 1800',
-  //     //   data: [107, 31, 635, 203, 2]
-  //     // }, {
-  //     //   type: undefined,
-  //     //   name: 'Year 1900',
-  //     //   data: [133, 156, 947, 408, 6]
-  //     // }, 
-  //     {
-  //       type: undefined,
-  //       name: 'Active Cases',
-  //       data: this.activeData
+  //     tooltip: {
+  //       pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+  //       shared: true
   //     },
-  //      {
-  //       type: undefined,
-  //       name: 'Death Cases',
-  //       data: this.deathData
+  //     plotOptions: {
+  //       column: {
+  //         stacking: 'percent',
+  //         pointWidth: 80,
+  //         // colorByPoint: true,
+  //         // colors: ['#007D91', '#FF0000', '#699100'],
+  //       },
+  //     },
+  //     series: [{
+  //       name: 'Resolved By',
+  //       data: [1, 2, 3]
+  //     }, {
+  //       name: 'Closed By',
+  //       data: [4, 5, 6]
   //     },
   //     {
-  //       type: undefined,
-  //       name: 'Recovery Cases',
-  //       data: this.recoveredData
+  //       name: 'Closedtickets',
+  //       data: [7, 8, 9]
   //     }
-  //   ]
-  //   });
+  //     ]
+
+  //   };
   // }
 
+  // getChartinfoBar() {
+  //   this.Service.getChartinfo().subscribe((data: any) => {
+  //     this.tableData = data
+  //     console.log('tickets chart data displays hereeee', this.tableData);
+  //     let Opentickets = 0;
+  //     let ResovledTickets = 0;
+  //     let ClosedTickets = 0
 
+  //     this.tableData.forEach(element => {
+  //       if (!element.status) {
+  //         Opentickets++
+  //       } else if (element.status === 1) {
+  //         ResovledTickets++
+  //       } else if (element.status === 2) {
+  //         ClosedTickets++
+  //       }
+  //     });
+  //     this.ChartData.push(['Opentickets', +((Opentickets / (this.tableData.length)) * 100).toFixed(1)], ['Resolvedtickets', +((ResovledTickets / (this.tableData.length)) * 100).toFixed(1)], ['Closedtickets', +((ClosedTickets / (this.tableData.length)) * 100).toFixed(1)])
+  //     console.log(this.ChartData, 'chart data', Opentickets, ResovledTickets, ClosedTickets)
+  //     this.getChartsListBar();
 
-  // getChartinfo() {
-  //   this.Service.getChartinfo().subscribe((data:any) => {
-  //     console.log(data, 'data is here')
-  //     this.activeData = _.pluck(data.data, 'active')
-  //     this.deathData = _.pluck(data.data, 'deaths')
-  //     this.recoveredData = _.pluck(data.data, 'recovered')
-  //     this.barChartPopulation();
   //   })
   // }
+
+
+
 
 }

@@ -9,6 +9,10 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
   styleUrls: ['./closed-alerts.component.css']
 })
 export class ClosedAlertsComponent implements OnInit {
+// <<<<<<< HEAD
+  confirmdata: any = [];
+  closeddata: any = [];
+// =======
   closedalerts:any=[]
   selected:any;
   asigne:any =[];
@@ -29,8 +33,10 @@ strikesMap = {
   'u' : 2,
   'su' : 3
 }
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
 
-  constructor(private http:HttpClient,
+
+  constructor(private http: HttpClient,
     public Service: Service,
     private fb: FormBuilder) { }
 
@@ -57,13 +63,21 @@ strikesMap = {
   }  
   getclosedalerts() {
     this.Service.getclosedalerts().subscribe(data => {
+// <<<<<<< HEAD
+      this.confirmdata = data;
+      console.log("CLOSED ALERTS DATAAAAAAAAA", this.confirmdata);
+     
+  
+
+// =======
       this.closedalerts = data;
       console.log("closed alerts" , this.closedalerts);
       console.log("CLOSED ALERTS DATAAAAAAAAA", data);
+// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
     },
-    err => {
-      console.log("CLOSED ALERTS ERRORRRRRR");
-    })
+      err => {
+        console.log("CLOSED ALERTS ERRORRRRRR");
+      })
   }
 
 }

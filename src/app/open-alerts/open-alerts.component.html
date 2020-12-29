@@ -1,83 +1,179 @@
 <div class="main-content">
     <div class="container-fluid">
+        <div class="checkbox col-md-10">
+            <span class="label-new">
+                <ul class="ngc">
+                    <li class="list">
+
+                        <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1" class="inp asignee1"
+                            type="checkbox"><label class="blue">Jyothi</label>
+                    </li>
+                    <!-- {{selected.jyothi}}{{selected.neha}}{{selected.rinki}} -->
+
+                    <li class="list ">
+
+                        <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2" class="inp asignee2"
+                            type="checkbox" value="neha"><label class="red">Neha</label>
+                    </li>
+
+                    <li class="last rinki">
+                        <input (change)="changeassignee()" [(ngModel)]="assignee.rinki" id="name3" class="inp asignee3"
+                            type="checkbox" value="rinki"><label class="purpul">Rinki</label>
+                    </li>
+                    <li class="strike">
+                        <input (change)="changestrike()" [(ngModel)]="strikes.n" id="strike1" class="inp striker"
+                            type="checkbox" value="1"><label class="black">1</label>
+                    </li>
+                    <li class="strike">
+                        <input (change)="changestrike()" [(ngModel)]="strikes.u" id="strike2" class="inp striker"
+                            type="checkbox" value="2"><label class="black">2</label>
+                    </li>
+                    <li class="strike">
+                        <input (change)="changestrike()" [(ngModel)]="strikes.su" id="strike3" class="inp striker"
+                            type="checkbox" value="3"><label class="black">3</label>
+                    </li>
+                    <li class="strike" style="font-weight: bold;color: rgb(17, 117, 231);font-size: 13px;">STRIKES
+                    </li>
+                </ul>
+            </span>
+        </div>
         <div class="row">
+
             <div class="col-md-12">
+                <!-- <<<<<<< HEAD -->
+                <button class="btn btn-warning mr-4" (click)="alertsbutton('attended',false,alrtname, 'opened')">Open
+                    Alerts</button>
+                <button class="btn btn-success mr-4"
+                    (click)="alertsbuttonA('attended',true,'resolved',false,alrtname)">Attended</button>
+                <button class="btn btn-primary mr-4"
+                    (click)="alertsbuttonA('resolved',true,'confirmed',false,alrtname)">Resolved</button>
+                <button class="btn btn-danger" (click)="alertsbutton('confirmed',true,alrtname, 'confirmed')">
+                    Confirmed</button>
+            </div>
+
+            <div class="col-md-12">
+                <!-- ======= -->
                 <div>
                     <!-- <app-filter></app-filter> -->
-                                    
-                     <div class="checkbox col-md-10">
-                         <span class="label-new">
-                         <ul class="ngc">
-                             <li class="list">
-                                 
-                                 <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1" class="inp asignee1" type="checkbox" ><label class="blue">Jyothi</label>
-                             </li>
-                             <!-- {{selected.jyothi}}{{selected.neha}}{{selected.rinki}} -->
-                     
-                             <li class="list ">
-                                 
-                                 <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2" class="inp asignee2" type="checkbox" value="neha" ><label class="red">Neha</label>
-                             </li>
-                     
-                             <li class="last rinki">
-                                 <input (change)="changeassignee()"  [(ngModel)]="assignee.rinki" id="name3" class="inp asignee3" type="checkbox" value="rinki" ><label class="purpul">Rinki</label>
-                             </li>
-                             <li class="strike">
-                             <input (change)="changestrike()"  [(ngModel)]="strikes.n" id="strike1" class="inp striker" type="checkbox" value="1" ><label class="black">1</label>
-                         </li>
-                         <li class="strike">
-                             <input (change)="changestrike()"  [(ngModel)]="strikes.u" id="strike2" class="inp striker" type="checkbox" value="2"><label class="black">2</label>
-                         </li>
-                         <li class="strike">
-                             <input (change)="changestrike()"  [(ngModel)]="strikes.su" id="strike3" class="inp striker" type="checkbox" value="3" ><label class="black">3</label>
-                         </li>
-                         <li  class="strike" style="font-weight: bold;color: rgb(17, 117, 231);font-size: 13px;">STRIKES</li>
-                       </ul>
-                         </span>
-                     </div>
-                 </div>
+
+
+                </div>
+                <!-- >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b -->
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Open Alerts</h4>
+                        <h4 class="card-title ">{{state}}</h4>
                         <!-- <button type="submit" (click)="getopenalerts()">click me</button> -->
                         <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive overflow-body">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>
-                                        Ticket ID
-                                    </th>
-                                    <th>
-                                        Assignee
-                                    </th>
-                                    <th>
-                                        Description
-                                    </th>
-                                    <th>
-                                        Resolved Date
-                                    </th>
-                                    <th>
-                                        Strikes
-                                    </th>
-                                    <th>Action</th>
+                                    <!-- <<<<<<< HEAD -->
+                                    <!-- <th *ngIf="alertType != 'all'"><input type="checkbox" [(ngModel)]="checkAll"
+                                            [checked]="checkAll" (change)="checkAllfn($event)" /></th> -->
+                                    <th>Ticket ID</th>
+                                    <th>Assignee</th>
+                                    <th>Description</th>
+                                    <th>Resolved Date</th>
+                                    <th>Strikes</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of openalerts| filter:'assignee':asigne:'strikes':strike; let i=index">
-                                        <td>{{item._id}}</td>
-                                        <td>{{item.assignee}}</td>
-                                        <td>{{item.description}}</td>
-                                        <td>{{item.createdAt | date}}</td>
-                                        <td class="text-primary">{{item.strikes}}</td>
-                                        <td><button class=" btn-primary close-size" (click)="closepopup(item._id)">
-                                                Close</button></td>
+                                    <tr
+                                        *ngFor="let item of allalerts | filter:'alert.strikes':asigne:'strikes':strike; let i=index">
+                                        <!-- <tr *ngFor="let item of allalerts; let i=index"> -->
+                                        <td *ngIf="alertType != 'all'"> <input type="checkbox" [value]="item._id"
+                                                [(ngModel)]="item.checked" [checked]="item.checked"
+                                                (change)="singleCheckFn($event, item, i)" />
+                                        </td>
+                                        <td>{{item.alert._id}}</td>
+                                        <td>{{item.alert.assignee}}</td>
+                                        <td>{{item.alert.description}}</td>
+                                        <td>{{item.alert.createdAt | date}}</td>
+                                        <td class="text-primary">{{item.alert.strikes}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <div class="modal-footer border ">{{isAttended}} || {{isResolved}} || {{isConfirmed}}
+                        <div class="col-md-12" *ngIf="popupbutton == 'Attend'">
+                            <button class="btn btn-success mr-1" *ngIf="button_disabled == true" (click)="openPopup()"
+                                [disabled]="isAttended">
+                                {{popupbutton}}</button>
+                        </div>
+                        <div class="col-md-12" *ngIf="popupbutton == 'Resolve'">
+                            <button class="btn btn-success mr-1" *ngIf="button_disabled == true" (click)="openPopup()"
+                                [disabled]="isResolved">
+                                {{popupbutton}}</button>
+                        </div>
+                        <div class="col-md-12" *ngIf="popupbutton == 'Confirm'">
+                            <button class="btn btn-success mr-1" *ngIf="button_disabled == true" (click)="openPopup()"
+                                [disabled]="isConfirmed">
+                                {{popupbutton}}</button>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="modal" id="popup" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header input-color">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Are you sure to Resolve this ticket?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="Resolved();">Yes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- //attend popup// -->
+<div class="modal" [id]="alertType" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header input-color">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12" *ngIf="alertType != 'confirmed'">
+                    <!-- <mat-form-field name="reason" class="example-full-width ">
+                        <textarea matInput cols="30" rows="3" placeholder="Enter Reason" name="reason"
+                            [(ngModel)]="reason" type="text" *ngIf="submitType == 'resolved'"></textarea>
+
+                        <input matInput type="number" placeholder="Enter number" [(ngModel)]="solvedIn"
+                            *ngIf="submitType == 'attended'">
+                    </mat-form-field> -->
+                    <form>
+                        <textarea cols="30" rows="3" placeholder="Enter Reason" name="reason" type="text"
+                            *ngIf="submitType == 'resolved'"></textarea>
+                        <input type="number" placeholder="Enter number" *ngIf="submitType == 'attended'">
+                    </form>
+                </div>
+                <div class="col-md-12 text-center" *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">
+                    <p>Are you sure to confirm this ticket?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToResolve();"
+                    *ngIf="submitType == 'resolved'">Yes One</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToAttend();"
+                    *ngIf="alertType == 'opened'">Yes Two</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveConfirmalert();"
+                    *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">Yes Three</button>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

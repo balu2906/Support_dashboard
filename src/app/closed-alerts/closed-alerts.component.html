@@ -44,32 +44,32 @@
                         <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive overflow-body">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>
-                                        Ticket ID
-                                    </th>
-                                    <th>
-                                        Assignee
-                                    </th>
-                                    <th>
-                                        Description
-                                    </th>
-                                    <th>
-                                        Closed Date
-                                    </th>
-                                    <th>
-                                        Strikes
-                                    </th>
+                                    <th>Ticket ID</th>
+                                    <th>Assignee</th>
+                                    <th>Description</th>
+                                    <th>Closed Date</th>
+                                    <th>Strikes</th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of closedalerts | filter:'assignee':asigne:'strikes':strike; let i=index">
+<!-- <<<<<<< HEAD -->
+                                    <!-- <tr *ngFor="let item of confirmdata | filter:'assignee':asigne:'strikes':strike; let i=index"> -->
+                                        <tr *ngFor="let item of confirmdata; let i=index">
+                                        <td>{{item._id}}</td>
+                                        <td>{{item.alert.assignee}}</td>
+                                        <td>{{item.alert.description}}</td>
+                                        <td>{{item.createdAt | date}}</td>
+                                        <td class="text-primary">{{item.alertStrike}}</td>
+
+                                    <!-- <tr *ngFor="let item of closedalerts | filter:'assignee':asigne:'strikes':strike; let i=index">
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
                                         <td>{{item.description}}</td>
                                         <td>{{item.createdAt | date}}</td>
                                         <td class="text-primary">{{item.strikes}}</td>
+>>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b -->
                                     </tr>
                                 </tbody>
                             </table>
