@@ -9,21 +9,29 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
   styleUrls: ['./closed-alerts.component.css']
 })
 export class ClosedAlertsComponent implements OnInit {
+  confirmdata: any = [];
+  closeddata: any = [];
 
-  constructor(private http:HttpClient,
+
+  constructor(private http: HttpClient,
     public Service: Service,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.getclosedalerts();
   }
 
   getclosedalerts() {
     this.Service.getclosedalerts().subscribe(data => {
-      console.log("CLOSED ALERTS DATAAAAAAAAA", data);
+      this.confirmdata = data;
+      console.log("CLOSED ALERTS DATAAAAAAAAA", this.confirmdata);
+     
+  
+
     },
-    err => {
-      console.log("CLOSED ALERTS ERRORRRRRR");
-    })
+      err => {
+        console.log("CLOSED ALERTS ERRORRRRRR");
+      })
   }
 
 }

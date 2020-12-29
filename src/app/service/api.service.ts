@@ -12,7 +12,7 @@ export class ApiService {
     PUT_ATTENDALERT_ID: environment.apiUrl + '/alerts/attend_alert',
     PUT_RESOLVEALERT_ID: environment.apiUrl + '/alerts/resolve',
     PUT_CONFIRMALERT_ID: environment.apiUrl + '/alerts/confirm_alert',
-    GET_CLOSED_ALERTS_DATA: environment.apiUrl + '/closed_alerts_data',
+    GET_CLOSED_ALERTS_DATA: environment.apiUrl + '/alerts/closed_alerts',
     GET_CHART_INFO: environment.apiUrl + '/ticket/alltickets',
     // GETALERTS_CHARTINFO: environment.apiUrl + '/alerts'
 

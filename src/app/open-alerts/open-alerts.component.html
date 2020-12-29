@@ -2,11 +2,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <button class="btn btn-warning mr-4" (click)="alertsbutton('opened',false,alrtname)">Open
+                <button class="btn btn-warning mr-4" (click)="alertsbutton('attended',false,alrtname, 'opened')">Open
                     Alerts</button>
-                <button class="btn btn-success mr-4" (click)="alertsbutton('attended',true,alrtname)">Attended</button>
-                <button class="btn btn-primary mr-4" (click)="alertsbutton('resolved',true,alrtname)">Resolved</button>
-                <button class="btn btn-danger" (click)="alertsbutton('confirmed',true,alrtname)"> Confirmed</button>
+                <button class="btn btn-success mr-4"
+                    (click)="alertsbuttonA('attended',true,'resolved',false,alrtname)">Attended</button>
+                <button class="btn btn-primary mr-4"
+                    (click)="alertsbuttonA('resolved',true,'confirmed',false,alrtname)">Resolved</button>
+                <button class="btn btn-danger" (click)="alertsbutton('confirmed',true,alrtname, 'confirmed')"> Confirmed</button>
             </div>
             <div class="col-md-12">
                 <div class="card">
@@ -19,7 +21,7 @@
                         <div class="table-responsive overflow-body">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th><input type="checkbox" [(ngModel)]="checkAll" [checked]="checkAll"
+                                    <th *ngIf="alertType != 'all'"><input type="checkbox" [(ngModel)]="checkAll" [checked]="checkAll"
                                             (change)="checkAllfn($event)" /></th>
                                     <th>Ticket ID</th>
                                     <th>Assignee</th>
@@ -29,7 +31,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of allalerts; let i=index">
-                                        <td> <input type="checkbox" [value]="item._id" [(ngModel)]="item.checked"
+                                        <td *ngIf="alertType != 'all'"> <input type="checkbox" [value]="item._id" [(ngModel)]="item.checked"
                                                 [checked]="item.checked" (change)="singleCheckFn($event, item, i)" />
                                         </td>
                                         <td>{{item.alert._id}}</td>
@@ -42,9 +44,17 @@
                             </table>
                         </div>
                     </div>
-                    <div class="modal-footer border ">
-                        <div class="col-md-12">
-                            <button class="btn btn-success mr-1" *ngIf="button_disabled == true" (click)="openPopup()">
+                    <div class="modal-footer border ">{{isAttended}} || {{isResolved}} || {{isConfirmed}}
+                        <div class="col-md-12" *ngIf="popupbutton == 'Attend'">
+                            <button class="btn btn-success mr-1" *ngIf="button_disabled == true" (click)="openPopup()" [disabled]="isAttended">
+                                {{popupbutton}}</button>
+                        </div>
+                        <div class="col-md-12" *ngIf="popupbutton == 'Resolve'">
+                            <button class="btn btn-success mr-1" *ngIf="button_disabled == true" (click)="openPopup()" [disabled]="isResolved">
+                                {{popupbutton}}</button>
+                        </div>
+                        <div class="col-md-12" *ngIf="popupbutton == 'Confirm'">
+                            <button class="btn btn-success mr-1" *ngIf="button_disabled == true" (click)="openPopup()" [disabled]="isConfirmed">
                                 {{popupbutton}}</button>
                         </div>
                     </div>
@@ -85,23 +95,23 @@
                 <div class="col-md-12" *ngIf="alertType != 'confirmed'">
                     <mat-form-field name="reason" class="example-full-width ">
                         <textarea cols="30" rows="3" placeholder="Enter Reason" name="reason" [(ngModel)]="reason"
-                            type="text" *ngIf="submitType == 'attended'"></textarea>
+                            type="text" *ngIf="submitType == 'resolved'"></textarea>
 
                         <input type="number" placeholder="Enter number" [(ngModel)]="solvedIn"
-                            *ngIf="submitType == 'opened'">
+                            *ngIf="submitType == 'attended'">
                     </mat-form-field>
                 </div>
-                <div class="col-md-12 text-center" *ngIf="alertType == 'confirmed'">
+                <div class="col-md-12 text-center" *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">
                     <p>Are you sure to confirm this ticket?</p>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToResolve();"
-                    *ngIf="alertType == 'attended'">Yes</button>
+                    *ngIf="submitType == 'resolved'">Yes One</button>
                 <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToAttend();"
-                    *ngIf="alertType == 'opened'">Yes</button>
+                    *ngIf="alertType == 'opened'">Yes Two</button>
                 <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveConfirmalert();"
-                    *ngIf="alertType == 'confirmed'">Yes</button>
+                    *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">Yes Three</button>
 
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
