@@ -58,20 +58,16 @@
 
 
                 </div>
-                <!-- >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b -->
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">{{state}}</h4>
-                        <!-- <button type="submit" (click)="getopenalerts()">click me</button> -->
-                        <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive overflow-body">
-                            <table class="table">
+                        <div class="table-responsive overflow-body" >
+                            <table class="table" [dataSource]="dataSource">
                                 <thead class=" text-primary">
-                                    <!-- <<<<<<< HEAD -->
-                                    <!-- <th *ngIf="alertType != 'all'"><input type="checkbox" [(ngModel)]="checkAll"
-                                            [checked]="checkAll" (change)="checkAllfn($event)" /></th> -->
+                                    <th *ngIf="alertType != 'all'"><input type="checkbox" [(ngModel)]="checkAll"
+                                            [checked]="checkAll" (change)="checkAllfn($event)" /></th>
                                     <th>Ticket ID</th>
                                     <th>Assignee</th>
                                     <th>Description</th>
@@ -96,7 +92,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="modal-footer border ">{{isAttended}} || {{isResolved}} || {{isConfirmed}}
+                    <div class="modal-footer border">
                         <div class="col-md-12" *ngIf="popupbutton == 'Attend'">
                             <button class="btn btn-success mr-1" *ngIf="button_disabled == true" (click)="openPopup()"
                                 [disabled]="isAttended">
@@ -156,9 +152,11 @@
                             *ngIf="submitType == 'attended'">
                     </mat-form-field> -->
                     <form>
-                        <textarea cols="30" rows="3" placeholder="Enter Reason" name="reason" type="text"
-                            *ngIf="submitType == 'resolved'"></textarea>
-                        <input type="number" placeholder="Enter number" *ngIf="submitType == 'attended'">
+                        <textarea cols="30" rows="3" [(ngModel)]="reason" [ngModelOptions]="{standalone: true}"
+                            placeholder="Enter Reason" name="reason" type="text"
+                            *ngIf="alertType == 'attended'"></textarea>
+                        <input type="number" [(ngModel)]="solvedIn" [ngModelOptions]="{standalone: true}"
+                            placeholder="Enter time" *ngIf="alertType == 'opened'">
                     </form>
                 </div>
                 <div class="col-md-12 text-center" *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">
@@ -167,11 +165,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToResolve();"
-                    *ngIf="submitType == 'resolved'">Yes One</button>
+                    [disabled]="!reason" *ngIf="submitType == 'attended' && alertType != 'opened'">Yes22</button>
+
                 <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToAttend();"
-                    *ngIf="alertType == 'opened'">Yes Two</button>
+                    [disabled]="!solvedIn" *ngIf="alertType == 'opened'">Yes11</button>
+
                 <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveConfirmalert();"
-                    *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">Yes Three</button>
+                    *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">Yes33</button>
 
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>

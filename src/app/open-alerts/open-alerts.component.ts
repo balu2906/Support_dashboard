@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 import * as $ from 'jquery';
 import * as _ from 'underscore';
+
+import { ToastrService } from 'ngx-toastr';
 declare var jQuery: any;
 
 @Component({
@@ -12,6 +14,9 @@ declare var jQuery: any;
   styleUrls: ['./open-alerts.component.css']
 })
 export class OpenAlertsComponent implements OnInit {
+  dataSource: any;
+  isLoading = true;
+
   // <<<<<<< HEAD
   allalerts: any = [];
   Checklist: any = [];
@@ -51,7 +56,7 @@ export class OpenAlertsComponent implements OnInit {
     'su': 3
   }
   // >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
-  constructor(private http: HttpClient,
+  constructor(private http: HttpClient, private toastr: ToastrService,
     public Service: Service,
     private fb: FormBuilder) { }
 
@@ -84,6 +89,7 @@ export class OpenAlertsComponent implements OnInit {
     this.Service.getallalerts().subscribe(data => {
       this.allalerts = data;
       this.tempAllAlerts = data;
+      console.log("llllllllllllllllllllllll", this.allalerts.length);
       console.log("OPEN ALERTS DATAAA", this.allalerts);
       if (this.alertType != 'all') {
         console.log(this.alertType, "alert type issssss");
@@ -93,7 +99,7 @@ export class OpenAlertsComponent implements OnInit {
         console.log("after checking submit type issss", this.submitType);
         this.allalerts = this.tempAllAlerts.filter((ele: any) => {
           ele.checked = false;
-          if (this.buttonType == 'opened') {// defaultly, button type is opened, so that the alerts data will be filtered with in if condition
+          if (this.buttonType == 'opened') {
             return ele['attended'] == false && ele['resolved'] == false && ele['confirmed'] == false;
           }
           else if (this.alertType == 'attended') {
@@ -128,9 +134,8 @@ export class OpenAlertsComponent implements OnInit {
 
 
   alertsbuttonA(type: any, event: any, type2: any, event2: any, alrtname: any) {
-    // this.alertType = type;
-    this.submitType = type2;
-    console.log("sssssssssssssssssssssssss", this.submitType);
+    this.submitType = type;
+    console.log("submitytyp2 issss", this.submitType);
     this.button_disabled = true;
     if (type != "resolved" && alrtname != "attended") {
       if (type != 'confirmed') {
@@ -153,11 +158,11 @@ export class OpenAlertsComponent implements OnInit {
     }
     if (type == 'resolved') {
       if (event == true) {
-        this.alertType == 'confirmed'
+        this.alertType = 'confirmed'
       }
     }
     // type = type == 'opened' ? 'attended' : type;
-    console.log("alerttypealerttype attended", this.alertType);
+    console.log("alerttypealerttype ", this.alertType);
     // this.alertType = type == 'resolved' ? 'confirmed' : type;
     console.log(this.alertType, "alert type isssss");
     this.allalerts = this.tempAllAlerts.filter((ele: any) => {
@@ -181,10 +186,10 @@ export class OpenAlertsComponent implements OnInit {
   }
 
   alertsbutton(type: any, event: any, alrtname: any, btn: any) {
-    // this.alertType = type;
     this.submitType = type;
     this.buttonType = btn;
-    console.log("sssssssssssssssssssssssss", this.submitType);
+    console.log("submit type issssssssss", this.submitType);
+    console.log("button type issssssssss", this.buttonType);
     this.button_disabled = true;
     if (type != "resolved" && alrtname != "attended") {
       if (type != 'confirmed') {
@@ -277,10 +282,11 @@ export class OpenAlertsComponent implements OnInit {
     console.log("Post payload for moveing to attend", body);
 
     this.Service.saveAttendalert(body).subscribe(data => {
-      console.log("Moved to attended successful");
+      this.toastr.success("Moved to attended successfully");
+
       this.getallalerts();
     }, err => {
-      console.log("error in resolveticket iddddddd");
+      this.toastr.error("Error while moved to attended");
     })
 
 
@@ -294,10 +300,12 @@ export class OpenAlertsComponent implements OnInit {
     console.log("Post payload for moveing to resolve", body);
 
     this.Service.saveResolvealert(body).subscribe(data => {
-      console.log("Moved to resolve successful");
+      this.toastr.success("Moved to Resolved successfully");
+
       this.getallalerts();
     }, err => {
-      console.log("error in resolveticket iddddddd");
+      this.toastr.error("Error while moved to resolved");
+
     })
   }
 
@@ -308,11 +316,13 @@ export class OpenAlertsComponent implements OnInit {
     console.log("Post payload for moveing to confirm", body);
 
     this.Service.saveConfirmalert(body).subscribe(data => {
-      console.log("Moved to Confirm successful");
-      this.alertType = 'resolved';
+      this.toastr.success("Moved to Confirm successfully");
+
+      // this.alertType = 'resolved';
       this.getallalerts();
     }, err => {
-      console.log("error in confirm ticket iddddddd");
+      this.toastr.error("Error while moved to confirm");
+
     })
   }
 
