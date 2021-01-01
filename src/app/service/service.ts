@@ -62,7 +62,7 @@ export class Service {
     return this.http.get(ApiService.API.GET_ALL_ALERTS_DATA);
   }
   saveAttendalert(data: any) {
-    return this.http.put(ApiService.API.PUT_ATTENDALERT_ID,data);
+    return this.http.post(ApiService.API.PUT_ATTENDALERT_ID,data);
   }
 
   saveResolvealert(data: any) {
