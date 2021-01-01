@@ -17,28 +17,14 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
-// <<<<<<< lakshmi-tcheckbox
 import { HighchartsChartModule } from 'highcharts-angular';
 
-
-// =======
 import { FilterComponent } from '../../filter/filter.component';
 import { FilterPipe } from '../../utils/filter.pipe';
-// <<<<<<< HEAD
 import { ResolvedTicketsComponent } from '../../resolved-tickets/resolved-tickets.component';
-// import { ClosedTicketsComponent } from '../../closed-tickets/closed-tickets.component';
-// import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
-// import { ClosedAlertsComponent } from '../../closed-alerts/closed-alerts.component';
-
-// =======
-// import {ResolvedTicketsComponent} from '../../resolved-tickets/resolved-tickets.component';
 import { ClosedTicketsComponent } from '../../closed-tickets/closed-tickets.component';
-// import { ClosedAlertsComponent } from '../../closed-alerts/closed-alerts.component';
-// import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
+import { ClosedAlertsComponent } from '../../closed-alerts/closed-alerts.component';
 import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
- 
-// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
-// // >>>>>>> main
 @NgModule({
   imports: [
     CommonModule,
@@ -51,12 +37,9 @@ import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    // <<<<<<< lakshmi-tcheckbox
     HighchartsChartModule,
     MatTooltipModule,
-    // =======
     MatTooltipModule
-    // >>>>>>> main
   ],
   declarations: [
     DashboardComponent,
@@ -70,15 +53,9 @@ import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
     FilterComponent,
     FilterPipe,
     ResolvedTicketsComponent,
-// <<<<<<< HEAD
     ClosedTicketsComponent,
      OpenAlertsComponent,
-    // ClosedAlertsComponent,
-// =======
-//     ClosedTicketsComponent,
-//     ClosedAlertsComponent,
-//     OpenAlertsComponent
-// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
+     ClosedAlertsComponent,
   ],
   exports: [FilterComponent]
 })

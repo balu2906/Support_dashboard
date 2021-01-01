@@ -4,11 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-// <<<<<<< HEAD
 import * as _ from 'underscore';
-// =======
-
-// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
 import * as $ from 'jquery';
 declare var jQuery: any;
 
@@ -19,8 +15,6 @@ declare var jQuery: any;
   styleUrls: ['./resolved-tickets.component.css']
 })
 export class ResolvedTicketsComponent implements OnInit {
-//   resolvedtickets: any = [];
-//   selected: any;
   Checklist: any = [];
   checkAll: any = false;
 
@@ -53,12 +47,7 @@ popupForm: FormGroup = this.fb.group({
 });
   
   constructor(private http: HttpClient,
-// <<<<<<< HEAD
     public Service: Service,private toastr:ToastrService,
-// =======
-
-
-// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
     private fb: FormBuilder,
     private router: Router) {
 
@@ -67,24 +56,6 @@ popupForm: FormGroup = this.fb.group({
   ngOnInit(): void {
     this.getresolvedtickets();
   }
-
-
-  // checkAllfn(ev: any) {
-  //   if (ev.target.checked) {
-  //     this.Checklist.push(ev.target.value);
-  //   }
-  //   else {
-  //     var i = 0;
-  //     this.Checklist.forEach(ele => {
-  //       if (ele == ev.target.value) {
-  //         this.Checklist.splice(i, 1);
-  //       }
-  //       i++;
-  //     });;
-  //   }
-  //   console.log("checklistttttttttttttt", this.Checklist);
-  // }
-
   checkAllfn(event: any) {
     this.resolvedtickets.map((el: any) => {
       el.checked = event.target.checked
@@ -135,17 +106,9 @@ console.log("str on ch",this.strikes,this.strike);
 
     
   }  
-    
-    // this.shared.SharingData.next(this.assignee);
-    // this.shared.Sharingstrike.next(this.strikes);
-    
-  
-  
-
   closepopup() {
     if(this.Checklist.length == 0){
       this.toastr.error("please select atleast one ticket");
-      // console.log("please click at least one checkbox");
       return false;
       
     }else{
@@ -153,8 +116,6 @@ console.log("str on ch",this.strikes,this.strike);
     }
   }
   closed() {
-    // this.Checklist.forEach(element => {
-      // console.log("enter to closed",element);
       const popdata ={
         reason :  this.popupForm.get('description').value,
         closedBy : this.popupForm.get('solvedby').value,
@@ -164,54 +125,15 @@ console.log("str on ch",this.strikes,this.strike);
       console.log("popupdata",popdata);
       this.Service.getclose(popdata).subscribe(data => {
         let i = 0;
-// <<<<<<< HEAD
-        // this.resolvedtickets.forEach(ele => {
-        //   if (ele._id == element) {
-        //     this.resolvedtickets.splice(i, 1);
-        //   }
-        //   i++;
-        // });
         this.toastr.success("Ticket is resolved successful.");
-// =======
         console.log("entered post id");
-        // this.resolvedtickets.forEach(ele => {
-          
-          
-        //   if (ele._id == element) {
-        //     this.resolvedtickets.splice(i, 1);
-        //   }
-        //   i++;
-        // });
-        // console.log("closing id",element);
-        
-// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
+    
       }, err => {
         this.toastr.error("Failed to resolve ticket.");
         console.log("error in closedticket iddddddd");
       })
 
-    // });
-
   }
-  // postpopup(){
-  //   this.loading_spinner = true;
 
-  //   const popdata ={
-  //     reason :  this.popupForm.get('description').value,
-  //     closedBy : this.popupForm.get('solvedby').value
-  //   }
-  //   console.log("popupdata",popdata);
-  //   this.Service.postpopup(popdata).subscribe(popdata => {
-  //     console.log("popdata is here",popdata);
-  //     // this.toastr.success("popup created successfully");
-  //     // this.loading_spinner = false;
-  //   }, err => {
-  //     console.log("error in popdata", err);
-
-  //     // this.toastr.error("Error while creating popticket");
-
-  //   })
-    
-  // }
 }
   

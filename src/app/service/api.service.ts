@@ -22,5 +22,6 @@ export class ApiService {
 
     //post popup
     POST_POPUP:environment.apiUrl +'/ticket/close',
+    POST_ALERT:environment.apiUrl+'/alerts/create_m_alerts'
   }
 }

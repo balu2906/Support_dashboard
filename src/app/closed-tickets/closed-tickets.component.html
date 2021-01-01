@@ -3,7 +3,6 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <!-- <app-filter></app-filter> -->
                     <div class="checkbox col-md-10">
                         <span class="label-new">
                         <ul class="ngc">
@@ -11,8 +10,6 @@
                                 
                                 <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1" class="inp asignee1" type="checkbox" ><label class="blue">Jyothi</label>
                             </li>
-                            <!-- {{selected.jyothi}}{{selected.neha}}{{selected.rinki}} -->
-                    
                             <li class="list ">
                                 
                                 <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2" class="inp asignee2" type="checkbox" value="neha" ><label class="red">Neha</label>
@@ -38,8 +35,6 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Closed Tickets</h4>
-                        <!-- <button type="submit" (click)="getclosedtickets()">click me</button> -->
-                        <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body overflow-body">
                         <div class="table-responsive">
@@ -53,7 +48,6 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of closedtickets | filter:'assignee':asigne:'strikes':strike; let i=index">
-                                        <!-- <tr *ngFor="let item of closedtickets; let i=index"> -->
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
                                         <td>{{item.description}}</td>

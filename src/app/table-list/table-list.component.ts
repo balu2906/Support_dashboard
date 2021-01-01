@@ -2,24 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
-//import {SharedService} from '../shared/shared.service'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import * as _ from 'underscore';
 import * as $ from 'jquery';
 declare var jQuery: any;
-
-
-// =======
-// // >>>>>>> e4166bb3a8a230ab1d3998aee31f75cd4c1a5267
-// import * as $ from 'jquery'
-// declare var jQuery:any;
-// >>>>>>> main
-
-
-
-
 @Component({
   selector: 'app-table-list',
   templateUrl: './table-list.component.html',
@@ -28,17 +16,9 @@ declare var jQuery: any;
 export class TableListComponent implements OnInit {
   resolvedtickets: any = [];
   opentickets: any = [];
-  // <<<<<<< HEAD
-  //   selected: any;
-  //   checkAll: any = false;
-  //   Clist: any = [];
-
-
-  //   constructor(private http: HttpClient, private toastr: ToastrService,
-  // =======
-
   checkAll: any;
   Clist: any = [];
+  tickets:any;
 
   selected: any;
   asigne: any = [];
@@ -59,76 +39,13 @@ export class TableListComponent implements OnInit {
     'u': 2,
     'su': 3
   }
-
-
   checkarray: any = []
   constructor(private http: HttpClient,
-    // >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
     public Service: Service,
-    // <<<<<<< HEAD
     private fb: FormBuilder, private router: Router, private toastr: ToastrService) { }
-
-
-  // <<<<<<< HEAD
   ngOnInit(): void {
     this.gettableData();
-    //       this.shared.SharingData.subscribe(data=>{
-    //         this.filters = (Object.keys(data).filter(key=>data[key] == true));
-    // // =======
-    //   ngOnInit() : void {
-    // <<<<<<< HEAD
-    //       this.shared.SharingData.subscribe(data=>{
-    //         this.filters = (Object.keys(data).filter(key=>data[key] == true));
-    // >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
-
-    //         this.message = data;
-    //       console.log("assignees",this.filters);
-
-    // <<<<<<< HEAD
-    //      })
-    //      this.shared.Sharingstrike.subscribe(strike =>{
-    //       (Object.keys(strike).filter(key=>{
-    //          if(strike[key] == true){
-    //            return key;
-    //          }}
-    //          )).forEach(ele=>{
-    //            this.strikes.push(this.strikesMap[ele]);
-    //          });
-    //         })
-    // =======
-    //      })
-    //      this.shared.Sharingstrike.subscribe(strike =>{
-    //       (Object.keys(strike).filter(key=>{
-    //          if(strike[key] == true){
-    //            return key;
-    //          }}
-    //          )).forEach(ele=>{
-    //            this.strikes.push(this.strikesMap[ele]);
-    //          });
-    // >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
-
-    // <<<<<<< lakshmi-tcheckbox
   }
-
-
-
-  // checkAllfn(ev: any) {
-  //   if (ev.target.checked) {
-  //     this.Clist.push(ev.target.value);
-  //   }
-  //   else {
-  //     var i = 0;
-  //     this.Clist.forEach(ele => {
-  //       if (ele == ev.target.value) {
-  //         this.Clist.splice(i, 1);
-  //       }
-  //       i++;
-  //     });;
-  //   }
-  //   console.log("clisttttttttttttttttttt", this.Clist);
-  //   this.checkAll = ev.target.checked
-  // }
-
   checkAllfn(event: any) {
     this.opentickets.map((el: any) => {
       el.checked = event.target.checked
@@ -149,10 +66,6 @@ export class TableListComponent implements OnInit {
       this.Clist.push(item._id);
     }
     console.log("clisttttttttttttttttttt", this.Clist);
-    // =======
-    // var peoplefilter = (this.filters,this.strikes);
-    //  console.log("after",peoplefilter);
-    // <<<<<<< HEAD
   }
 
 
@@ -160,6 +73,9 @@ export class TableListComponent implements OnInit {
     this.Service.gettableData().subscribe(data => {
       // let opentickets : any = [];
       this.opentickets = data;
+      // console.log("length of opentickets ",this.opentickets.length);
+      this.tickets = this.opentickets.length;
+      
       console.log("ttttttttttttttttttttt", this.opentickets)
       console.log("OPEN TICKETS DATAAAA", data)
     }, err => {
@@ -178,46 +94,49 @@ export class TableListComponent implements OnInit {
       jQuery("#popup").modal("show");
     }
   }
+  alertpopup(){
+    if(this.Clist.length == 0){
+      this.toastr.error("please select atleast one ticket");
+      return false;
+    }
+    else{
+      jQuery("#alertpopup").modal("show");
+      // this.toastr.success("successful..")
+    }
+  }
   rsv() {
     console.log("kjhdkjdfjkgkj");
-    // console.log("resolving id's",this.Clist);
 
     const rsvid = {
       ids: this.Clist
     }
     console.log("resolved id's ", rsvid);
+    this.Service.postresolve(rsvid).subscribe(data => {
+      let i = 0;
+      this.toastr.success("Ticket is resolved successful.");
+      console.log("entered to resolve id");
+  
+    }, err => {
+      this.toastr.error("Failed to resolve ticket.");
+      console.log("error in closedticket iddddddd");
+    })
 
-    this.Clist.forEach(ele => {
-      // <<<<<<< HEAD
-      this.Service.getrsv(ele).subscribe(data => {
-        let i = 0;
-        this.opentickets.forEach(element => {
-          if (element._id == ele) {
-            this.opentickets.splice(i, 1);
-          }
-          i++;
-        });
-        this.toastr.success("Ticket is resolved successful.");
-        // =======
-        //       console.log("jhjhjh");
-
-        //       this.Service.getrsv(rsvid).subscribe(data => {
-        //         // let i = 0;
-        //         // this.opentickets.forEach(element => {
-        //         //   if (element._id == ele) {
-        //         //     this.opentickets.splice(i, 1);
-        //         //   }
-        //         //   i++;
-        //         // });
-        //         console.log("entered to resolve dataa ");
-
-        // >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
-      }, err => {
-        this.toastr.error("Failed to resolve ticket.");
-        console.log("error in rsv iddddddd");
-      })
-    });
-
+  }
+  sendalert(data){
+    console.log("post alerting ids");
+    const postalert = {
+      ids: this.Clist
+    }
+    console.log("alerting id's ",postalert );
+    this.Service.postalert(postalert).subscribe(data => {
+      let i = 0;
+      this.toastr.success("Alerted assignee succesfully..");
+      console.log("entered to alert id");
+  
+    }, err => {
+      this.toastr.error("Failed to Alert ticket.");
+      console.log("error in alert iddddddd");
+    })
   }
   changestrike() {
     this.strike = [];

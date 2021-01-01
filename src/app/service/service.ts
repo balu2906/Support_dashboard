@@ -20,20 +20,23 @@ export class Service {
   // getrsv(id) {
   //   return this.http.get(ApiService.API.GET_RSVDATA_ID + '/' + id);
   // }
-  getrsv(id){
-    return this.http.post('http://localhost:5000/ticket/resolve',id)
-// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
+  postresolve(data){
+    return this.http.post('http://localhost:5000/ticket/resolve',data);
   }
   postticket(data) {
     console.log(data, ApiService.API.POST_TICKET);
     return this.http.post('http://localhost:5000/ticket/create_ticket', data);
+  }
+  postalert(data){
+    console.log("alerting data ",data,ApiService.API.POST_ALERT);
+    return this.http.post(ApiService.API.POST_ALERT,data);
   }
 
   //RESOLVED TICKETS
   getresolvedtickets() {
     return this.http.get(ApiService.API.GET_RESOLVED_DATA);
   }
-
+ 
 // <<<<<<< HEAD
 //   getclose(id) {
 //     return this.http.post(ApiService.API.GET_CLSDATA_ID + `/${id}` , id);
@@ -45,12 +48,6 @@ export class Service {
   getclose(data){
     return this.http.post('http://localhost:5000/ticket/close',data)
   }
-  //post resolved popup
-  // postpopup(popup:any):Observable<any>{
-  //   console.log("entered");
-  //   return this.http.post('http://localhost:5000/ticket/close',popup)
-  // }
-// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
 
   //CLOSED TICKETS
   getclosedtickets() {
@@ -62,7 +59,7 @@ export class Service {
     return this.http.get(ApiService.API.GET_ALL_ALERTS_DATA);
   }
   saveAttendalert(data: any) {
-    return this.http.put(ApiService.API.PUT_ATTENDALERT_ID,data);
+    return this.http.post(ApiService.API.PUT_ATTENDALERT_ID,data);
   }
 
   saveResolvealert(data: any) {

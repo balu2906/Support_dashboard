@@ -82,7 +82,16 @@ export class OpenAlertsComponent implements OnInit {
   // <<<<<<< HEAD
   getallalerts() {
     this.Service.getallalerts().subscribe(data => {
+      console.log("DFRTHER",data);
+      
       this.allalerts = data;
+      this.allalerts.forEach(element => {
+        Object.keys(element.alert).forEach(key=>{
+          element[key] = element.alert[key];
+        })
+      });
+      console.log("Fomated Data: ",this.allalerts);
+      
       this.tempAllAlerts = data;
       console.log("OPEN ALERTS DATAAA", this.allalerts);
       if (this.alertType != 'all') {
