@@ -1,0 +1,197 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-9">
+                <button class="btn btn-success mr-4" (click)="create()">Create Team member</button>
+                <!-- <div class="modal-footer"> -->
+                <button class="btn btn-danger pull-right" (click)="deletepopup()"> Delete <i class="fa fa-trash"></i>
+                </button>
+                <!-- </div> -->
+            </div>
+            <div class="col-md-4 mt-3 form-group">
+                <!-- <label for="">Select Filter</label> -->
+                <mat-label>Select Type:-</mat-label>
+                <select class="select" [(ngModel)]="typeCheck" (change)="selectType($event)">
+                    <option value="" name="" disabled selected>Select Type</option>
+                    <option value="support">support</option>
+                    <option value="tech">tech</option>
+                </select>
+                <!-- <mat-form-field>
+                <mat-select class="select" [(ngModel)]="typeCheck" (change)="selectType($event)">
+                    <mat-option value="" name="" disabled selected>Select Type</mat-option>
+                    <mat-option value="support">support</mat-option>
+                    <mat-option value="tech">tech</mat-option>
+                </mat-select>
+              </mat-form-field> -->
+            </div>
+            <!-- <div class="checkbox col-md-10">
+            <span class="label-new">
+                <ul class="ngc">
+                    <li class="list">
+                        <input (change)="changetype()" [(ngModel)]="type.support" id="name1" class="inp asignee1"
+                            type="checkbox"><label class="blue">Support</label>
+                    </li>
+                    <li class="list ">
+                        <input (change)="changetype()" [(ngModel)]="type.tech" id="name2" class="inp asignee2"
+                            type="checkbox" value="tech"><label class="red">Tech</label>
+                    </li>
+                </ul>
+            </span>
+            </div> -->
+
+
+            <div class="card">
+
+                <div class="card-header card-header-danger">
+                    <h4 class="card-title ">All Team Members</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive overflow-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th><input type="checkbox" (change)="checkAllfn($event)" [(ngModel)]="checkAll"
+                                            [checked]="checkAll" /></th>
+                                    <th>Name </th>
+                                    <th>Email</th>
+                                    <th>Type</th>
+                                    <!-- <th>Alerts</th> -->
+                                    <th>Tickets Assigned</th>
+                                    <th>Tickets Resolved</th>
+                                </thead>
+                                <tbody>
+                                    <mat-spinner value="50" strokeWidth="6" [diameter]="40" class="spinner "
+                                        *ngIf="showSpinner">
+                                    </mat-spinner>
+                                    <!-- <tr
+                                        *ngFor="let item of teammembers | filter:'Type':typee; let i=index"> -->
+                                    <tr *ngFor="let item of teammembers;let i=index">
+                                        <td> <input type="checkbox" [(ngModel)]="item.checked" [checked]="item.checked"
+                                                (change)="checkSingle(item, i, $event)" />
+                                        </td>
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.email}}</td>
+                                        <td>{{item.s_type}}</td>
+                                        <!-- <td>{{item.alerts.length}}</td> -->
+                                        <td>{{item.ticketsAssigned.length}}</td>
+                                        <td>{{item.ticketsResolved.length}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button class="btn btn-success mr-4" (click)="deletepopup()"> Delete</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="modal" [id]="alertType" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header input-color">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12" *ngIf="alertType != 'confirmed'">
+                    <form>
+
+                        <textarea cols="30" rows="3" [(ngModel)]="reason" [ngModelOptions]="{standalone: true}"
+                            placeholder="Enter Reason" name="reason" type="text"
+                            *ngIf="alertType == 'attended'"></textarea>
+                        <input type="number" [(ngModel)]="solvedIn" [ngModelOptions]="{standalone: true}"
+                            placeholder="Enter time" *ngIf="alertType == 'opened'">
+                    </form>
+                </div>
+                <div class="col-md-12 text-center" *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">
+                    <p>Are you sure to confirm this ticket?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToResolve();"
+                    [disabled]="!reason" *ngIf="submitType == 'attended' && alertType != 'opened'">Yes22</button>
+
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToAttend();"
+                    [disabled]="!solvedIn" *ngIf="alertType == 'opened'">Yes11</button>
+
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveConfirmalert();"
+                    *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">Yes33</button>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="modal" id="popup" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header input-color">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pop-body">
+                <p>Are you sure to Delete this ticket?</p>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="postdelete()">
+                    <span *ngIf="loading_spinner">Confirm.....
+                    </span>
+                    <span *ngIf="!loading_spinner">Confirm
+                    </span></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="preview" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <form>
+                        <!-- <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div> -->
+                        <div class="form-group">
+                            <!-- <label for="name"><strong>Name :</strong></label> -->
+                            <input class="form-control" [(ngModel)]="name" type="name" placeholder="name" name="name"
+                                ngModel>
+                        </div>
+                        <div class="form-group"><input class="form-control" [(ngModel)]="email" type="email"
+                                placeholder="Email" name="email" ngModel></div>
+                        <div class="form-group"><input class="form-control" [(ngModel)]="password" type="password"
+                                placeholder="Password" name="password" ngModel></div>
+                        <mat-label>Select Type</mat-label>
+                        <select name="typeCheck" [(ngModel)]="typeCheck" class="select">
+                            <option value="" name="" disabled selected>select type</option>
+                            <option value="support">Support</option> 
+                            <option value="tech">Tech</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit" (click)="teammember()">
+                        <span *ngIf="loading_spinners">Submiting...
+                        </span>
+                        <span *ngIf="!loading_spinners">Submit
+                        </span></button>
+                </div>
+            </div>
+        </div>
+    </div>

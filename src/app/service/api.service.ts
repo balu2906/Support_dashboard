@@ -14,8 +14,12 @@ export class ApiService {
     PUT_CONFIRMALERT_ID: environment.apiUrl + '/alerts/confirm_alert',
     GET_CLOSED_ALERTS_DATA: environment.apiUrl + '/alerts/closed_alerts',
     GET_CHART_INFO: environment.apiUrl + '/ticket/alltickets',
-    // GETALERTS_CHARTINFO: environment.apiUrl + '/alerts'
 
+    //ADMIN
+    GET_TEAM_MEMBERS: environment.apiUrl + '/admin/get_team',
+    //create teammember
+    POST_TEAM_MEMBER:environment.apiUrl + '/admin/create_team',
+    POST_DELETE:environment.apiUrl + '/admin/delete_teammembers',
 
     //POST
     POST_TICKET: environment.apiUrl + '/ticket/create_ticket',

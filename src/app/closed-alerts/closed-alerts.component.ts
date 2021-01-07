@@ -9,10 +9,8 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
   styleUrls: ['./closed-alerts.component.css']
 })
 export class ClosedAlertsComponent implements OnInit {
-// <<<<<<< HEAD
   confirmdata: any = [];
   closeddata: any = [];
-// =======
   closedalerts:any=[]
   selected:any;
   asigne:any =[];
@@ -55,8 +53,6 @@ strikesMap = {
   changeassignee(){
     this.asigne = (Object.keys(this.assignee).filter(key=>this.assignee[key] == true))
     console.log("assignees",this.asigne);
-
-    
   }  
   getclosedalerts() {
     this.Service.getclosedalerts().subscribe(data => {

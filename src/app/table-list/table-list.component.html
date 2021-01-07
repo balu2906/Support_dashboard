@@ -14,7 +14,7 @@
                                 <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1"
                                     class="inp asignee1" type="checkbox"><label class="blue">Jyothi</label>
                             </li>
-                            
+
                             <li class="list ">
 
                                 <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2"
@@ -67,7 +67,9 @@
                                         <th>Strikes</th>
                                     </thead>
                                     <tbody>
-
+                                        <mat-spinner value="50" strokeWidth="6" [diameter]="40" class="spinner "
+                                            *ngIf="showSpinner">
+                                        </mat-spinner>
                                         <tr
                                             *ngFor="let item of opentickets | filter:'assignee':asigne:'strikes':strike; let i=index">
                                             <td> <input type="checkbox" [(ngModel)]="item.checked"
@@ -85,9 +87,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-
                             <button class="btn btn-success mr-4" (click)="resolvepopup()"> Resolve</button>
-                            <button class="btn btn-warning mr-4"(click) = "alertpopup()"> Alert</button>
+                            <button class="btn btn-warning mr-4" (click)="alertpopup()"> Alert</button>
 
                         </div>
                     </div>
@@ -106,8 +107,6 @@
             </div>
             <div class="modal-body pop-body">
                 <p>Are you sure to resolve this ticket?</p>
-
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal"
@@ -127,7 +126,6 @@
             </div>
             <div class="modal-body pop-body">
                 <p>Are you sure to Alert this Assignee ?</p>
-
 
             </div>
             <div class="modal-footer">

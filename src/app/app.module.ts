@@ -63,7 +63,11 @@ import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
     AppComponent,
     AdminLayoutComponent,
    
-    LoginComponent
+
+    LoginComponent,
+   
+    
+
     ],
   providers: [],
   bootstrap: [AppComponent]

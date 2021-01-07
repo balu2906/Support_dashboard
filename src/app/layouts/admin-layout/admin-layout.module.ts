@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { FilterComponent } from '../../filter/filter.component';
 import { FilterPipe } from '../../utils/filter.pipe';
@@ -25,10 +26,13 @@ import { ResolvedTicketsComponent } from '../../resolved-tickets/resolved-ticket
 import { ClosedTicketsComponent } from '../../closed-tickets/closed-tickets.component';
 import { ClosedAlertsComponent } from '../../closed-alerts/closed-alerts.component';
 import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
+import { AdminComponent } from '../../admin/admin.component';
+
+
+
 @NgModule({
   imports: [
     CommonModule,
-
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     ReactiveFormsModule,
@@ -38,6 +42,8 @@ import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
     MatInputModule,
     MatSelectModule,
     HighchartsChartModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
     MatTooltipModule,
     MatTooltipModule
   ],
@@ -54,8 +60,9 @@ import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
     FilterPipe,
     ResolvedTicketsComponent,
     ClosedTicketsComponent,
-     OpenAlertsComponent,
-     ClosedAlertsComponent,
+    OpenAlertsComponent,
+    ClosedAlertsComponent,
+    AdminComponent
   ],
   exports: [FilterComponent]
 })

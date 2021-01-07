@@ -24,18 +24,14 @@ export class FilterComponent implements OnInit {
     })
     this.shared.Sharingstrike.subscribe((res:any) =>{
       this.filterstrike =res;
-     // console.log("dfgh",this.filterstrike);
       
     })
    }
    
- 
   ngOnInit(): void {
    
   }
   change(){
-    //console.log("stikres",this.strikes);
-    
     this.shared.SharingData.next(this.assignee);
     this.shared.Sharingstrike.next(this.strikes);
     
