@@ -23,10 +23,6 @@ export class Service {
     console.log(data, ApiService.API.POST_TICKET);
     return this.http.post('http://localhost:5000/ticket/create_ticket', data);
   }
-  postalert(data){
-    console.log("alerting data ",data,ApiService.API.POST_ALERT);
-    return this.http.post(ApiService.API.POST_ALERT,data);
-  }
 
   //admincomponent
   getteammembers() {
