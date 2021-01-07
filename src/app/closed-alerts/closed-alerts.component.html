@@ -3,37 +3,46 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                                    
-                     <div class="checkbox col-md-10">
-                         <span class="label-new">
-                         <ul class="ngc">
-                             <li class="list">
-                                 
-                                 <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1" class="inp asignee1" type="checkbox" ><label class="blue">Jyothi</label>
-                             </li>
-                     
-                             <li class="list ">
-                                 
-                                 <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2" class="inp asignee2" type="checkbox" value="neha" ><label class="red">Neha</label>
-                             </li>
-                     
-                             <li class="last rinki">
-                                 <input (change)="changeassignee()"  [(ngModel)]="assignee.rinki" id="name3" class="inp asignee3" type="checkbox" value="rinki" ><label class="purpul">Rinki</label>
-                             </li>
-                             <li class="strike">
-                             <input (change)="changestrike()"  [(ngModel)]="strikes.n" id="strike1" class="inp striker" type="checkbox" value="1" ><label class="black">1</label>
-                         </li>
-                         <li class="strike">
-                             <input (change)="changestrike()"  [(ngModel)]="strikes.u" id="strike2" class="inp striker" type="checkbox" value="2"><label class="black">2</label>
-                         </li>
-                         <li class="strike">
-                             <input (change)="changestrike()"  [(ngModel)]="strikes.su" id="strike3" class="inp striker" type="checkbox" value="3" ><label class="black">3</label>
-                         </li>
-                         <li  class="strike" style="font-weight: bold;color: rgb(17, 117, 231);font-size: 13px;">STRIKES</li>
-                       </ul>
-                         </span>
-                     </div>
-                 </div>
+
+                    <div class="checkbox col-md-10">
+                        <span class="label-new">
+                            <ul class="ngc">
+                                <li class="list">
+
+                                    <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1"
+                                        class="inp asignee1" type="checkbox"><label class="blue">Jyothi</label>
+                                </li>
+
+                                <li class="list ">
+
+                                    <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2"
+                                        class="inp asignee2" type="checkbox" value="neha"><label
+                                        class="red">Neha</label>
+                                </li>
+
+                                <li class="last rinki">
+                                    <input (change)="changeassignee()" [(ngModel)]="assignee.rinki" id="name3"
+                                        class="inp asignee3" type="checkbox" value="rinki"><label
+                                        class="purpul">Rinki</label>
+                                </li>
+                                <li class="strike">
+                                    <input (change)="changestrike()" [(ngModel)]="strikes.n" id="strike1"
+                                        class="inp striker" type="checkbox" value="1"><label class="black">1</label>
+                                </li>
+                                <li class="strike">
+                                    <input (change)="changestrike()" [(ngModel)]="strikes.u" id="strike2"
+                                        class="inp striker" type="checkbox" value="2"><label class="black">2</label>
+                                </li>
+                                <li class="strike">
+                                    <input (change)="changestrike()" [(ngModel)]="strikes.su" id="strike3"
+                                        class="inp striker" type="checkbox" value="3"><label class="black">3</label>
+                                </li>
+                                <li class="strike" style="font-weight: bold;color: rgb(17, 117, 231);font-size: 13px;">
+                                    STRIKES</li>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
 
                 <div class="card">
                     <div class="card-header card-header-danger">
@@ -43,17 +52,18 @@
                         <div class="table-responsive overflow-body">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>Ticket ID</th>
-                                    <th>Assignee</th>
-                                    <th>Description</th>
-                                    <th>Closed Date</th>
+                                    <th>Alert ID</th>
+                                    <th>No.of Tickets</th>
+                                    <th>Problem Type</th>
+                                    <th>Created Date</th>
                                     <th>Strikes</th>
                                 </thead>
                                 <tbody>
-                                        <tr *ngFor="let item of confirmdata | filter:'assignee':asigne:'alertStrike':strike; let i=index">
+                                    <tr
+                                        *ngFor="let item of confirmdata | filter:'assignee':asigne:'alertStrike':strike; let i=index">
                                         <td>{{item._id}}</td>
-                                        <td>{{item.assignee}}</td>
-                                        <td>{{item.description}}</td>
+                                        <td>{{item.tickets.length}}</td>
+                                        <td>{{item.problemType}}</td>
                                         <td>{{item.createdAt | date}}</td>
                                         <td class="text-primary">{{item.alertStrike}}</td>
                                     </tr>

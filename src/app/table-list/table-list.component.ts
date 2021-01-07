@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
@@ -18,12 +18,12 @@ export class TableListComponent implements OnInit {
     assignedto: [''],
     problemtype: [''],
   });
+  showSpinner = false;
   resolvedtickets: any = [];
   opentickets: any = [];
   checkAll: any;
   Clist: any = [];
-  tickets:any;
-
+  tickets: any;
   selected: any;
   asigne: any = [];
   strike: any = [];
@@ -77,12 +77,12 @@ export class TableListComponent implements OnInit {
 
 
   gettableData() {
+    this.showSpinner = true;
+
     this.Service.gettableData().subscribe(data => {
-      // let opentickets : any = [];
+      this.showSpinner = false;
       this.opentickets = data;
-      // console.log("length of opentickets ",this.opentickets.length);
       this.tickets = this.opentickets.length;
-      
       console.log("ttttttttttttttttttttt", this.opentickets)
       console.log("OPEN TICKETS DATAAAA", data)
     }, err => {
@@ -94,21 +94,19 @@ export class TableListComponent implements OnInit {
   resolvepopup() {
     if (this.Clist.length == 0) {
       this.toastr.error("please select atleast one ticket");
-      // console.log("please click at least one checkbox");
       return false;
     }
     else {
       jQuery("#popup").modal("show");
     }
   }
-  alertpopup(){
-    if(this.Clist.length == 0){
+  alertpopup() {
+    if (this.Clist.length == 0) {
       this.toastr.error("please select atleast one ticket");
       return false;
     }
-    else{
+    else {
       jQuery("#alertpopup").modal("show");
-      // this.toastr.success("successful..")
     }
   }
   rsv() {
@@ -122,26 +120,25 @@ export class TableListComponent implements OnInit {
       let i = 0;
       this.toastr.success("Ticket is resolved successful.");
       console.log("entered to resolve id");
-  
     }, err => {
       this.toastr.error("Failed to resolve ticket.");
       console.log("error in closedticket iddddddd");
     })
-
   }
   sendalert(){
+
     console.log("post alerting ids");
     const postalert = {
       assignedTo :  this.popupForm.get('assignedto').value,
       problemType : this.popupForm.get('problemtype').value,
       ids: this.Clist
     }
-    console.log("alerting id's ",postalert );
+    console.log("alerting id's ", postalert);
     this.Service.postalert(postalert).subscribe(data => {
       let i = 0;
       this.toastr.success("Alerted assignee succesfully..");
       console.log("entered to alert id");
-  
+
     }, err => {
       this.toastr.error("Failed to Alert ticket.");
       console.log("error in alert iddddddd");

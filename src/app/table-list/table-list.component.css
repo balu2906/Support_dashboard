@@ -1,5 +1,9 @@
 @import "../../assets/css/checkbox.css";
-.tableOver{
-    overflow-x: hidden;
-    height: 200px;
-}
+.spinner {
+    position: fixed;
+    z-index: 1031;
+    top: 50%;
+    left: 50%;
+    margin-top:150px;
+    transform: translate(-50%, -50%);
+  }

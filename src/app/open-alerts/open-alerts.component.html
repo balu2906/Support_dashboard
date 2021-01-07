@@ -8,7 +8,6 @@
                         <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1" class="inp asignee1"
                             type="checkbox"><label class="blue">Jyothi</label>
                     </li>
-                    <!-- {{selected.jyothi}}{{selected.neha}}{{selected.rinki}} -->
 
                     <li class="list ">
 
@@ -40,7 +39,6 @@
         <div class="row">
 
             <div class="col-md-12">
-                <!-- <<<<<<< HEAD -->
                 <button class="btn btn-warning mr-4" (click)="alertsbutton('attended',false,alrtname, 'opened')">Open
                     Alerts</button>
                 <button class="btn btn-success mr-4"
@@ -52,12 +50,6 @@
             </div>
 
             <div class="col-md-12">
-                <!-- ======= -->
-                <div>
-                    <!-- <app-filter></app-filter> -->
-
-
-                </div>
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">{{state}}</h4>
@@ -66,28 +58,33 @@
                         <div class="table-responsive" >
                             <table class="table">
                                 <thead class=" text-primary">
-
-                                    <th *ngIf="alertType != 'all'"><input type="checkbox" [(ngModel)]="checkAll"
-                                            [checked]="checkAll" (change)="checkAllfn($event)" /></th>
-                                    <th>Ticket ID</th>
-                                    <th>Assignee</th>
-                                    <th>Description</th>
-                                    <th>Resolved Date</th>
+                                    <th *ngIf="alertType != 'all' && submitType != 'confirmed'"><input type="checkbox"
+                                            [(ngModel)]="checkAll" [checked]="checkAll" (change)="checkAllfn($event)" />
+                                    </th>
+                                    <th>Alert ID</th>
+                                    <th>No.of Tickets</th>
+                                    <th>Problem Type</th>
+                                    <th>Created Date</th>
                                     <th>Strikes</th>
+                                    <th>Action</th>
                                 </thead>
                                 <tbody>
+                                    <mat-spinner value="50" strokeWidth="6" [diameter]="40" class="spinner "
+                                        *ngIf="showSpinner">
+                                    </mat-spinner>
                                     <tr
                                         *ngFor="let item of allalerts | filter:'assignee':asigne:'strikes':strike; let i=index">
-                                        <!-- <tr *ngFor="let item of allalerts; let i=index"> -->
-                                        <td *ngIf="alertType != 'all'"> <input type="checkbox" [value]="item._id"
-                                                [(ngModel)]="item.checked" [checked]="item.checked"
-                                                (change)="singleCheckFn($event, item, i)" />
+                                        <td *ngIf="alertType != 'all' && submitType != 'confirmed'"> <input
+                                                type="checkbox" [value]="item._id" [(ngModel)]="item.checked"
+                                                [checked]="item.checked" (change)="singleCheckFn($event, item, i)" />
                                         </td>
                                         <td>{{item._id}}</td>
-                                        <td>{{item.assignee}}</td>
-                                        <td>{{item.description}}</td>
+                                        <td>{{item.tickets.length}}</td>
+                                        <td>{{item.problemType}}</td>
                                         <td>{{item.createdAt | date}}</td>
-                                        <td class="text-primary">{{item.strikes}}</td>
+                                        <td class="text-primary">{{item.alertStrike}}</td>
+                                        <td><button class="btn btn-success tickets" (click)="action()" > Show Tickets</button></td>
+                                      
                                     </tr>
                                 </tbody>
                             </table>
@@ -127,11 +124,14 @@
                 <div class="col-md-12" *ngIf="alertType != 'confirmed'">
                     <form>
 
+                        <input type="number" [(ngModel)]="solvedIn" [ngModelOptions]="{standalone: true}"
+                            placeholder="Enter time" *ngIf="alertType == 'opened'">
+
+
                         <textarea cols="30" rows="3" [(ngModel)]="reason" [ngModelOptions]="{standalone: true}"
                             placeholder="Enter Reason" name="reason" type="text"
                             *ngIf="alertType == 'attended'"></textarea>
-                        <input type="number" [(ngModel)]="solvedIn" [ngModelOptions]="{standalone: true}"
-                            placeholder="Enter time" *ngIf="alertType == 'opened'">
+
                     </form>
                 </div>
                 <div class="col-md-12 text-center" *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">
@@ -139,14 +139,14 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToResolve();"
-                    [disabled]="!reason" *ngIf="submitType == 'attended' && alertType != 'opened'">Yes22</button>
-
                 <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToAttend();"
-                    [disabled]="!solvedIn" *ngIf="alertType == 'opened'">Yes11</button>
+                    [disabled]="!solvedIn" *ngIf="alertType == 'opened'">Yes</button>
+
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveToResolve();"
+                    [disabled]="!reason" *ngIf="submitType == 'attended' && alertType != 'opened'">Yes</button>
 
                 <button type="button" class="btn btn-success" data-dismiss="modal" (click)="saveConfirmalert();"
-                    *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">Yes33</button>
+                    *ngIf="alertType == 'confirmed' || submitType == 'confirmed'">Yes</button>
 
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>

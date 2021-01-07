@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import * as _ from 'underscore';
 
@@ -14,12 +15,11 @@ declare var jQuery: any;
   styleUrls: ['./open-alerts.component.css']
 })
 export class OpenAlertsComponent implements OnInit {
-  dataSource: any;
-  isLoading = true;
 
-  // <<<<<<< HEAD
+  showSpinner = false;
   allalerts: any = [];
   Checklist: any = [];
+  alertId:any=""
   tempAllAlerts: any = [];
   popupbutton: any = "Attend";
   state: any = "All Alerts";
@@ -34,12 +34,10 @@ export class OpenAlertsComponent implements OnInit {
   isResolved: any = true;
   isConfirmed: any = true;
 
-  // =======
   openalerts: any = []
   selected: any;
   asigne: any = [];
   strike: any = [];
-  // query = "'Assignee':asigne";
   assignee = {
     "jyothi": '',
     "Rinki": '',
@@ -55,16 +53,16 @@ export class OpenAlertsComponent implements OnInit {
     'u': 2,
     'su': 3
   }
-  // >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
-  constructor(private http: HttpClient, private toastr: ToastrService,
+  constructor(private http: HttpClient,private router: Router, private toastr: ToastrService,
     public Service: Service,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    // <<<<<<< HEAD
     this.getallalerts();
-    // =======
-    // this.getopenalerts()
+  }
+
+  action(){
+    this.router.navigate([ '/table-list']);
   }
 
   changestrike() {
@@ -84,12 +82,13 @@ export class OpenAlertsComponent implements OnInit {
     this.asigne = (Object.keys(this.assignee).filter(key => this.assignee[key] == true))
     console.log("assignees", this.asigne);
   }
-  // <<<<<<< HEAD
   getallalerts() {
+    this.showSpinner = true;
     this.Service.getallalerts().subscribe(data => {
-      console.log("DFRTHER",data);
-      
+      this.showSpinner = false;
+      console.log("DFRTHER", data);
       this.allalerts = data;
+<<<<<<< HEAD
       // this.allalerts.forEach(element => {
       //   Object.keys(element.alert).forEach(key=>{
       //     element[key] = element.alert[key];
@@ -97,7 +96,12 @@ export class OpenAlertsComponent implements OnInit {
       // });
       console.log("Fomated Data: ",this.allalerts);
       
+=======
+      console.log("all alerts dataaaaaaa", this.allalerts);
+      console.log("Fomated Data: ", this.allalerts);
+>>>>>>> 258d0ecc125ed71f8f90c67c003b25d63674f79e
       this.tempAllAlerts = data;
+      console.log(this.tempAllAlerts,"temp-all")
       console.log("llllllllllllllllllllllll", this.allalerts.length);
       console.log("OPEN ALERTS DATAAA", this.allalerts);
       if (this.alertType != 'all') {
@@ -111,13 +115,13 @@ export class OpenAlertsComponent implements OnInit {
           if (this.buttonType == 'opened') {
             return ele['attended'] == false && ele['resolved'] == false && ele['confirmed'] == false;
           }
-          else if (this.alertType == 'attended') {
-            return ele['attended'] == true && ele['resolved'] == false;
+          else if (this.buttonType == 'attended') {
+            return ele['attended'] == true && ele['resolved'] == false && ele['confirmed'] == false;
           }
-          else if (this.submitType == 'resolved') {
+          else if (this.buttonType == 'resolved') {
             return ele['attended'] == true && ele['resolved'] == true && ele['confirmed'] == false;
           }
-          else if (this.submitType == 'confirmed') {
+          else if (this.buttonType == 'confirmed') {
             return ele['attended'] == true && ele['resolved'] == true && ele['confirmed'] == true;
           }
         });
@@ -129,21 +133,10 @@ export class OpenAlertsComponent implements OnInit {
     })
 
   }
-  //   getopenalerts() {
-  //     this.Service.getopenalerts().subscribe(data => {
-  //       this.openalerts =data;
-  //       console.log("open alerts", this.openalerts);
 
-  //       console.log("OPEN ALERTS DATAAA", data)
-  // >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
-  //     }, err => {
-  //       console.log("OPEN ALERTS ERRORRRRRRRRRRRRRRR");
-  //     })
-  //   }
-
-
-  alertsbuttonA(type: any, event: any, type2: any, event2: any, alrtname: any) {
+alertsbuttonA(type: any, event: any, type2: any, event2: any, alrtname: any) {
     this.submitType = type;
+    this.buttonType = type;
     console.log("submitytyp2 issss", this.submitType);
     this.button_disabled = true;
     if (type != "resolved" && alrtname != "attended") {
@@ -214,7 +207,6 @@ export class OpenAlertsComponent implements OnInit {
         this.state = "Resolved alerts"
     }
     console.log("selected button isss", event)
-    // type = type == 'opened' ? 'opened' : type;
     if (type == 'attended') {
       if (event == false) {
         this.alertType = 'opened'
@@ -223,12 +215,9 @@ export class OpenAlertsComponent implements OnInit {
       }
     }
 
-    // this.alertType = 'opened'
-    // this.alertType = type == 'opened'?'opened':type == 'attended'?'attended':'confirmed'
-    // this.alertType = type == 'resolved' ? 'confirmed' : type;
     console.log(this.alertType, "alert type isssss");
+    console.log(this.tempAllAlerts,"temp")
     this.allalerts = this.tempAllAlerts.filter((ele: any) => {
-      // console.log("eeeeeeeeeeeeeeeee", ele)
       return ele[type] == event;
     })
     console.log("alll alertsssssssssss", this.allalerts);
@@ -248,26 +237,7 @@ export class OpenAlertsComponent implements OnInit {
   }
 
 
-  // checkAllfn(ev: any) {
-  //   if (ev.target.checked) {
-  //     this.Checklist.push(ev.target.value);
-  //   }
-  //   else {
-  //     var i = 0;
-  //     this.Checklist.forEach(ele => {
-  //       if (ele == ev.target.value) {
-  //         this.Checklist.splice(i, 1);
-  //       }
-  //       i++;
-  //     });;
-  //   }
-  //   console.log("checklistttttttttttttt", this.Checklist);
-  // }
-
-
-  //popups
   openPopup() {
-    // jQuery(`'#${this.alertType}'`).modal("show");
     if (this.alertType == 'attended') {
       jQuery('#attended').modal("show");
     } else if (this.alertType == 'opened') {
@@ -284,16 +254,16 @@ export class OpenAlertsComponent implements OnInit {
   }
 
   saveToAttend() {
-    const body: any = {
-      ids: this.Checklist,
+    const body = {
       solvedIn: this.solvedIn
     }
     console.log("Post payload for moveing to attend", body);
 
-    this.Service.saveAttendalert(body).subscribe(data => {
+    this.Service.saveAttendalert(this.alertId,body).subscribe(data => {
       this.toastr.success("Moved to attended successfully");
 
       this.getallalerts();
+      this.solvedIn = '';
     }, err => {
       this.toastr.error("Error while moved to attended");
     })
@@ -302,16 +272,16 @@ export class OpenAlertsComponent implements OnInit {
   }
 
   saveToResolve() {
-    const body: any = {
-      ids: this.Checklist,
+    const body = {
       reason: this.reason
     }
     console.log("Post payload for moveing to resolve", body);
 
-    this.Service.saveResolvealert(body).subscribe(data => {
+    this.Service.saveResolvealert(this.alertId,body).subscribe(data => {
       this.toastr.success("Moved to Resolved successfully");
 
       this.getallalerts();
+      this.reason = '';
     }, err => {
       this.toastr.error("Error while moved to resolved");
 
@@ -319,15 +289,8 @@ export class OpenAlertsComponent implements OnInit {
   }
 
   saveConfirmalert() {
-    const body: any = {
-      ids: this.Checklist,
-    }
-    console.log("Post payload for moveing to confirm", body);
-
-    this.Service.saveConfirmalert(body).subscribe(data => {
+    this.Service.saveConfirmalert(this.alertId).subscribe(data => {
       this.toastr.success("Moved to Confirm successfully");
-
-      // this.alertType = 'resolved';
       this.getallalerts();
     }, err => {
       this.toastr.error("Error while moved to confirm");
@@ -339,7 +302,6 @@ export class OpenAlertsComponent implements OnInit {
     this.Checklist = [];
     this.allalerts.forEach((element: any, index: any) => {
       element.checked = event.target.checked;
-      this.Checklist.push(element.alert._id);
     });
     this.checkAll = event.target.checked;
     this.isAttended = this.checkAll ? false : true;
@@ -349,17 +311,7 @@ export class OpenAlertsComponent implements OnInit {
   }
 
   singleCheckFn(event: any, item: any, id: any) {
-    console.log("itemitemitem", item)
-    if (event.target.checked == true) {
-      this.allalerts[id]['checked'] = true;
-      this.Checklist.push(item.alert._id);
-    } else {
-      this.Checklist = _.filter(this.Checklist, (e: any) => {
-        return e != item._id
-      })
-    }
-    console.log("checklisstttttttttttttttttttttt", this.Checklist);
-
+    this.alertId = item._id;
     const checkItems = _.filter(this.allalerts, (e: any) => {
       return e['checked'] == true;
     });

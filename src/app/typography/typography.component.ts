@@ -1,3 +1,4 @@
+
   import { Component, OnInit } from '@angular/core';
   import { Service } from '../service/service';
   import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -94,12 +95,7 @@ import { redis } from 'googleapis/build/src/apis/redis';
               cursor:'pointer'
            }
         },
-        series: [{
-          type:'column',
-          color:'#0066ff',
-           name: 'All Tickets',
-           data: [this.ChartData[0]]
-        }, 
+      series: [
         {
           type:'column',
           color:'#008000',
@@ -453,7 +449,6 @@ import { redis } from 'googleapis/build/src/apis/redis';
           })
 
           this.FilterAlertsData = SelectedAssignee;
-      
         }
         else{
           this.FilterAlertsData = AllAlerts;
