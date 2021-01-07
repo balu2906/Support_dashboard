@@ -88,18 +88,7 @@ export class OpenAlertsComponent implements OnInit {
       this.showSpinner = false;
       console.log("DFRTHER", data);
       this.allalerts = data;
-<<<<<<< HEAD
-      // this.allalerts.forEach(element => {
-      //   Object.keys(element.alert).forEach(key=>{
-      //     element[key] = element.alert[key];
-      //   })
-      // });
       console.log("Fomated Data: ",this.allalerts);
-      
-=======
-      console.log("all alerts dataaaaaaa", this.allalerts);
-      console.log("Fomated Data: ", this.allalerts);
->>>>>>> 258d0ecc125ed71f8f90c67c003b25d63674f79e
       this.tempAllAlerts = data;
       console.log(this.tempAllAlerts,"temp-all")
       console.log("llllllllllllllllllllllll", this.allalerts.length);
