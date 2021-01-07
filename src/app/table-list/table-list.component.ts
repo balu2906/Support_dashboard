@@ -15,14 +15,11 @@ declare var jQuery: any;
 })
 export class TableListComponent implements OnInit {
   showSpinner = false;
-
-
   resolvedtickets: any = [];
   opentickets: any = [];
   checkAll: any;
   Clist: any = [];
   tickets: any;
-
   selected: any;
   asigne: any = [];
   strike: any = [];
@@ -79,7 +76,6 @@ export class TableListComponent implements OnInit {
       this.showSpinner = false;
       this.opentickets = data;
       this.tickets = this.opentickets.length;
-
       console.log("ttttttttttttttttttttt", this.opentickets)
       console.log("OPEN TICKETS DATAAAA", data)
     }, err => {
@@ -117,12 +113,10 @@ export class TableListComponent implements OnInit {
       let i = 0;
       this.toastr.success("Ticket is resolved successful.");
       console.log("entered to resolve id");
-
     }, err => {
       this.toastr.error("Failed to resolve ticket.");
       console.log("error in closedticket iddddddd");
     })
-
   }
   sendalert(data) {
     console.log("post alerting ids");

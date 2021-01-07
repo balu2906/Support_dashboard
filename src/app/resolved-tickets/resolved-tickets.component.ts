@@ -28,6 +28,7 @@ export class ResolvedTicketsComponent implements OnInit {
   query = "'Assignee':asigne";
 
 
+
   assignee = {
     "jyothi": '',
     "Rinki": '',
@@ -107,7 +108,6 @@ export class ResolvedTicketsComponent implements OnInit {
   changeassignee() {
     this.asigne = (Object.keys(this.assignee).filter(key => this.assignee[key] == true))
     console.log("assignees", this.asigne);
-
 
   }
   closepopup() {

@@ -58,7 +58,6 @@
                         <div class="table-responsive overflow-body">
                             <table class="table">
                                 <thead class=" text-primary">
-
                                     <th *ngIf="alertType != 'all' && submitType != 'confirmed'"><input type="checkbox"
                                             [(ngModel)]="checkAll" [checked]="checkAll" (change)="checkAllfn($event)" />
                                     </th>
@@ -85,7 +84,7 @@
                                         <td>{{item.createdAt | date}}</td>
                                         <td class="text-primary">{{item.alertStrike}}</td>
                                         <td><button class="btn btn-success tickets" (click)="action()" > Show Tickets</button></td>
-                                        
+                                      
                                     </tr>
                                 </tbody>
                             </table>
@@ -124,8 +123,10 @@
             <div class="modal-body">
                 <div class="col-md-12" *ngIf="alertType != 'confirmed'">
                     <form>
+
                         <input type="number" [(ngModel)]="solvedIn" [ngModelOptions]="{standalone: true}"
                             placeholder="Enter time" *ngIf="alertType == 'opened'">
+
 
                         <textarea cols="30" rows="3" [(ngModel)]="reason" [ngModelOptions]="{standalone: true}"
                             placeholder="Enter Reason" name="reason" type="text"

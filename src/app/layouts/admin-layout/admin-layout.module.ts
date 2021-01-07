@@ -29,6 +29,7 @@ import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
 import { AdminComponent } from '../../admin/admin.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -44,6 +45,7 @@ import { AdminComponent } from '../../admin/admin.component';
     MatTooltipModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    MatTooltipModule
   ],
   declarations: [
     DashboardComponent,

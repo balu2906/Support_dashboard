@@ -13,13 +13,19 @@ export class Service {
   gettableData() {
     return this.http.get(ApiService.API.GET_TABLE_DATA);
   }
+
   
-  postresolve(data) {
-    return this.http.post('http://localhost:5000/ticket/resolve', data);
+  postresolve(data){
+    return this.http.post('http://localhost:5000/ticket/resolve',data);
+
   }
   postticket(data) {
     console.log(data, ApiService.API.POST_TICKET);
     return this.http.post('http://localhost:5000/ticket/create_ticket', data);
+  }
+  postalert(data){
+    console.log("alerting data ",data,ApiService.API.POST_ALERT);
+    return this.http.post(ApiService.API.POST_ALERT,data);
   }
 
   //admincomponent
@@ -42,8 +48,9 @@ export class Service {
     return this.http.get(ApiService.API.GET_RESOLVED_DATA);
   }
 
-  getclose(data) {
-    return this.http.post('http://localhost:5000/ticket/close', data)
+  getclose(data){
+    return this.http.post('http://localhost:5000/ticket/close',data)
+
   }
 
   //CLOSED TICKETS

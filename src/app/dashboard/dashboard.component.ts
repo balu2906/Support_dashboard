@@ -6,7 +6,9 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
 import * as Highcharts from 'highcharts';
 import * as $ from 'jquery';
 import * as Chartist from 'chartist';
+
 declare var jQuery: any;
+
 
 
 @Component({
@@ -44,6 +46,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getChartinfo();
     this.getalertChartinfo();
+
   }
   onSubmit() {
     console.warn(this.profileForm.value);
@@ -76,7 +79,6 @@ export class DashboardComponent implements OnInit {
 
     })
   }
-
   getChartsList() {
     this.chartOptions = {
       chart: {
@@ -208,5 +210,6 @@ export class DashboardComponent implements OnInit {
 
     })
   }
+
 
 }

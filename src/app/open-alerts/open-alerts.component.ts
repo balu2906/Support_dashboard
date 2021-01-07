@@ -90,7 +90,6 @@ export class OpenAlertsComponent implements OnInit {
       this.allalerts = data;
       console.log("all alerts dataaaaaaa", this.allalerts);
       console.log("Fomated Data: ", this.allalerts);
-
       this.tempAllAlerts = data;
       console.log(this.tempAllAlerts,"temp-all")
       console.log("llllllllllllllllllllllll", this.allalerts.length);
