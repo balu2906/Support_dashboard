@@ -3,17 +3,27 @@ import { Service } from '../service/service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
-
+import * as Highcharts from 'highcharts';
+import * as $ from 'jquery';
 import * as Chartist from 'chartist';
-// import { DatePipe } from '@angular/common';
+declare var jQuery: any;
+
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  // providers: [DatePipe]
 })
 export class DashboardComponent implements OnInit {
+  Highcharts: typeof Highcharts = Highcharts;
+  chartOptions: Highcharts.Options;
+  AlertchartOptions: Highcharts.Options;
+
+  ChartData: any = [];
+  AlertChartData: any = [];
+  tableData: any = [];
+  alertsData: any = [];
+
   mobilenumber = "^(\\+\\d{1,3}[- ]?)?\\d{10}$";
   profileForm: FormGroup = this.fb.group({
     username: ['', Validators.required],
@@ -23,18 +33,19 @@ export class DashboardComponent implements OnInit {
     assignee: ['select', Validators.required],
     description: ['', Validators.required]
   });
+  name: any;
+  email: any;
+  password: any;
 
 
   constructor(public Service: Service, private toastr: ToastrService, private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
-
+    this.getChartinfo();
+    this.getalertChartinfo();
   }
-
   onSubmit() {
-    // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
   }
 
@@ -45,9 +56,7 @@ export class DashboardComponent implements OnInit {
   loading_spinner: Boolean = false;
   postticket() {
     this.loading_spinner = true;
-
     console.log(this.profileForm.value, this.profileForm.get('username').value);
-
     const userData = {
       name: this.profileForm.get('username').value,
       mobileNumber: this.profileForm.get('mobilenumber').value,
@@ -68,142 +77,136 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  getChartsList() {
+    this.chartOptions = {
+      chart: {
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Tickets'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          colors: ['#699100', '#007D91', '#FF0000'],
+          allowPointSelect: true,
+          cursor: 'pointer',
 
-  //   startAnimationForLineChart(chart){
-  //     let seq: any, delays: any, durations: any;
-  //     seq = 0;
-  //     delays = 80;
-  //     durations = 500;
+          dataLabels: {
+            enabled: false
+          },
 
-  //     chart.on('draw', function(data) {
-  //       if(data.type === 'line' || data.type === 'area') {
-  //         data.element.animate({
-  //           d: {
-  //             begin: 600,
-  //             dur: 700,
-  //             from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-  //             to: data.path.clone().stringify(),
-  //             easing: Chartist.Svg.Easing.easeOutQuint
-  //           }
-  //         });
-  //       } else if(data.type === 'point') {
-  //             seq++;
-  //             data.element.animate({
-  //               opacity: {
-  //                 begin: seq * delays,
-  //                 dur: durations,
-  //                 from: 0,
-  //                 to: 1,
-  //                 easing: 'ease'
-  //               }
-  //             });
-  //         }
-  //     });
+          showInLegend: true
+        }
+      },
 
-  //     seq = 0;
-  // };
-  // startAnimationForBarChart(chart){
-  //     let seq2: any, delays2: any, durations2: any;
+      series: [
+        {
+          type: 'pie',
+          name: 'Browser share',
+          color: '#00FF00',
+          data:
+            this.ChartData
 
-  //     seq2 = 0;
-  //     delays2 = 80;
-  //     durations2 = 500;
-  //     chart.on('draw', function(data) {
-  //       if(data.type === 'bar'){
-  //           seq2++;
-  //           data.element.animate({
-  //             opacity: {
-  //               begin: seq2 * delays2,
-  //               dur: durations2,
-  //               from: 0,
-  //               to: 1,
-  //               easing: 'ease'
-  //             }
-  //           });
-  //       }
-  //     });
+        }]
+    };
+  }
+  getChartinfo() {
+    this.Service.getChartinfo().subscribe((data: any) => {
+      this.tableData = data
+      console.log('tickets chart data displays hereeee', this.tableData);
+      let Opentickets = 0;
+      let ResovledTickets = 0;
+      let ClosedTickets = 0
 
-  //     seq2 = 0;
-  // };
+      this.tableData.forEach(element => {
+        if (!element.status) {
+          Opentickets++
+        } else if (element.status === 1) {
+          ResovledTickets++
+        } else if (element.status === 2) {
+          ClosedTickets++
+        }
+      });
 
+      this.ChartData.push(['Opentickets', +((Opentickets / (this.tableData.length)) * 100).toFixed(1)], ['Resolvedtickets', +((ResovledTickets / (this.tableData.length)) * 100).toFixed(1)], ['Closedtickets', +((ClosedTickets / (this.tableData.length)) * 100).toFixed(1)])
+      console.log(this.ChartData, 'chart data', Opentickets, ResovledTickets, ClosedTickets)
+      this.getChartsList();
 
-
-  //   const dataDailySalesChart: any = {
-  //       labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-  //       series: [
-  //           [12, 17, 7, 17, 23, 18, 38]
-  //       ]
-  //   };
-
-  //  const optionsDailySalesChart: any = {
-  //       lineSmooth: Chartist.Interpolation.cardinal({
-  //           tension: 0
-  //       }),
-  //       low: 0,
-  //       high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-  //       chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
-  //   }
-
-  //   var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
-
-  //   this.startAnimationForLineChart(dailySalesChart);
-
-
-  //   /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
-
-  //   const dataCompletedTasksChart: any = {
-  //       labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-  //       series: [
-  //           [230, 750, 450, 300, 280, 240, 200, 190]
-  //       ]
-  //   };
-
-  //  const optionsCompletedTasksChart: any = {
-  //       lineSmooth: Chartist.Interpolation.cardinal({
-  //           tension: 0
-  //       }),
-  //       low: 0,
-  //       high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-  //       chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
-  //   }
-
-  //   var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
-
-  //   // start animation for the Completed Tasks Chart - Line Chart
-  //   this.startAnimationForLineChart(completedTasksChart);
+    })
+  }
 
 
 
-  //   /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+  //alertschart
+  getAlertChartsList() {
+    this.AlertchartOptions = {
+      chart: {
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: 'Alerts'
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          colors: ['#699100', '#007D91', '#FF0000', '#00ff00'],
+          allowPointSelect: true,
+          cursor: 'pointer',
 
-  //   var datawebsiteViewsChart = {
-  //     labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-  //     series: [
-  //       [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
+          dataLabels: {
+            enabled: false
+          },
 
-  //     ]
-  //   };
-  //   var optionswebsiteViewsChart = {
-  //       axisX: {
-  //           showGrid: false
-  //       },
-  //       low: 0,
-  //       high: 1000,
-  //       chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
-  //   };
-  //   var responsiveOptions: any[] = [
-  //     ['screen and (max-width: 640px)', {
-  //       seriesBarDistance: 5,
-  //       axisX: {
-  //         labelInterpolationFnc: function (value) {
-  //           return value[0];
-  //         }
-  //       }
-  //     }]
-  //   ];
-  //   var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
+          showInLegend: true
+        }
+      },
 
-  //   //start animation for the Emails Subscription Chart
-  //   this.startAnimationForBarChart(websiteViewsChart);
+      series: [
+        {
+          type: 'pie',
+          name: 'Browser share',
+          color: '#00FF00',
+          data:
+            this.AlertChartData
+
+        }]
+    };
+  }
+  getalertChartinfo() {
+    this.Service.getallalerts().subscribe((data: any) => {
+      this.alertsData = data
+      console.log('alertss chart data displays hereeee', this.alertsData);
+      let OpenAlerts = 0;
+      let AttendedAlerts = 0;
+      let ResolvedAlerts = 0;
+      let ConfirmedAlerts = 0;
+
+      this.alertsData.forEach(element => {
+        if (element.attended == false) {
+          OpenAlerts++
+        }
+        if (element.attended == true) {
+          AttendedAlerts++
+        }
+        if (element.resolved === true) {
+          ResolvedAlerts++
+        }
+        if (element.confirmed === true) {
+          ConfirmedAlerts++
+        }
+      });
+      this.AlertChartData.push(['OpenAlerts', +((OpenAlerts / (this.alertsData.length)) * 100).toFixed(1)], ['Attendedalerts', +((AttendedAlerts / (this.alertsData.length)) * 100).toFixed(1)], ['Resolvedalerts', +((ResolvedAlerts / (this.alertsData.length)) * 100).toFixed(1)], ['Confirmedalerts', +((ConfirmedAlerts / (this.alertsData.length)) * 100).toFixed(1)])
+      console.log(this.AlertChartData, 'chart data', OpenAlerts, AttendedAlerts, ResolvedAlerts, ConfirmedAlerts)
+      this.getAlertChartsList();
+
+    })
+  }
 
 }

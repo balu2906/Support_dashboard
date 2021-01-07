@@ -9,10 +9,8 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
   styleUrls: ['./closed-alerts.component.css']
 })
 export class ClosedAlertsComponent implements OnInit {
-// <<<<<<< HEAD
   confirmdata: any = [];
   closeddata: any = [];
-// =======
   closedalerts:any=[]
   selected:any;
   asigne:any =[];
@@ -33,9 +31,6 @@ strikesMap = {
   'u' : 2,
   'su' : 3
 }
-// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
-
-
   constructor(private http: HttpClient,
     public Service: Service,
     private fb: FormBuilder) { }
@@ -58,22 +53,18 @@ strikesMap = {
   changeassignee(){
     this.asigne = (Object.keys(this.assignee).filter(key=>this.assignee[key] == true))
     console.log("assignees",this.asigne);
-
-    
   }  
   getclosedalerts() {
     this.Service.getclosedalerts().subscribe(data => {
-// <<<<<<< HEAD
-      this.confirmdata = data;
-      console.log("CLOSED ALERTS DATAAAAAAAAA", this.confirmdata);
-     
-  
 
-// =======
-      this.closedalerts = data;
-      console.log("closed alerts" , this.closedalerts);
-      console.log("CLOSED ALERTS DATAAAAAAAAA", data);
-// >>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b
+      this.confirmdata = data;
+      this.confirmdata.forEach(element => {
+        Object.keys(element.alert).forEach(key=>{
+          element[key] = element.alert[key];  
+        })
+      });
+      console.log("Fomated confirmed Data: ",this.confirmdata);
+      console.log("CLOSED ALERTS DATAAAAAAAAA", this.confirmdata);
     },
       err => {
         console.log("CLOSED ALERTS ERRORRRRRR");

@@ -3,7 +3,6 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <!-- <app-filter></app-filter> -->
                                     
                      <div class="checkbox col-md-10">
                          <span class="label-new">
@@ -12,7 +11,6 @@
                                  
                                  <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1" class="inp asignee1" type="checkbox" ><label class="blue">Jyothi</label>
                              </li>
-                             <!-- {{selected.jyothi}}{{selected.neha}}{{selected.rinki}} -->
                      
                              <li class="list ">
                                  
@@ -40,8 +38,6 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Closed Alerts</h4>
-                        <!-- <button type="submit" (click)="getclosedtickets()">click me</button> -->
-                        <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive overflow-body">
@@ -54,22 +50,12 @@
                                     <th>Strikes</th>
                                 </thead>
                                 <tbody>
-<!-- <<<<<<< HEAD -->
-                                    <!-- <tr *ngFor="let item of confirmdata | filter:'assignee':asigne:'strikes':strike; let i=index"> -->
-                                        <tr *ngFor="let item of confirmdata; let i=index">
-                                        <td>{{item._id}}</td>
-                                        <td>{{item.alert.assignee}}</td>
-                                        <td>{{item.alert.description}}</td>
-                                        <td>{{item.createdAt | date}}</td>
-                                        <td class="text-primary">{{item.alertStrike}}</td>
-
-                                    <!-- <tr *ngFor="let item of closedalerts | filter:'assignee':asigne:'strikes':strike; let i=index">
+                                        <tr *ngFor="let item of confirmdata | filter:'assignee':asigne:'alertStrike':strike; let i=index">
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
                                         <td>{{item.description}}</td>
                                         <td>{{item.createdAt | date}}</td>
-                                        <td class="text-primary">{{item.strikes}}</td>
->>>>>>> 6cdf65251da3713bd7f400622f6cb982a73f285b -->
+                                        <td class="text-primary">{{item.alertStrike}}</td>
                                     </tr>
                                 </tbody>
                             </table>

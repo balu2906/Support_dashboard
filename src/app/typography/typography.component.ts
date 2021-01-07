@@ -3,7 +3,6 @@ import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-// import * as HighCharts from 'highcharts';
 import * as _ from 'underscore';
 import * as Highcharts from 'highcharts';
 
@@ -71,29 +70,29 @@ export class TypographyComponent implements OnInit {
         }]
     };
   }
-  getChartinfo() {
-    this.Service.getChartinfo().subscribe((data: any) => {
-      this.tableData = data
-      console.log('tickets chart data displays hereeee', this.tableData);
-      let Opentickets = 0;
-      let ResovledTickets = 0;
-      let ClosedTickets = 0
+    getChartinfo() {
+      this.Service.getChartinfo().subscribe((data: any) => {
+        this.tableData = data
+        console.log('tickets chart data displays hereeee', this.tableData);
+        let Opentickets = 0;
+        let ResovledTickets = 0;
+        let ClosedTickets = 0
 
-      this.tableData.forEach(element => {
-        if (!element.status) {
-          Opentickets++
-        } else if (element.status === 1) {
-          ResovledTickets++
-        } else if (element.status === 2) {
-          ClosedTickets++
-        }
-      });
-      this.ChartData.push(['Opentickets', +((Opentickets / (this.tableData.length)) * 100).toFixed(1)], ['Resolvedtickets', +((ResovledTickets / (this.tableData.length)) * 100).toFixed(1)], ['Closedtickets', +((ClosedTickets / (this.tableData.length)) * 100).toFixed(1)])
-      console.log(this.ChartData, 'chart data', Opentickets, ResovledTickets, ClosedTickets)
-      this.getChartsList();
+        this.tableData.forEach(element => {
+          if (!element.status) {
+            Opentickets++
+          } else if (element.status === 1) {
+            ResovledTickets++
+          } else if (element.status === 2) {
+            ClosedTickets++
+          }
+        });
+        this.ChartData.push(['Opentickets', +((Opentickets / (this.tableData.length)) * 100).toFixed(1)], ['Resolvedtickets', +((ResovledTickets / (this.tableData.length)) * 100).toFixed(1)], ['Closedtickets', +((ClosedTickets / (this.tableData.length)) * 100).toFixed(1)])
+        console.log(this.ChartData, 'chart data', Opentickets, ResovledTickets, ClosedTickets)
+        this.getChartsList();
 
-    })
-  }
+      })
+    }
 
 
 
@@ -165,77 +164,4 @@ export class TypographyComponent implements OnInit {
 
     })
   }
-
-  // getChartsListBar() {
-  //   this.chartOptionsBar = {
-  //     chart: {
-  //       type: 'column'
-  //     },
-  //     title: {
-  //       text: 'Stacked column chart'
-  //     },
-  //     xAxis: {
-  //       categories: ['Resolved By', 'Closed By', 'Closedtickets']
-  //     },
-  //     yAxis: {
-  //       min: 0,
-  //       title: {
-  //         text: 'Total Ticket BarChart Consumption'
-  //       }
-  //     },
-  //     tooltip: {
-  //       pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-  //       shared: true
-  //     },
-  //     plotOptions: {
-  //       column: {
-  //         stacking: 'percent',
-  //         pointWidth: 80,
-  //         // colorByPoint: true,
-  //         // colors: ['#007D91', '#FF0000', '#699100'],
-  //       },
-  //     },
-  //     series: [{
-  //       name: 'Resolved By',
-  //       data: [1, 2, 3]
-  //     }, {
-  //       name: 'Closed By',
-  //       data: [4, 5, 6]
-  //     },
-  //     {
-  //       name: 'Closedtickets',
-  //       data: [7, 8, 9]
-  //     }
-  //     ]
-
-  //   };
-  // }
-
-  // getChartinfoBar() {
-  //   this.Service.getChartinfo().subscribe((data: any) => {
-  //     this.tableData = data
-  //     console.log('tickets chart data displays hereeee', this.tableData);
-  //     let Opentickets = 0;
-  //     let ResovledTickets = 0;
-  //     let ClosedTickets = 0
-
-  //     this.tableData.forEach(element => {
-  //       if (!element.status) {
-  //         Opentickets++
-  //       } else if (element.status === 1) {
-  //         ResovledTickets++
-  //       } else if (element.status === 2) {
-  //         ClosedTickets++
-  //       }
-  //     });
-  //     this.ChartData.push(['Opentickets', +((Opentickets / (this.tableData.length)) * 100).toFixed(1)], ['Resolvedtickets', +((ResovledTickets / (this.tableData.length)) * 100).toFixed(1)], ['Closedtickets', +((ClosedTickets / (this.tableData.length)) * 100).toFixed(1)])
-  //     console.log(this.ChartData, 'chart data', Opentickets, ResovledTickets, ClosedTickets)
-  //     this.getChartsListBar();
-
-  //   })
-  // }
-
-
-
-
 }

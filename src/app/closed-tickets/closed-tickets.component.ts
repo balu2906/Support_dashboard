@@ -9,6 +9,7 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
   styleUrls: ['./closed-tickets.component.css']
 })
 export class ClosedTicketsComponent implements OnInit {
+  showSpinner = false;
   closedtickets : any = [];
   resolvedtickets:any =[];
  selected:any;
@@ -41,7 +42,9 @@ strikesMap = {
   }
 
   getclosedtickets() {
+    this.showSpinner = true;
     this.Service.getclosedtickets().subscribe(data => {
+      this.showSpinner = false;
       this.closedtickets = data;
       console.log("closed tickets dataaaaa", this.closedtickets);
       console.log("CLOSED DATA TICKETSSSSSS", data)
