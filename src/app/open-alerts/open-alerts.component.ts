@@ -90,11 +90,11 @@ export class OpenAlertsComponent implements OnInit {
       console.log("DFRTHER",data);
       
       this.allalerts = data;
-      this.allalerts.forEach(element => {
-        Object.keys(element.alert).forEach(key=>{
-          element[key] = element.alert[key];
-        })
-      });
+      // this.allalerts.forEach(element => {
+      //   Object.keys(element.alert).forEach(key=>{
+      //     element[key] = element.alert[key];
+      //   })
+      // });
       console.log("Fomated Data: ",this.allalerts);
       
       this.tempAllAlerts = data;

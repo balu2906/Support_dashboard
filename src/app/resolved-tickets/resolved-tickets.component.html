@@ -42,21 +42,25 @@
                         </span>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" style="width:100% !important">
                     <div class="card-header card-header-danger mt-20">
                         <h4 class="card-title ">Resolved Tickets</h4>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive overflow-body">
+                    <div class="card-body" style="height: 400px;overflow: scroll;">
+                        <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th><input type="checkbox" (change)="checkAllfn($event)" [(ngModel)]="checkAll"
                                             [checked]="checkAll" /></th>
                                     <th>Ticket ID</th>
                                     <th>Assignee</th>
+                                    <th>ProblemType</th>
                                     <th>Description</th>
-                                    <th>Resolved Date</th>
+                                    <th>ResolvedDate</th>
                                     <th>Strikes</th>
+                                    <th>UserName</th>
+                                    <th>UserMobile</th>
+                                    <th>UserMail</th>
                                 </thead>
                                 <tbody>
                                     <tr
@@ -67,9 +71,13 @@
                                         </td>
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
-                                        <td>{{item.description}}</td>
+                                        <td>{{item.problemtype}}</td>
+                                        <td width="20%">{{item.description}}</td>
                                         <td>{{item.createdAt | date}}</td>
                                         <td class="text-primary">{{item.strikes}}</td>
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.mobileNumber}}</td>
+                                        <td>{{item.email}}</td>
                                     </tr>
                                 </tbody>
 
@@ -113,6 +121,14 @@
                             <option value="neha">Neha</option>
                             <option value="rinki">Rinki</option> 
                         </select>
+                        <!-- <mat-form-field>
+                            <mat-label>Select Assignee</mat-label>
+                            <mat-select name="assignee" formControlName="assignee">
+                                <mat-option value="jyothi">jyothi</mat-option>
+                                <mat-option value="rinki">rinki</mat-option>
+                                <mat-option value="neha">neha</mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
                     </div>
                 </form>
             </div>

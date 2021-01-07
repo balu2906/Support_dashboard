@@ -62,9 +62,9 @@
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">{{state}}</h4>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive overflow-body" >
-                            <table class="table" [dataSource]="dataSource">
+                    <div class="card-body" style="height: 400px;overflow: scroll;">
+                        <div class="table-responsive" >
+                            <table class="table">
                                 <thead class=" text-primary">
 
                                     <th *ngIf="alertType != 'all'"><input type="checkbox" [(ngModel)]="checkAll"

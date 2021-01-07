@@ -1,0 +1,17 @@
+document.addEventListener('DOMContentLoaded',()=>{
+    Highcharts.chart('card',{
+        xAxis:{
+            categories:['apple','banana','orenge']
+        },
+        series:[
+            {
+              name:'john',
+              data:[1,2,3]      
+            },
+            {
+                name:'johny',
+                data:[2,4,8]
+            }
+    ]
+    })
+})

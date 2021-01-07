@@ -14,6 +14,10 @@ declare var jQuery: any;
   styleUrls: ['./table-list.component.css']
 })
 export class TableListComponent implements OnInit {
+  popupForm: FormGroup = this.fb.group({
+    assignedto: [''],
+    problemtype: [''],
+  });
   resolvedtickets: any = [];
   opentickets: any = [];
   checkAll: any;
@@ -64,6 +68,9 @@ export class TableListComponent implements OnInit {
     console.log(this.opentickets);
     if (event.target.checked) {
       this.Clist.push(item._id);
+    }else{
+      const index = this.Clist.findIndex(list => list == item._id);//Find the index of stored id
+      this.Clist.splice(index, 1); // Then remove
     }
     console.log("clisttttttttttttttttttt", this.Clist);
   }
@@ -122,9 +129,11 @@ export class TableListComponent implements OnInit {
     })
 
   }
-  sendalert(data){
+  sendalert(){
     console.log("post alerting ids");
     const postalert = {
+      assignedTo :  this.popupForm.get('assignedto').value,
+      problemType : this.popupForm.get('problemtype').value,
       ids: this.Clist
     }
     console.log("alerting id's ",postalert );
@@ -157,4 +166,14 @@ export class TableListComponent implements OnInit {
 
 
   }
+  closed() {
+    const popdata ={
+      assignedTo :  this.popupForm.get('assignedto').value,
+      problemType : this.popupForm.get('problemtype').value,
+      ids : this.Clist
+
+    }
+    console.log("popupdata",popdata);
+
+}
 }

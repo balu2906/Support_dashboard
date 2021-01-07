@@ -32,7 +32,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" style="width:100% !important">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Closed Tickets</h4>
                     </div>
@@ -42,17 +42,25 @@
                                 <thead class=" text-primary">
                                     <th>Ticket ID</th>
                                     <th>Assignee</th>
+                                    <th>ProblemType</th>
                                     <th>Description</th>
-                                    <th>Closed Date</th>
+                                    <th>ClosedDate</th>
                                     <th>Strikes</th>
+                                    <th>UserName</th>
+                                    <th>UserMobile</th>
+                                    <th>UserMail</th>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of closedtickets | filter:'assignee':asigne:'strikes':strike; let i=index">
                                         <td>{{item._id}}</td>
                                         <td>{{item.assignee}}</td>
-                                        <td>{{item.description}}</td>
+                                        <td>{{item.problemtype}}</td>
+                                        <td width="20%">{{item.description}}</td>
                                         <td>{{item.createdAt | date}}</td>
                                         <td class="text-primary">{{item.strikes}}</td>
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.mobileNumber}}</td>
+                                        <td>{{item.email}}</td>
                                     </tr>
                                 </tbody>
                             </table>

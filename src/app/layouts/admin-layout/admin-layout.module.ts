@@ -13,12 +13,13 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { HighchartsChartModule } from 'highcharts-angular';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+ 
 import { FilterComponent } from '../../filter/filter.component';
 import { FilterPipe } from '../../utils/filter.pipe';
 import { ResolvedTicketsComponent } from '../../resolved-tickets/resolved-tickets.component';
@@ -39,7 +40,9 @@ import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
     MatSelectModule,
     HighchartsChartModule,
     MatTooltipModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   declarations: [
     DashboardComponent,

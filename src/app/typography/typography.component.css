@@ -35,3 +35,19 @@ font-weight: 600;
 .highcharts-data-table tr:hover {
   background: #f1f7ff;
 }
+.selector{
+  width:100%;
+  height:auto;
+  border:1px solid red;
+}
+.tickets{
+  width:30%;
+  height:auto;
+  float:left;
+}
+.alerts{
+  /* width:30%; */
+  height:auto;
+  float:right;
+
+}

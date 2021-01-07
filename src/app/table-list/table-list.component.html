@@ -45,7 +45,7 @@
                 </div>
 
 
-                <div class="card">
+                <div class="card" style="width: 100% !important;">
 
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Open Tickets - tickets</h4>
@@ -62,9 +62,14 @@
                                                 [checked]="checkAll" /></th>
                                         <th>Ticket ID </th>
                                         <th>Assignee</th>
+                                        <th>ProblemType</th>
                                         <th>Description</th>
                                         <th>Date</th>
+                                        <th>AlertRaised</th>
                                         <th>Strikes</th>
+                                        <th>UserName</th>
+                                        <th>UserMobile</th>
+                                        <th>UserMail</th>
                                     </thead>
                                     <tbody>
 
@@ -75,9 +80,14 @@
                                             </td>
                                             <td>{{item._id}}</td>
                                             <td>{{item.assignee}}</td>
-                                            <td>{{item.description}}</td>
+                                            <td>{{item.problemtype}}</td>
+                                            <td width="20%">{{item.description}}</td>
                                             <td>{{item.createdAt | date}}</td>
+                                            <td>{{item.alertRaised}}</td>
                                             <td class="text-primary">{{item.strikes}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.mobileNumber}}</td>
+                                            <td>{{item.email}}</td>
                                         </tr>
 
                                     </tbody>
@@ -127,6 +137,28 @@
             </div>
             <div class="modal-body pop-body">
                 <p>Are you sure to Alert this Assignee ?</p>
+                <form  [formGroup]="popupForm">
+                    <div>
+                        <label for="assignedto" class="label">assignedto:</label>&nbsp;
+                        <select name="assignedto" formControlName="assignedto" class="select">
+                            <option value="" name="" disabled selected>select a Person</option>
+                            <option value="jyothi">Jyothi</option> 
+                            <option value="neha">Neha</option>
+                            <option value="rinki">Rinki</option> 
+                        </select>
+                    </div>
+                    <div>
+                        <label for="problemtype" class="label">problemtype:</label>&nbsp;
+                        <select name="problemtype" formControlName="problemtype" class="select">
+                            <option value="" name="" disabled selected>select ProbelmType</option>
+                            <option value="login">Login</option> 
+                            <option value="registration">Registration</option>
+                            <option value="course issues">Course</option>
+                            <option value="video issues">Video</option>
+                            <option value="other issues">Other</option> 
+                        </select>
+                    </div>
+                </form>
 
 
             </div>

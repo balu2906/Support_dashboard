@@ -16,6 +16,7 @@ declare var jQuery: any;
 })
 export class ResolvedTicketsComponent implements OnInit {
   Checklist: any = [];
+  filteredId:any = [];
   checkAll: any = false;
 
 
@@ -72,12 +73,15 @@ popupForm: FormGroup = this.fb.group({
     console.log(this.checkAll);
     console.log(this.resolvedtickets);
     if (event.target.checked) {
-      this.Checklist.push(item._id);
-    }
+      this.Checklist.push( item._id);
+    }else{
+        const index = this.Checklist.findIndex(list => list == item._id);//Find the index of stored id
+        this.Checklist.splice(index, 1); // Then remove
+      }
+    console.log("this checklist ",this.Checklist);
+    
   }
-
-
-  getresolvedtickets() {
+ getresolvedtickets() {
     this.Service.getresolvedtickets().subscribe(data => {
       this.resolvedtickets = data;
       console.log("resolved dataaaaa", this.resolvedtickets);

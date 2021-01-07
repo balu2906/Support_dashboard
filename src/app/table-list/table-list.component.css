@@ -1,1 +1,5 @@
 @import "../../assets/css/checkbox.css";
+.tableOver{
+    overflow-x: hidden;
+    height: 200px;
+}
