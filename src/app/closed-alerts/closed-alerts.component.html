@@ -53,15 +53,17 @@
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>Alert ID</th>
-                                    <th>No.of Tickets</th>
-                                    <th>Problem Type</th>
+                                    <th>AssignedTo</th>
+                                    <th>No.ofTickets</th>
+                                    <th>ProblemType</th>
                                     <th>Created Date</th>
                                     <th>Strikes</th>
                                 </thead>
                                 <tbody>
                                     <tr
-                                        *ngFor="let item of confirmdata | filter:'assignee':asigne:'alertStrike':strike; let i=index">
+                                        *ngFor="let item of confirmdata | filter:'assignedTo':asigne:'alertStrike':strike; let i=index">
                                         <td>{{item._id}}</td>
+                                        <td>{{item.assignedTo}}</td>
                                         <td>{{item.tickets.length}}</td>
                                         <td>{{item.problemType}}</td>
                                         <td>{{item.createdAt | date}}</td>

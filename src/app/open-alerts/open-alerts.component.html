@@ -62,9 +62,10 @@
                                             [(ngModel)]="checkAll" [checked]="checkAll" (change)="checkAllfn($event)" />
                                     </th>
                                     <th>Alert ID</th>
-                                    <th>No.of Tickets</th>
-                                    <th>Problem Type</th>
-                                    <th>Created Date</th>
+                                    <th>AssignedTo</th>
+                                    <th>No.ofTickets</th>
+                                    <th>ProblemType</th>
+                                    <th>CreatedDate</th>
                                     <th>Strikes</th>
                                     <th>Action</th>
                                 </thead>
@@ -73,12 +74,13 @@
                                         *ngIf="showSpinner">
                                     </mat-spinner>
                                     <tr
-                                        *ngFor="let item of allalerts | filter:'assignee':asigne:'strikes':strike; let i=index">
+                                        *ngFor="let item of allalerts | filter:'assignedTo':asigne:'alertStrike':strike; let i=index">
                                         <td *ngIf="alertType != 'all' && submitType != 'confirmed'"> <input
                                                 type="checkbox" [value]="item._id" [(ngModel)]="item.checked"
                                                 [checked]="item.checked" (change)="singleCheckFn($event, item, i)" />
                                         </td>
                                         <td>{{item._id}}</td>
+                                        <td>{{item.assignedTo}}</td>
                                         <td>{{item.tickets.length}}</td>
                                         <td>{{item.problemType}}</td>
                                         <td>{{item.createdAt | date}}</td>

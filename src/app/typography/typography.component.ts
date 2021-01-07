@@ -97,6 +97,12 @@ import { redis } from 'googleapis/build/src/apis/redis';
         },
       series: [
         {
+          type : 'column',
+          color:'#040c80',
+          name:'All Tickets',
+          data:[this.ChartData[0]]
+        },
+        {
           type:'column',
           color:'#008000',
            name: 'Open Tickets',
