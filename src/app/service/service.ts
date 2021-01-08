@@ -9,6 +9,10 @@ import { Observable } from 'rxjs';
 export class Service {
 
   constructor(private http: HttpClient) { }
+  //Login
+  Authentication(data){
+    return this.http.post(ApiService.API.POST_LOGIN_DATA,data)
+  }
   //OPEN TICKETS
   gettableData() {
     return this.http.get(ApiService.API.GET_TABLE_DATA);
@@ -26,6 +30,7 @@ export class Service {
 
   //admincomponent
   getteammembers() {
+    // console.log("headers",headers.Authorization)
     return this.http.get(ApiService.API.GET_TEAM_MEMBERS);
   }
   postteammember(data) {
@@ -81,5 +86,7 @@ export class Service {
   getChartinfo() {
     return this.http.get(ApiService.API.GET_CHART_INFO);
   }
-
+  gettoken(){
+    return localStorage.getItem('token')
+  }
 }

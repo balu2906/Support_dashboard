@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../service/service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@angular/forms';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-closed-tickets',
@@ -35,10 +36,16 @@ strikesMap = {
 
   constructor(private http: HttpClient,
     public Service: Service,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,private _router:Router) { }
 
   ngOnInit(): void {
     this.getclosedtickets();
+    var auth  = localStorage.getItem('token')
+    console.log("existing users ",auth);
+    if(!auth){
+      this._router.navigate(["/login"])
+    }
+    
   }
 
   getclosedtickets() {

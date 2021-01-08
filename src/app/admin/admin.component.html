@@ -11,19 +11,21 @@
             </div>
             <div class="col-md-4 mt-3 form-group">
                 <!-- <label for="">Select Filter</label> -->
-                <mat-label>Select Type:-</mat-label>
+                <!-- <mat-label>Select Type:-</mat-label>
                 <select class="select" [(ngModel)]="typeCheck" (change)="selectType($event)">
                     <option value="" name="" disabled selected>Select Type</option>
                     <option value="support">support</option>
                     <option value="tech">tech</option>
-                </select>
-                <!-- <mat-form-field>
-                <mat-select class="select" [(ngModel)]="typeCheck" (change)="selectType($event)">
+                </select> -->
+                <mat-form-field>
+                <mat-label>Select Probelm Type</mat-label>
+                <mat-select class="select" [(ngModel)]="selectedDevice" (ngModelChange)="onChange($event)">
                     <mat-option value="" name="" disabled selected>Select Type</mat-option>
+                    <mat-option value="all">All</mat-option>
                     <mat-option value="support">support</mat-option>
                     <mat-option value="tech">tech</mat-option>
                 </mat-select>
-              </mat-form-field> -->
+              </mat-form-field>
             </div>
             <!-- <div class="checkbox col-md-10">
             <span class="label-new">

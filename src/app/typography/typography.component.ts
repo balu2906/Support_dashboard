@@ -64,6 +64,12 @@ import { redis } from 'googleapis/build/src/apis/redis';
       this.getalertChartinfo();
       this.getsolvedByinfo();
       this.getSingleAlerts();
+      var auth  = localStorage.getItem('token')
+      console.log("existing users ",auth);
+      if(!auth){
+        this.router.navigate(["/login"])
+      }
+      
     }
 
     getsolvedByinfo(){

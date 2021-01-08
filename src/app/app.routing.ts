@@ -27,7 +27,6 @@ const routes: Routes =[
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes,{
-       useHash: true
     })
   ],
   exports: [

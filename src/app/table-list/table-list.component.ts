@@ -49,6 +49,12 @@ export class TableListComponent implements OnInit {
     private fb: FormBuilder, private router: Router, private toastr: ToastrService) { }
   ngOnInit(): void {
     this.gettableData();
+    var auth  = localStorage.getItem('token')
+    console.log("existing users ",auth);
+    if(!auth){
+      this.router.navigate(["/login"])
+    }
+    
   }
   checkAllfn(event: any) {
     this.opentickets.map((el: any) => {
