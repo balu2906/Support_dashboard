@@ -50,6 +50,7 @@ export class TableListComponent implements OnInit {
   ngOnInit(): void {
     this.gettableData();
   }
+
   checkAllfn(event: any) {
     this.opentickets.map((el: any) => {
       el.checked = event.target.checked
@@ -68,7 +69,7 @@ export class TableListComponent implements OnInit {
     console.log(this.opentickets);
     if (event.target.checked) {
       this.Clist.push(item._id);
-    }else{
+    } else {
       const index = this.Clist.findIndex(list => list == item._id);//Find the index of stored id
       this.Clist.splice(index, 1); // Then remove
     }
@@ -109,39 +110,47 @@ export class TableListComponent implements OnInit {
       jQuery("#alertpopup").modal("show");
     }
   }
-  rsv() {
-    console.log("kjhdkjdfjkgkj");
 
+  loading_spinners: Boolean = false;
+  rsv() {
+    this.loading_spinners = true;
     const rsvid = {
       ids: this.Clist
     }
     console.log("resolved id's ", rsvid);
     this.Service.postresolve(rsvid).subscribe(data => {
       let i = 0;
-      this.toastr.success("Ticket is resolved successful.");
-      console.log("entered to resolve id");
+      jQuery("#popup").modal("hide");
+      this.loading_spinners = false;
+      var dataInfo: any = data;
+      this.toastr.success(dataInfo.message);
+      this.gettableData();
+
     }, err => {
-      this.toastr.error("Failed to resolve ticket.");
-      console.log("error in closedticket iddddddd");
+      this.toastr.error(err.error.message);
     })
   }
-  sendalert(){
 
+  loading_spinner: Boolean = false;
+  sendalert() {
+    this.loading_spinner = true;
     console.log("post alerting ids");
     const postalert = {
-      assignedTo :  this.popupForm.get('assignedto').value,
-      problemType : this.popupForm.get('problemtype').value,
+      assignedTo: this.popupForm.get('assignedto').value,
+      problemType: this.popupForm.get('problemtype').value,
       ids: this.Clist
     }
     console.log("alerting id's ", postalert);
     this.Service.postalert(postalert).subscribe(data => {
       let i = 0;
-      this.toastr.success("Alerted assignee succesfully..");
+      jQuery("#alertpopup").modal("hide");
+      this.loading_spinner = false;
+      var dataInfo: any = data;
+      this.toastr.success(dataInfo.message);
       console.log("entered to alert id");
 
     }, err => {
-      this.toastr.error("Failed to Alert ticket.");
-      console.log("error in alert iddddddd");
+      this.toastr.error(err.error.message);
     })
   }
   changestrike() {
@@ -164,13 +173,13 @@ export class TableListComponent implements OnInit {
 
   }
   closed() {
-    const popdata ={
-      assignedTo :  this.popupForm.get('assignedto').value,
-      problemType : this.popupForm.get('problemtype').value,
-      ids : this.Clist
+    const popdata = {
+      assignedTo: this.popupForm.get('assignedto').value,
+      problemType: this.popupForm.get('problemtype').value,
+      ids: this.Clist
 
     }
-    console.log("popupdata",popdata);
+    console.log("popupdata", popdata);
 
-}
+  }
 }

@@ -19,7 +19,7 @@ export class OpenAlertsComponent implements OnInit {
   showSpinner = false;
   allalerts: any = [];
   Checklist: any = [];
-  alertId:any=""
+  alertId: any = ""
   tempAllAlerts: any = [];
   popupbutton: any = "Attend";
   state: any = "All Alerts";
@@ -53,7 +53,8 @@ export class OpenAlertsComponent implements OnInit {
     'u': 2,
     'su': 3
   }
-  constructor(private http: HttpClient,private router: Router, private toastr: ToastrService,
+  ticketalerts: any;
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService,
     public Service: Service,
     private fb: FormBuilder) { }
 
@@ -61,8 +62,12 @@ export class OpenAlertsComponent implements OnInit {
     this.getallalerts();
   }
 
-  action(){
-    this.router.navigate([ '/table-list']);
+  preview: any;
+  action(rdata: any) {
+    this.preview = rdata;
+    console.log(this.preview, 'inputssssssss');
+    jQuery("#preview").modal("show");
+
   }
 
   changestrike() {
@@ -88,9 +93,9 @@ export class OpenAlertsComponent implements OnInit {
       this.showSpinner = false;
       console.log("DFRTHER", data);
       this.allalerts = data;
-      console.log("Fomated Data: ",this.allalerts);
+      console.log("Fomated all alerts Data: ", this.allalerts);
       this.tempAllAlerts = data;
-      console.log(this.tempAllAlerts,"temp-all")
+      console.log(this.tempAllAlerts, "temp-all")
       console.log("llllllllllllllllllllllll", this.allalerts.length);
       console.log("OPEN ALERTS DATAAA", this.allalerts);
       if (this.alertType != 'all') {
@@ -123,7 +128,7 @@ export class OpenAlertsComponent implements OnInit {
 
   }
 
-alertsbuttonA(type: any, event: any, type2: any, event2: any, alrtname: any) {
+  alertsbuttonA(type: any, event: any, type2: any, event2: any, alrtname: any) {
     this.submitType = type;
     this.buttonType = type;
     console.log("submitytyp2 issss", this.submitType);
@@ -205,7 +210,7 @@ alertsbuttonA(type: any, event: any, type2: any, event2: any, alrtname: any) {
     }
 
     console.log(this.alertType, "alert type isssss");
-    console.log(this.tempAllAlerts,"temp")
+    console.log(this.tempAllAlerts, "temp")
     this.allalerts = this.tempAllAlerts.filter((ele: any) => {
       return ele[type] == event;
     })
@@ -248,13 +253,13 @@ alertsbuttonA(type: any, event: any, type2: any, event2: any, alrtname: any) {
     }
     console.log("Post payload for moveing to attend", body);
 
-    this.Service.saveAttendalert(this.alertId,body).subscribe(data => {
-      this.toastr.success("Moved to attended successfully");
-
+    this.Service.saveAttendalert(this.alertId, body).subscribe(data => {
+      var dataInfo: any = data;
+      this.toastr.success(dataInfo.message);
       this.getallalerts();
       this.solvedIn = '';
     }, err => {
-      this.toastr.error("Error while moved to attended");
+      this.toastr.error(err.error.message);
     })
 
 
@@ -266,24 +271,25 @@ alertsbuttonA(type: any, event: any, type2: any, event2: any, alrtname: any) {
     }
     console.log("Post payload for moveing to resolve", body);
 
-    this.Service.saveResolvealert(this.alertId,body).subscribe(data => {
-      this.toastr.success("Moved to Resolved successfully");
+    this.Service.saveResolvealert(this.alertId, body).subscribe(data => {
+      var dataInfo: any = data;
+      this.toastr.success(dataInfo.message);
 
       this.getallalerts();
       this.reason = '';
     }, err => {
-      this.toastr.error("Error while moved to resolved");
+      this.toastr.error(err.error.message);
 
     })
   }
 
   saveConfirmalert() {
     this.Service.saveConfirmalert(this.alertId).subscribe(data => {
-      this.toastr.success("Moved to Confirm successfully");
+     var dataInfo : any= data;
+      this.toastr.success(dataInfo.message);
       this.getallalerts();
     }, err => {
-      this.toastr.error("Error while moved to confirm");
-
+      this.toastr.error(err.error.message);
     })
   }
 

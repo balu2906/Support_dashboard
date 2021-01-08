@@ -16,7 +16,7 @@ declare var jQuery: any;
 })
 export class ResolvedTicketsComponent implements OnInit {
   Checklist: any = [];
-  filteredId:any = [];
+  filteredId: any = [];
   checkAll: any = false;
   showSpinner = false;
 
@@ -76,13 +76,13 @@ export class ResolvedTicketsComponent implements OnInit {
     console.log(this.checkAll);
     console.log(this.resolvedtickets);
     if (event.target.checked) {
-      this.Checklist.push( item._id);
-    }else{
-        const index = this.Checklist.findIndex(list => list == item._id);//Find the index of stored id
-        this.Checklist.splice(index, 1); // Then remove
-      }
-    console.log("this checklist ",this.Checklist);
-    
+      this.Checklist.push(item._id);
+    } else {
+      const index = this.Checklist.findIndex(list => list == item._id);//Find the index of stored id
+      this.Checklist.splice(index, 1); // Then remove
+    }
+    console.log("this checklist ", this.Checklist);
+
   }
 
 
@@ -126,7 +126,10 @@ export class ResolvedTicketsComponent implements OnInit {
       jQuery("#popup").modal("show");
     }
   }
+
+  loading_spinner: Boolean = false;
   closed() {
+    this.loading_spinner = true;
     const popdata = {
       reason: this.popupForm.get('description').value,
       closedBy: this.popupForm.get('solvedby').value,
@@ -136,11 +139,14 @@ export class ResolvedTicketsComponent implements OnInit {
     console.log("popupdata", popdata);
     this.Service.getclose(popdata).subscribe(data => {
       let i = 0;
-      this.toastr.success("Ticket is resolved successful.");
+      jQuery("#popup").modal("hide");
+      this.loading_spinner = false;
+      var dataInfo: any = data;
+      this.toastr.success(dataInfo.message);
       console.log("entered post id");
 
     }, err => {
-      this.toastr.error("Failed to resolve ticket.");
+      this.toastr.error(err.error.message);
       console.log("error in closedticket iddddddd");
     })
 

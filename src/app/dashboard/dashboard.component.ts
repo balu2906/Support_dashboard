@@ -25,6 +25,9 @@ export class DashboardComponent implements OnInit {
   AlertChartData: any = [];
   tableData: any = [];
   alertsData: any = [];
+  response = false;
+  showSpinner = false;
+
 
   mobilenumber = "^(\\+\\d{1,3}[- ]?)?\\d{10}$";
   profileForm: FormGroup = this.fb.group({
@@ -38,6 +41,7 @@ export class DashboardComponent implements OnInit {
   name: any;
   email: any;
   password: any;
+  teammembers: any;
 
 
   constructor(public Service: Service, private toastr: ToastrService, private fb: FormBuilder) {
@@ -46,8 +50,26 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getChartinfo();
     this.getalertChartinfo();
+    this.getteammembers();
 
   }
+
+
+
+
+  getteammembers() {
+    this.Service.getteammembers().subscribe(data => {
+      // this.showSpinner = true;
+      setTimeout(() => {
+        this.showSpinner = true;
+      }, 2000);
+      this.teammembers = data;
+      console.log("getteammembersssssssss", data);
+    }, err => {
+      console.log("ERROR IN TEAM MEMBERS DATAAAA");
+    })
+  }
+
   onSubmit() {
     console.warn(this.profileForm.value);
   }
@@ -70,12 +92,14 @@ export class DashboardComponent implements OnInit {
     }
     this.Service.postticket(userData).subscribe(userData => {
       console.log("userdata is hereeeeeeeeeeeee", userData);
-      this.toastr.success("Ticket created successfully");
+      let userInfo : any = userData;
+      this.toastr.success(userInfo.message);
       this.loading_spinner = false;
+      
     }, err => {
       console.log("error", err);
 
-      this.toastr.error("Error while create ticket");
+      this.toastr.error(err.error.message);
 
     })
   }
