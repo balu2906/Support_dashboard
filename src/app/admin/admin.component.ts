@@ -87,7 +87,7 @@ export class AdminComponent implements OnInit {
     console.log("headersss ",httpHeaders);
     // var headers = new Headers();
     
-    this.Service.getteammembers().subscribe(data => {
+    this.Service.getteammembersAdmin().subscribe(data => {
       this.showSpinner = false;
       this.teammembers = data;
       this.teammemberStatic = data;

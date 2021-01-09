@@ -1,7 +1,7 @@
 <style>
 </style>
 <div class="main-content">
-    <div class="container-fluid" *ngIf="showSpinner">
+    <div class="container-fluid" *ngIf="!showSpinner">
         <div class="row">
             <div class="col">
                 <!-- <mat-spinner value="50" strokeWidth="6" [diameter]="40" class="spinner "
@@ -38,7 +38,8 @@
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="Email address" formControlName="email" name="email"
-                                            type="email">
+                                            type="email" ngModel email>
+                                            
                                     </mat-form-field>
                                     <span class="alert" *ngIf="f.email.touched && f.email.errors?.required">
                                         email is required</span>
@@ -97,7 +98,7 @@
 
         </div>
     </div>
-    <div class="spinner" *ngIf="!showSpinner">
+    <div class="spinner" *ngIf="showSpinner">
         <mat-spinner value="50" strokeWidth="6" [diameter]="40" class="spinner ">
         </mat-spinner>
     </div>

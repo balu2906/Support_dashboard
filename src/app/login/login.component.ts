@@ -12,6 +12,8 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+ 
+
 
   constructor(private _router:Router,public Service: Service, private toastr: ToastrService, private fb: FormBuilder) { }
 
@@ -22,7 +24,10 @@ export class LoginComponent implements OnInit {
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
+
+  showSpinner: Boolean = false;
   moveToRegister(){ 
+    this.showSpinner = true;
     const userData = {
       email: this.loginForm.get('email').value,
       password: this.loginForm.get('password').value,
@@ -33,11 +38,14 @@ export class LoginComponent implements OnInit {
       console.log("userdata is hereeeeeeeeeeeee",this.response.Token);
       localStorage.setItem('token',this.response.Token)
       this.toastr.success(this.response.message);
+      this.showSpinner = false;
       this._router.navigate(["/dashboard"])
     }, err => {
       let error = err
       console.log("error message ",error);
       this.toastr.error(error.error.message);
+      this.showSpinner = false;
+
 
     })
     

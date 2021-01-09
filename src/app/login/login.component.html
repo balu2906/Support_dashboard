@@ -15,9 +15,23 @@
         <form [formGroup]="loginForm">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-            <div class="form-group"><input class="form-control" type="email" placeholder="Email" name="email" formControlName="email"></div>
-            <div class="form-group"><input class="form-control" type="password"  placeholder="Password" name="password" formControlName="password"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" (click)="moveToRegister()">Log In</button></div><a href="#" class="forgot">Forgot your email or password?</a></form>
+            <div class="form-group"><input class="form-control" type="email" placeholder="Email" name="email"
+                    formControlName="email"></div>
+            <div class="form-group"><input class="form-control" type="password" placeholder="Password" name="password"
+                    formControlName="password"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit" (click)="moveToRegister()">
+                    <!-- <span *ngIf="loading_spinner">Logging In...
+                    </span> -->
+                    <mat-spinner value="50" strokeWidth="6" [diameter]="40" class="spinner " *ngIf="showSpinner">
+                        Logging In...
+                    </mat-spinner>
+                    <mat-spinner value="50" strokeWidth="6" [diameter]="40" class="spinner " *ngIf="!showSpinner">
+                        Log In
+                    </mat-spinner>
+                    <!-- <span *ngIf="!loading_spinner">Log In
+                    </span> -->
+                </button></div><a href="#" class="forgot">Forgot your email or password?</a>
+        </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

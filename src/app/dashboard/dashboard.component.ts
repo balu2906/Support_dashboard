@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
   tableData: any = [];
   alertsData: any = [];
   response = false;
-  showSpinner = false;
+  showSpinner: boolean = false;
 
 
 
@@ -60,11 +60,10 @@ export class DashboardComponent implements OnInit {
     }
   }
   getteammembers() {
+    this.showSpinner = true
     this.Service.getteammembers().subscribe(data => {
-      // this.showSpinner = true;
-      setTimeout(() => {
-        this.showSpinner = true;
-      }, 2000);
+      this.showSpinner = false;
+      console.log(this.showSpinner)
       this.teammembers = data;
       console.log("getteammembersssssssss", data);
     }, err => {
