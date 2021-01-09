@@ -19,6 +19,8 @@ export class ApiService {
     //LOGIN
     POST_LOGIN_DATA:environment.apiUrl+'/login',
     //ADMIN
+    GET_TEAM_MEMBERS_ADMIN: environment.apiUrl + '/admin/get_team_admin',
+    // support
     GET_TEAM_MEMBERS: environment.apiUrl + '/admin/get_team',
     //create teammember
     POST_TEAM_MEMBER:environment.apiUrl + '/admin/create_team',
