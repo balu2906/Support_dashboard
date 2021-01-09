@@ -6,7 +6,7 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
 import * as Highcharts from 'highcharts';
 import * as $ from 'jquery';
 import * as Chartist from 'chartist';
-import {Router} from "@angular/router"
+import { Router } from "@angular/router"
 
 declare var jQuery: any;
 
@@ -21,11 +21,16 @@ export class DashboardComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options;
   AlertchartOptions: Highcharts.Options;
-  names:any =[];
+  names: any = [];
   ChartData: any = [];
   AlertChartData: any = [];
   tableData: any = [];
   alertsData: any = [];
+  response = false;
+  showSpinner = false;
+
+
+
   mobilenumber = "^(\\+\\d{1,3}[- ]?)?\\d{10}$";
   profileForm: FormGroup = this.fb.group({
     username: ['', Validators.required],
@@ -38,24 +43,35 @@ export class DashboardComponent implements OnInit {
   name: any;
   email: any;
   password: any;
+  teammembers: any;
 
 
-  constructor(private _router:Router,public Service: Service, private toastr: ToastrService, private fb: FormBuilder) {
+  constructor(private _router: Router, public Service: Service, private toastr: ToastrService, private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.getChartinfo();
     this.getalertChartinfo();
     this.getteammembers();
-    var auth  = localStorage.getItem('token')
-    console.log("existing users ",auth);
-    if(!auth){
+    var auth = localStorage.getItem('token')
+    console.log("existing users ", auth);
+    if (!auth) {
       this._router.navigate(["/login"])
     }
-    }
-  getteammembers() {
-
   }
+  getteammembers() {
+    this.Service.getteammembers().subscribe(data => {
+      // this.showSpinner = true;
+      setTimeout(() => {
+        this.showSpinner = true;
+      }, 2000);
+      this.teammembers = data;
+      console.log("getteammembersssssssss", data);
+    }, err => {
+      console.log("ERROR IN TEAM MEMBERS DATAAAA");
+    })
+  }
+
   onSubmit() {
     console.warn(this.profileForm.value);
   }
@@ -78,8 +94,10 @@ export class DashboardComponent implements OnInit {
     }
     this.Service.postticket(userData).subscribe(userData => {
       console.log("userdata is hereeeeeeeeeeeee", userData);
-      this.toastr.success("Ticket created successfully");
+      let userInfo: any = userData;
+      this.toastr.success(userInfo.message);
       this.loading_spinner = false;
+
     }, err => {
       console.log("error", err);
 
