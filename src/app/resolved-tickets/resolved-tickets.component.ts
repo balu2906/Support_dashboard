@@ -59,6 +59,11 @@ export class ResolvedTicketsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getresolvedtickets();
+    var auth  = localStorage.getItem('token')
+    console.log("existing users ",auth);
+    if(!auth){
+      this.router.navigate(["/login"])
+    }
   }
   checkAllfn(event: any) {
     this.resolvedtickets.map((el: any) => {

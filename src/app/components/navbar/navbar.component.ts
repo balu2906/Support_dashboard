@@ -33,7 +33,11 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
         this.notification();
     }
-
+    logout(){
+        console.log("logging out...........")
+        localStorage.removeItem('token');
+        this.router.navigate(["/login"])
+    }
     notification() {
         this.Service.getChartinfo().subscribe((data: any) => {
             this.tableData = data

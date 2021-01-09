@@ -22,6 +22,43 @@ export class TypographyComponent implements OnInit {
     assignee: ['']
   });
 
+  // <<<<<<< HEAD
+  //   FinalTickets: any = [];
+  //   FilterChartData: any = [];
+  //   FilterAlertsData: any = [];
+  //   FinalAlerts: any = [];
+  //   date = '';
+  //   FilterDateTickets: any = [];
+  //   DateData: any = [];
+  //   filterdata: any = [];
+  //   FormatedDate: any = [];
+  //   Highcharts: typeof Highcharts = Highcharts;
+  //   chartOptions: Highcharts.Options;
+  //   AlertchartOptions: Highcharts.Options;
+  //   solvedByOptions: Highcharts.Options;
+  //   SingleAlertsOptions: Highcharts.Options;
+  //   duplicateArray = []
+  //   FilterAssignee: any = [];
+  //   assignee = '';
+  //   alertassignee = '';
+  //   SingleAssignee: any = [];
+  //   ChartData: any = [];
+  //   jyothiData: any = [];
+  //   AssigneeData: any = [];
+  //   AlertChartData: any = [];
+  //   FilterAlertChartData: any = [];
+  //   tableData: any = [];
+  //   alertsData: any = [];
+  //   solvedByData: any = [];
+  //   AssignedTickets = 0;
+  //   Opentickets = 0;
+  //   ResovledTickets = 0;
+  //   ClosedTickets = 0;
+  //   constructor(public Service: Service,
+  //     private fb: FormBuilder,
+  //     private router: Router,
+  //     private http: HttpClient, private toastr: ToastrService,) { }
+  // =======
   FinalTickets: any = [];
   FilterChartData: any = [];
   FilterAlertsData: any = [];
@@ -64,7 +101,16 @@ export class TypographyComponent implements OnInit {
     this.getalertChartinfo();
     this.getsolvedByinfo();
     this.getSingleAlerts();
+    var auth = localStorage.getItem('token')
+    console.log("existing users ", auth);
+    if (!auth) {
+      this.router.navigate(["/login"])
+    }
+
   }
+
+
+
 
   getsolvedByinfo() {
     this.solvedByOptions = {

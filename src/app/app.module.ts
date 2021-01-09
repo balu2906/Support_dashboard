@@ -1,8 +1,10 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+
+import {Service} from "./service/service"
 
 
 
@@ -33,6 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HighchartsChartModule } from 'highcharts-angular';
 
 import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
+import {TokenInterceptorService} from './token-interceptor.service'
 
 
 @NgModule({
@@ -62,14 +65,16 @@ import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-   
-
     LoginComponent,
-   
-    
 
     ],
-  providers: [],
+  providers: [Service,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

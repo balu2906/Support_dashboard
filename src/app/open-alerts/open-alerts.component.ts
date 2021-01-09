@@ -60,6 +60,11 @@ export class OpenAlertsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getallalerts();
+    var auth  = localStorage.getItem('token')
+    console.log("existing users ",auth);
+    if(!auth){
+      this.router.navigate(["/login"])
+    }
   }
 
   preview: any;

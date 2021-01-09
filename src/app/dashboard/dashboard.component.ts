@@ -6,6 +6,7 @@ import { FormBuilder, Validators, FormArray, FormGroup, FormControl } from '@ang
 import * as Highcharts from 'highcharts';
 import * as $ from 'jquery';
 import * as Chartist from 'chartist';
+import { Router } from "@angular/router"
 
 declare var jQuery: any;
 
@@ -20,13 +21,14 @@ export class DashboardComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options;
   AlertchartOptions: Highcharts.Options;
-
+  names: any = [];
   ChartData: any = [];
   AlertChartData: any = [];
   tableData: any = [];
   alertsData: any = [];
   response = false;
   showSpinner = false;
+
 
 
   mobilenumber = "^(\\+\\d{1,3}[- ]?)?\\d{10}$";
@@ -44,19 +46,19 @@ export class DashboardComponent implements OnInit {
   teammembers: any;
 
 
-  constructor(public Service: Service, private toastr: ToastrService, private fb: FormBuilder) {
+  constructor(private _router: Router, public Service: Service, private toastr: ToastrService, private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.getChartinfo();
     this.getalertChartinfo();
     this.getteammembers();
-
+    var auth = localStorage.getItem('token')
+    console.log("existing users ", auth);
+    if (!auth) {
+      this._router.navigate(["/login"])
+    }
   }
-
-
-
-
   getteammembers() {
     this.Service.getteammembers().subscribe(data => {
       // this.showSpinner = true;
@@ -92,10 +94,10 @@ export class DashboardComponent implements OnInit {
     }
     this.Service.postticket(userData).subscribe(userData => {
       console.log("userdata is hereeeeeeeeeeeee", userData);
-      let userInfo : any = userData;
+      let userInfo: any = userData;
       this.toastr.success(userInfo.message);
       this.loading_spinner = false;
-      
+
     }, err => {
       console.log("error", err);
 

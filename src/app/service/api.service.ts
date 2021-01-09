@@ -2,6 +2,8 @@ import { environment } from '../../environments/environment';
 
 export class ApiService {
   public static API = {
+    //LOGOUT
+    GET_LOGOUT:environment.apiUrl+'/logout',
     //GET 
     GET_TABLE_DATA: environment.apiUrl + '/ticket/open_tickets',
     GET_RSVDATA_ID: environment.apiUrl + '/ticket/resolve',
@@ -14,7 +16,8 @@ export class ApiService {
     PUT_CONFIRMALERT_ID: environment.apiUrl + '/alerts/confirm_alert',
     GET_CLOSED_ALERTS_DATA: environment.apiUrl + '/alerts/closed_alerts',
     GET_CHART_INFO: environment.apiUrl + '/ticket/alltickets',
-
+    //LOGIN
+    POST_LOGIN_DATA:environment.apiUrl+'/login',
     //ADMIN
     GET_TEAM_MEMBERS: environment.apiUrl + '/admin/get_team',
     //create teammember

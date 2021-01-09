@@ -5,6 +5,8 @@ import { Service } from '../service/service';
 import { ToastrService } from 'ngx-toastr';
 import * as _ from 'underscore';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import {Router} from "@angular/router"
+import { auth } from 'googleapis/build/src/apis/redis';
 
 
 
@@ -24,15 +26,18 @@ export class AdminComponent implements OnInit {
   checkAll: any;
   Clist: any = [];
   typeCheck: any = ''
-
-
-
-
-
-  constructor(private http: HttpClient, public Service: Service, private toastr: ToastrService) { }
+  selectedDevice:any = '';
+  token:any;
+  constructor(private _router:Router,private http: HttpClient, public Service: Service, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getteammembers();
+    var auth  = localStorage.getItem('token')
+    // console.log("existing users ",auth);
+    if(!auth){
+      this._router.navigate(["/login"])
+    }
+    
   }
 
   create() {
@@ -46,8 +51,13 @@ export class AdminComponent implements OnInit {
       name: this.name,
       email: this.email,
       password: this.password,
-      s_type: this.typeCheck
+      s_type: this.typeCheck,
     }
+    const httpHeaders:HttpHeaders = new HttpHeaders(
+      {Authorization:`Bearer ${this.token}`}
+    )
+    // headers.append("Authorization","Bearer "+ t)
+    console.log("headersss ",httpHeaders);
     console.log(user)
     this.Service.postteammember(user).subscribe(userData => {
       console.log("team member dataaa is herrrrreeeee", userData);
@@ -63,14 +73,20 @@ export class AdminComponent implements OnInit {
 
     }, err => {
       console.log("error", err);
-      // this.toastr.error("Error while creating team member");
       this.toastr.error(err.error.message);
 
     })
   }
   getteammembers() {
     this.showSpinner = true;
-
+    var t = localStorage.getItem('token')
+    const httpHeaders:HttpHeaders = new HttpHeaders(
+      {Authorization:`Bearer ${t}`}
+    )
+    // headers.append("Authorization","Bearer "+ t)
+    console.log("headersss ",httpHeaders);
+    // var headers = new Headers();
+    
     this.Service.getteammembers().subscribe(data => {
       this.showSpinner = false;
       this.teammembers = data;
@@ -100,7 +116,8 @@ export class AdminComponent implements OnInit {
       el.checked = event.target.checked
     })
     console.log(this.teammembers);
-    this.checkAll = event.target.checked
+    // console.log("length ",this.checkAll.length)
+    // this.checkAll = event.target.checked
   }
 
   checkSingle(item: any, i: any, event: any) {
@@ -114,6 +131,9 @@ export class AdminComponent implements OnInit {
     console.log(this.teammembers);
     if (event.target.checked) {
       this.Clist.push(item._id);
+    }else{
+      const index = this.Clist.findIndex(list => list == item._id);//Find the index of stored id
+      this.Clist.splice(index, 1); // Then remove
     }
     console.log("clisttttttttttttttttttt", this.Clist);
   }
@@ -140,14 +160,33 @@ export class AdminComponent implements OnInit {
       this.toastr.error(err.error.message);
     })
   }
-  selectType(event: any) {
-    if (this.typeCheck) {
+  // selectType(event: any) {
+  //   if (this.typeCheck) {
+  //     this.teammembers = _.filter(this.teammemberStatic, (ele: any) => {
+  //       return ele.s_type === this.typeCheck
+  //     })
+  //   }
+  //   console.log("typecheckchecktypecheck", this.typeCheck);
+  // }
+  
+  onChange(newValue) {
+    console.log(newValue);
+    this.selectedDevice = newValue;
+    console.log("selectiondevice ",this.selectedDevice)
+    if(this.selectedDevice != 'all'){
       this.teammembers = _.filter(this.teammemberStatic, (ele: any) => {
-        return ele.s_type === this.typeCheck
+        return ele.s_type === this.selectedDevice
+      })
+      console.log("selected person's data ",this.selectedDevice);
+  
+    }else{
+      this.teammembers = _.filter(this.teammemberStatic, (ele: any) => {
+        return ele.s_type
       })
     }
-    console.log("typecheckchecktypecheck", this.typeCheck);
+    // console.log("selected person's data ",this.teammember);
+    
+    
+    // ... do other stuff here ...
   }
-
-
 }
