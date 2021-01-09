@@ -66,7 +66,7 @@ strikesMap = {
     .forEach(ele=>{
       this.strike.push(this.strikesMap[ele]);
     });
-console.log("str on ch",this.strikes,this.strike);
+   console.log("str on ch",this.strikes,this.strike);
 
     this.strike = this.strike.filter(function(elem, index, self) {
      return index === self.indexOf(elem);

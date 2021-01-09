@@ -60,11 +60,11 @@ export class AdminComponent implements OnInit {
     console.log("headersss ",httpHeaders);
     console.log(user)
     this.Service.postteammember(user).subscribe(userData => {
-      console.log("team member dataaa is herrrrreeeee",userData);
-      this.toastr.success("Team member created Successfully");
+      console.log("team member dataaa is herrrrreeeee", userData);
       jQuery("#preview").modal("hide");
       this.loading_spinners = false;
-
+      var dataInfo: any = userData;
+      this.toastr.success(dataInfo.message);
       this.getteammembers();
       this.name = '';
       this.email = '';
@@ -73,7 +73,6 @@ export class AdminComponent implements OnInit {
 
     }, err => {
       console.log("error", err);
-
       this.toastr.error(err.error.message);
 
     })
@@ -143,7 +142,6 @@ export class AdminComponent implements OnInit {
   postdelete() {
     this.loading_spinner = true;
     console.log("kjhdkjdfjkgkj", this.Clist);
-
     const delid = {
       ids: this.Clist
     }
@@ -152,15 +150,15 @@ export class AdminComponent implements OnInit {
       let i = 0;
       jQuery("#popup").modal("hide");
       this.loading_spinner = false;
-
-      this.toastr.success("TeamMember has been deleted successful.");
+      let dataInfo: any = data;
+      this.toastr.success(dataInfo.message);
       this.getteammembers();
 
 
     }, err => {
-      this.toastr.error("Failed to delete TeamMember.");
+      console.log("errorrrrr", err);
+      this.toastr.error(err.error.message);
     })
-
   }
   // selectType(event: any) {
   //   if (this.typeCheck) {

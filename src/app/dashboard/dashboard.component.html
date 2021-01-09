@@ -1,10 +1,14 @@
 <style>
 </style>
 <div class="main-content">
-    <div class="container-fluid">
+    <div class="container-fluid" *ngIf="showSpinner">
         <div class="row">
             <div class="col">
+                <!-- <mat-spinner value="50" strokeWidth="6" [diameter]="40" class="spinner "
+                *ngIf="showSpinner">
+            </mat-spinner> -->
                 <div class="card">
+
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">Raise Ticket</h4>
                         <p class="card-category">raise new ticket here</p>
@@ -12,7 +16,7 @@
                     <div class="card-body">
                         <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
                             <div class="row">
-                                
+
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
                                         <input matInput type="text" formControlName="username" placeholder="Name"
@@ -51,22 +55,19 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-
                             </div>
                             <div class="row ">
                                 <div class="col-md-6 ">
                                     <mat-form-field>
                                         <mat-label>Select Assignee</mat-label>
                                         <mat-select name="assignee" formControlName="assignee">
-                                            <mat-option value="jyothi">jyothi</mat-option>
-                                            <mat-option value="rinki">rinki</mat-option>
-                                            <mat-option value="neha">neha</mat-option>
+                                            <mat-option [value]="item.name" *ngFor="let item of teammembers">
+                                                {{item.name}}
+                                            </mat-option>
                                         </mat-select>
                                     </mat-form-field>
-
                                 </div>
                             </div>
-
                             <div class="row ">
                                 <div class="col-md-12 ">
                                     <label class="label">Problem description</label>
@@ -95,6 +96,10 @@
             </div>
 
         </div>
+    </div>
+    <div class="spinner" *ngIf="!showSpinner">
+        <mat-spinner value="50" strokeWidth="6" [diameter]="40" class="spinner ">
+        </mat-spinner>
     </div>
     <div class="container-fluid">
         <div class="row">

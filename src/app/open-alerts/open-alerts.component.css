@@ -6,6 +6,12 @@
     border-radius: 5px;
     margin-left: 4;
 }  
+.showticket:hover{
+ background-color: rgb(5, 105, 235);
+ color: white;
+ border: none;
+ transition: 0.3s;
+}
 
 .tickets{
     padding: 3px;

@@ -119,8 +119,11 @@
                 <p>Are you sure to resolve this ticket?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal"
-                    (click)="rsv(selected)">Confirm</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="rsv()">
+                    <span *ngIf="loading_spinners">Confirm.....
+                    </span>
+                    <span *ngIf="!loading_spinners">Confirm
+                    </span></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -136,7 +139,7 @@
             </div>
             <div class="modal-body pop-body">
                 <p>Are you sure to Alert this Assignee ?</p>
-                <form  [formGroup]="popupForm">
+                <form [formGroup]="popupForm">
                     <div>
                         <label for="assignedto" class="label">assignedto:</label>&nbsp;
                         <select name="assignedto" formControlName="assignedto" class="select">
@@ -161,8 +164,11 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal"
-                    (click)="sendalert(selected)">Yes</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" (click)="sendalert(selected)">
+                    <span *ngIf="loading_spinner">Yes...
+                    </span>
+                    <span *ngIf="!loading_spinner">Yes
+                    </span></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
         </div>
