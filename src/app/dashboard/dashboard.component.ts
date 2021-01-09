@@ -83,7 +83,7 @@ export class DashboardComponent implements OnInit {
     }, err => {
       console.log("error", err);
 
-      this.toastr.error("Error while create ticket");
+      this.toastr.error(err.error.message);
 
     })
   }
