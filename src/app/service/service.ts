@@ -29,6 +29,10 @@ export class Service {
   }
 
   //admincomponent
+  getteammembersAdmin() {
+    // console.log("headers",headers.Authorization)
+    return this.http.get(ApiService.API.GET_TEAM_MEMBERS_ADMIN);
+  }
   getteammembers() {
     // console.log("headers",headers.Authorization)
     return this.http.get(ApiService.API.GET_TEAM_MEMBERS);
