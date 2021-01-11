@@ -18,6 +18,7 @@ import { auth } from 'googleapis/build/src/apis/redis';
 })
 export class AdminComponent implements OnInit {
   showSpinner = false;
+  showAdmin: Boolean = false;
   name: any;
   email: any;
   password: any;
@@ -33,10 +34,15 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.getteammembers();
     var auth  = localStorage.getItem('token')
+    var user = localStorage.getItem('UserType')
     // console.log("existing users ",auth);
     if(!auth){
       this._router.navigate(["/login"])
     }
+    if(user == "admin"){
+      this.showAdmin = true;
+    }
+    // if()
     
   }
 
@@ -79,27 +85,33 @@ export class AdminComponent implements OnInit {
   }
   getteammembers() {
     this.showSpinner = true;
-    var t = localStorage.getItem('token')
-    const httpHeaders:HttpHeaders = new HttpHeaders(
-      {Authorization:`Bearer ${t}`}
-    )
-    // headers.append("Authorization","Bearer "+ t)
-    console.log("headersss ",httpHeaders);
-    // var headers = new Headers();
+    // var t = localStorage.getItem('token')
+    // const httpHeaders:HttpHeaders = new HttpHeaders(
+    //   {Authorization:`Bearer ${t}`}
+    // )
+    // // headers.append("Authorization","Bearer "+ t)
+    // console.log("headersss ",httpHeaders);
+    // // var headers = new Headers();
     
     this.Service.getteammembersAdmin().subscribe(data => {
       this.showSpinner = false;
       this.teammembers = data;
       this.teammemberStatic = data;
-      console.log("teamMemberstaticcccccccccc", this.teammemberStatic);
-      console.log("getteammembersssssssss", data);
-
+      const users =[]
+      this.teammembers.forEach(element => {
+        users.push(element.name)
+      });
+      console.log("Users", users)
+      // console.log("teamMemberstaticcccccccccc", this.teammemberStatic);
+      // console.log("getteammembersssssssss", data, users);
+      // localStorage.setObj(users)
+      localStorage.setItem("users", JSON.stringify(users));
     }, err => {
       console.log("ERROR IN TEAM MEMBERS DATAAAA");
 
     })
   }
-
+  
   deletepopup() {
     if (this.Clist.length == 0) {
       this.toastr.error("please select atleast one checkbox");

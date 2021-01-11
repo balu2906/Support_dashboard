@@ -35,11 +35,22 @@ export class LoginComponent implements OnInit {
     console.log("login details ",userData);
     this.Service.Authentication(userData).subscribe(userData => {
       this.response  = userData
-      console.log("userdata is hereeeeeeeeeeeee",this.response.Token);
+      console.log("user Token hereeeeeeeeeeeee",this.response.Token);
+      console.log("UserDataaa ",this.response);
+      
       localStorage.setItem('token',this.response.Token)
+      localStorage.setItem('UserType',this.response.user.s_type)
       this.toastr.success(this.response.message);
       this.showSpinner = false;
-      this._router.navigate(["/dashboard"])
+      if(this.response.user.s_type == 'support'){
+        this._router.navigate(["/dashboard"])
+      }
+      if(this.response.user.s_type == 'admin'){
+        this._router.navigate(['/admin'])
+      } 
+      if(this.response.user.s_type == 'tech'){
+        this._router.navigate(['/table-list'])
+      }
     }, err => {
       let error = err
       console.log("error message ",error);

@@ -28,7 +28,8 @@ export class DashboardComponent implements OnInit {
   alertsData: any = [];
   response = false;
   showSpinner: boolean = false;
-
+  showForm:boolean = false;
+  Users:any = [];
 
 
   mobilenumber = "^(\\+\\d{1,3}[- ]?)?\\d{10}$";
@@ -54,9 +55,13 @@ export class DashboardComponent implements OnInit {
     this.getalertChartinfo();
     this.getteammembers();
     var auth = localStorage.getItem('token')
+    var user = localStorage.getItem('UserType')
     console.log("existing users ", auth);
     if (!auth) {
       this._router.navigate(["/login"])
+    }
+    if(user == 'support'){
+        this.showForm = true;
     }
   }
   getteammembers() {
@@ -66,6 +71,13 @@ export class DashboardComponent implements OnInit {
       console.log(this.showSpinner)
       this.teammembers = data;
       console.log("getteammembersssssssss", data);
+      const users =[]
+      this.teammembers.forEach(element => {
+        users.push(element.name)
+      });
+      this.Users = users
+      console.log("Users", this.Users)
+      localStorage.setItem("users", JSON.stringify(users));
     }, err => {
       console.log("ERROR IN TEAM MEMBERS DATAAAA");
     })

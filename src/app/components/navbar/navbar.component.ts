@@ -35,8 +35,8 @@ export class NavbarComponent implements OnInit {
     }
     logout(){
         console.log("logging out...........")
-        localStorage.removeItem('token');
         this.router.navigate(["/login"])
+        localStorage.clear();
     }
     notification() {
         this.Service.getChartinfo().subscribe((data: any) => {

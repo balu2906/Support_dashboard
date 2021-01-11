@@ -23,6 +23,7 @@ export class TableListComponent implements OnInit {
   opentickets: any = [];
   checkAll: any;
   Clist: any = [];
+  users:any = [];
   tickets: any;
   selected: any;
   asigne: any = [];
@@ -54,6 +55,9 @@ export class TableListComponent implements OnInit {
     if(!auth){
       this.router.navigate(["/login"])
     }
+    this.users = localStorage.getItem('users')
+    this.users = JSON.parse(this.users)
+    console.log("users in tablelist ",this.users[0]);
     
   }
 
@@ -173,8 +177,17 @@ export class TableListComponent implements OnInit {
   }
 
   changeassignee() {
-    this.asigne = (Object.keys(this.assignee).filter(key => this.assignee[key] == true))
-    console.log("assignees", this.asigne);
+    // this.asigne = (Object.keys(this.assignee).filter(key => this.assignee[key] == true))
+    // console.log("assignees", this.asigne);
+    // if (event.target.checked) {
+    //   this.Clist.push(item._id);
+    // } else {
+    //   const index = this.Clist.findIndex(list => list == item._id);//Find the index of stored id
+    //   this.Clist.splice(index, 1); // Then remove
+    // }
+    // console.log("clisttttttttttttttttttt", this.Clist);
+    console.log("hellooooo");
+    
 
 
   }

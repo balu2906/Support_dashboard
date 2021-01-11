@@ -48,7 +48,6 @@ label{
 }
 .strike{
     float: right;
-     margin-top:-28px;
     list-style-type:none;
 }
 .checkbox{
