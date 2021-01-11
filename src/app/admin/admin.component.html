@@ -18,14 +18,14 @@
                     <option value="tech">tech</option>
                 </select> -->
                 <mat-form-field>
-                <mat-label>Select Probelm Type</mat-label>
-                <mat-select class="select" [(ngModel)]="selectedDevice" (ngModelChange)="onChange($event)">
-                    <mat-option value="" name="" disabled selected>Select Type</mat-option>
-                    <mat-option value="all">All</mat-option>
-                    <mat-option value="support">support</mat-option>
-                    <mat-option value="tech">tech</mat-option>
-                </mat-select>
-              </mat-form-field>
+                    <mat-label>Select Probelm Type</mat-label>
+                    <mat-select class="select" [(ngModel)]="selectedDevice" (ngModelChange)="onChange($event)">
+                        <mat-option value="" name="" disabled selected>Select Type</mat-option>
+                        <mat-option value="all">All</mat-option>
+                        <mat-option value="support">support</mat-option>
+                        <mat-option value="tech">tech</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
             <!-- <div class="checkbox col-md-10">
             <span class="label-new">
@@ -183,6 +183,7 @@
                             <option value="" name="" disabled selected>select type</option>
                             <option value="support">Support</option> 
                             <option value="tech">Tech</option>
+                            <option value="admin">Admin</option>
                         </select>
                     </form>
                 </div>

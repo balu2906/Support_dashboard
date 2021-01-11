@@ -21,6 +21,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+
 import { FilterComponent } from '../../filter/filter.component';
 import { FilterPipe } from '../../utils/filter.pipe';
 import { ResolvedTicketsComponent } from '../../resolved-tickets/resolved-tickets.component';
@@ -28,6 +29,10 @@ import { ClosedTicketsComponent } from '../../closed-tickets/closed-tickets.comp
 import { ClosedAlertsComponent } from '../../closed-alerts/closed-alerts.component';
 import { OpenAlertsComponent } from '../../open-alerts/open-alerts.component';
 import { AdminComponent } from '../../admin/admin.component';
+// import { UserFormComponent } from '../../user-form/user-form.component'
+import { RatingComponent } from '../../rating/rating.component'
+
+
 
 
 
@@ -64,7 +69,9 @@ import { AdminComponent } from '../../admin/admin.component';
     ClosedTicketsComponent,
     OpenAlertsComponent,
     ClosedAlertsComponent,
-    AdminComponent
+    AdminComponent,
+    RatingComponent
+    // UserFormComponent
   ],
   exports: [FilterComponent]
 })
