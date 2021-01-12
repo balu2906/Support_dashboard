@@ -91,6 +91,7 @@ export class TypographyComponent implements OnInit {
   ResovledTickets = 0;
   ClosedTickets = 0;
   users:any = [];
+  showForm:boolean = false;
   constructor(public Service: Service,
     private fb: FormBuilder,
     private router: Router,
@@ -103,9 +104,13 @@ export class TypographyComponent implements OnInit {
     this.getsolvedByinfo();
     this.getSingleAlerts();
     var auth = localStorage.getItem('token')
+    var user = localStorage.getItem('UserType')
     console.log("existing users ", auth);
     if (!auth) {
       this.router.navigate(["/login"])
+    }
+    if(user == 'support'){
+      this.showForm = true;
     }
     this.users = localStorage.getItem('users')
     this.users = JSON.parse(this.users)

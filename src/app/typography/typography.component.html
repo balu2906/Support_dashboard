@@ -45,7 +45,7 @@
                     <mat-label>To date</mat-label>
                     <input matInput type="date" formControlName="ToDate">
                   </mat-form-field>
-                  <div class="col-md-8">
+                  <div class="col-md-8" *ngIf="showForm">
                   <mat-form-field style="margin-right: 5px;" appearance="fill">
                     <mat-label>Select Assignee</mat-label>
                     <mat-select name="assignee" formControlName="assignee">
