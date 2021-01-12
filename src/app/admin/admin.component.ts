@@ -29,6 +29,8 @@ export class AdminComponent implements OnInit {
   typeCheck: any = ''
   selectedDevice:any = '';
   token:any;
+  Users:any = [];
+
   constructor(private _router:Router,private http: HttpClient, public Service: Service, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -97,14 +99,28 @@ export class AdminComponent implements OnInit {
       this.showSpinner = false;
       this.teammembers = data;
       this.teammemberStatic = data;
+      // const users =[]
+      // this.teammembers.forEach(element => {
+      //   if(element.s_type !='admin'){
+      //     users.push(element.name)
+      //   }
+        
+      // });
+      // console.log("Users", users)
+      // // console.log("teamMemberstaticcccccccccc", this.teammemberStatic);
+      // // console.log("getteammembersssssssss", data, users);
+      // // localStorage.setObj(users)
+      // localStorage.setItem("users", JSON.stringify(users));
       const users =[]
       this.teammembers.forEach(element => {
-        users.push(element.name)
-      });
-      console.log("Users", users)
-      // console.log("teamMemberstaticcccccccccc", this.teammemberStatic);
-      // console.log("getteammembersssssssss", data, users);
-      // localStorage.setObj(users)
+        if(element.s_type != 'admin'){
+          users.push(element.name)
+        }
+      // let users = this.teammembers.filter((person) =>{
+      //       return person.admin != 'admin'
+      })
+      this.Users = users
+      console.log("Users", this.Users)
       localStorage.setItem("users", JSON.stringify(users));
     }, err => {
       console.log("ERROR IN TEAM MEMBERS DATAAAA");

@@ -62,8 +62,8 @@
                                     <mat-form-field>
                                         <mat-label>Select Assignee</mat-label>
                                         <mat-select name="assignee" formControlName="assignee">
-                                            <mat-option [value]="item.name" *ngFor="let item of teammembers">
-                                                {{item.name}}
+                                            <mat-option [value]="item" *ngFor="let item of Users">
+                                                {{item}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>

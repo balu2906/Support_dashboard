@@ -109,9 +109,9 @@
                         <label for="problemtype" class="label">Solved By:</label>&nbsp;
                         <select name="problemType" formControlName="solvedby" class="select">
                             <option value="" name="" disabled selected>select a Person</option>
-                            <option value="jyothi">Jyothi</option> 
-                            <option value="neha">Neha</option>
-                            <option value="rinki">Rinki</option> 
+                            <option [value]="item" *ngFor="let item of users">
+                                {{item}}
+                            <option>
                         </select>
                         <!-- <mat-form-field>
                             <mat-label>Select Assignee</mat-label>

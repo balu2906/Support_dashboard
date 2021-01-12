@@ -50,9 +50,12 @@
                     <mat-label>Select Assignee</mat-label>
                     <mat-select name="assignee" formControlName="assignee">
                         <mat-option value="all">All</mat-option>
-                        <mat-option value="jyothi">jyothi</mat-option>
+                        <!-- <mat-option value="jyothi">jyothi</mat-option>
                         <mat-option value="rinki">rinki</mat-option>
-                        <mat-option value="neha">neha</mat-option>
+                        <mat-option value="neha">neha</mat-option> -->
+                        <mat-option [value]="item" *ngFor="let item of users">
+                            {{item}}
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
                 </div>

@@ -73,8 +73,12 @@ export class DashboardComponent implements OnInit {
       console.log("getteammembersssssssss", data);
       const users =[]
       this.teammembers.forEach(element => {
-        users.push(element.name)
-      });
+        if(element.s_type != 'admin'){
+          users.push(element.name)
+        }
+      // let users = this.teammembers.filter((person) =>{
+      //       return person.admin != 'admin'
+      })
       this.Users = users
       console.log("Users", this.Users)
       localStorage.setItem("users", JSON.stringify(users));

@@ -90,6 +90,7 @@ export class TypographyComponent implements OnInit {
   Opentickets = 0;
   ResovledTickets = 0;
   ClosedTickets = 0;
+  users:any = [];
   constructor(public Service: Service,
     private fb: FormBuilder,
     private router: Router,
@@ -106,7 +107,8 @@ export class TypographyComponent implements OnInit {
     if (!auth) {
       this.router.navigate(["/login"])
     }
-
+    this.users = localStorage.getItem('users')
+    this.users = JSON.parse(this.users)
   }
 
 
