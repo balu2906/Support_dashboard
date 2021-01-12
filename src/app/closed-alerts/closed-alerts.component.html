@@ -7,15 +7,11 @@
                     <div class="checkbox col-md-10">
                         <span class="label-new">
                             <ul class="ngc">
-                                <li class = "list" *ngFor="let item of users">
-                                    <input 
-                                        type="checkbox" 
-                                        (change)="changeassignee(item,$event)" 
-                                        class="inp asignee1" 
-                                        [value] = "item"
-                                    >
+                                <li class="list" *ngFor="let item of users">
+                                    <input type="checkbox" (change)="changeassignee(item,$event)" class="inp asignee1"
+                                        [value]="item">
                                     <label class="blue">{{item}}</label>
-                                 </li> 
+                                </li>
                                 <li class="strike">
                                     <input (change)="changestrike()" [(ngModel)]="strikes.n" id="strike1"
                                         class="inp striker" type="checkbox" value="1"><label class="black">1</label>
@@ -35,33 +31,35 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" style="width: 100% !important;">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title ">Closed Alerts</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive overflow-body">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th>Alert ID</th>
-                                    <th>AssignedTo</th>
-                                    <th>No.ofTickets</th>
-                                    <th>ProblemType</th>
-                                    <th>Created Date</th>
-                                    <th>Strikes</th>
-                                </thead>
-                                <tbody>
-                                    <tr
-                                        *ngFor="let item of confirmdata | filter:'assignedTo':asigne:'alertStrike':strike; let i=index">
-                                        <td>{{item._id}}</td>
-                                        <td>{{item.assignedTo}}</td>
-                                        <td>{{item.tickets.length}}</td>
-                                        <td>{{item.problemType}}</td>
-                                        <td>{{item.createdAt | date}}</td>
-                                        <td class="text-primary">{{item.alertStrike}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <th>Alert ID</th>
+                                        <th>AssignedTo</th>
+                                        <th>No.ofTickets</th>
+                                        <th>ProblemType</th>
+                                        <th>Created Date</th>
+                                        <th>Strikes</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let item of confirmdata | filter:'assignedTo':asigne:'alertStrike':strike; let i=index">
+                                            <td>{{item._id}}</td>
+                                            <td>{{item.assignedTo}}</td>
+                                            <td>{{item.tickets.length}}</td>
+                                            <td>{{item.problemType}}</td>
+                                            <td>{{item.createdAt | date}}</td>
+                                            <td class="text-primary">{{item.alertStrike}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
