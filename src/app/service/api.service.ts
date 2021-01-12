@@ -34,7 +34,7 @@ export class ApiService {
     POST_ALERT: environment.apiUrl + '/alerts/create_m_alerts',
 
     //POST FEEDBACK
-    POST_FEEDBACK: environment.apiUrl + '/rate_us/:email',
+    POST_FEEDBACK: environment.apiUrl + '/rate_us',
 
     //RATINGS
     GET_RATINGS: environment.apiUrl + '/admin/get_ratings'

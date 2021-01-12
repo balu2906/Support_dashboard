@@ -26,6 +26,7 @@ export class UserFormComponent implements OnInit {
   feedback() {
     this.loading_spinner = true;
     const userData = {
+      email:this.email,
       rating: this.rating,
       message: this.message,
     }
@@ -36,6 +37,7 @@ export class UserFormComponent implements OnInit {
       this.loading_spinner = false;
       this.rating = '';
       this.message = '';
+      this.email=""
     }, err => {
       let error = err
       console.log("error message ", error);

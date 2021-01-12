@@ -80,7 +80,7 @@ export class RatingComponent implements OnInit {
       this.ratings.forEach(element => {
         if (element.rating == "bad") {
           Bad++
-        } 
+        }
         if (element.rating == "average") {
           Average++
         }
