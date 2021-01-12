@@ -109,7 +109,7 @@ export class TypographyComponent implements OnInit {
     if (!auth) {
       this.router.navigate(["/login"])
     }
-    if(user == 'support'){
+    if(user != 'tech'){
       this.showForm = true;
     }
     this.users = localStorage.getItem('users')

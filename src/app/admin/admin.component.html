@@ -5,18 +5,11 @@
             <div class="col-md-9">
                 <button class="btn btn-success mr-4" (click)="create()">Create Team member</button>
                 <!-- <div class="modal-footer"> -->
-                <button class="btn btn-danger pull-right" (click)="deletepopup()"> Delete <i class="fa fa-trash"></i>
-                </button>
+                <!-- <button class="btn btn-danger pull-right" (click)="deletepopup()"> Delete <i class="fa fa-trash"></i>
+                </button> -->
                 <!-- </div> -->
             </div>
             <div class="col-md-4 mt-3 form-group">
-                <!-- <label for="">Select Filter</label> -->
-                <!-- <mat-label>Select Type:-</mat-label>
-                <select class="select" [(ngModel)]="typeCheck" (change)="selectType($event)">
-                    <option value="" name="" disabled selected>Select Type</option>
-                    <option value="support">support</option>
-                    <option value="tech">tech</option>
-                </select> -->
                 <mat-form-field>
                     <mat-label>Select Probelm Type</mat-label>
                     <mat-select class="select" [(ngModel)]="selectedDevice" (ngModelChange)="onChange($event)">
@@ -27,22 +20,6 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <!-- <div class="checkbox col-md-10">
-            <span class="label-new">
-                <ul class="ngc">
-                    <li class="list">
-                        <input (change)="changetype()" [(ngModel)]="type.support" id="name1" class="inp asignee1"
-                            type="checkbox"><label class="blue">Support</label>
-                    </li>
-                    <li class="list ">
-                        <input (change)="changetype()" [(ngModel)]="type.tech" id="name2" class="inp asignee2"
-                            type="checkbox" value="tech"><label class="red">Tech</label>
-                    </li>
-                </ul>
-            </span>
-            </div> -->
-
-
             <div class="card">
 
                 <div class="card-header card-header-danger">
