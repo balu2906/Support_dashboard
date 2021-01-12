@@ -93,4 +93,14 @@ export class Service {
   gettoken(){
     return localStorage.getItem('token')
   }
+
+  //feedback
+  postfeedback(data) {
+    return this.http.post(ApiService.API.POST_FEEDBACK,data);
+  }
+
+  //ratings
+  getratings() {
+    return this.http.get(ApiService.API.GET_RATINGS);
+  }
 }

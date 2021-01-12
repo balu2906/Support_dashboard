@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 export class ApiService {
   public static API = {
     //LOGOUT
-    GET_LOGOUT:environment.apiUrl+'/logout',
+    GET_LOGOUT: environment.apiUrl + '/logout',
     //GET 
     GET_TABLE_DATA: environment.apiUrl + '/ticket/open_tickets',
     GET_RSVDATA_ID: environment.apiUrl + '/ticket/resolve',
@@ -17,20 +17,26 @@ export class ApiService {
     GET_CLOSED_ALERTS_DATA: environment.apiUrl + '/alerts/closed_alerts',
     GET_CHART_INFO: environment.apiUrl + '/ticket/alltickets',
     //LOGIN
-    POST_LOGIN_DATA:environment.apiUrl+'/login',
+    POST_LOGIN_DATA: environment.apiUrl + '/login',
     //ADMIN
     GET_TEAM_MEMBERS_ADMIN: environment.apiUrl + '/admin/get_team_admin',
     // support
     GET_TEAM_MEMBERS: environment.apiUrl + '/admin/get_team',
     //create teammember
-    POST_TEAM_MEMBER:environment.apiUrl + '/admin/create_team',
-    POST_DELETE:environment.apiUrl + '/admin/delete_teammembers',
+    POST_TEAM_MEMBER: environment.apiUrl + '/admin/create_team',
+    POST_DELETE: environment.apiUrl + '/admin/delete_teammembers',
 
     //POST
     POST_TICKET: environment.apiUrl + '/ticket/create_ticket',
 
     //post popup
-    POST_POPUP:environment.apiUrl +'/ticket/close',
-    POST_ALERT:environment.apiUrl+'/alerts/create_m_alerts'
+    POST_POPUP: environment.apiUrl + '/ticket/close',
+    POST_ALERT: environment.apiUrl + '/alerts/create_m_alerts',
+
+    //POST FEEDBACK
+    POST_FEEDBACK: environment.apiUrl + '/rate_us',
+
+    //RATINGS
+    GET_RATINGS: environment.apiUrl + '/admin/get_ratings'
   }
 }
