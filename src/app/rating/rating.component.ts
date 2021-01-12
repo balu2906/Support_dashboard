@@ -29,6 +29,7 @@ export class RatingComponent implements OnInit {
     this.getratings();
     var auth  = localStorage.getItem('token')
     var user = localStorage.getItem('UserType')
+    console.log("userType ",user)
     // console.log("existing users ",auth);
     if(!auth){
       this._router.navigate(["/login"])
