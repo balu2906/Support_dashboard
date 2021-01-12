@@ -32,8 +32,8 @@ strikesMap = {
   'u' : 2,
   'su' : 3
 }
-
-
+fool:any = [];
+users:any = [];
   constructor(private http: HttpClient,
     public Service: Service,
     private fb: FormBuilder,private _router:Router) { }
@@ -45,6 +45,8 @@ strikesMap = {
     if(!auth){
       this._router.navigate(["/login"])
     }
+    this.users = localStorage.getItem('users')
+    this.users = JSON.parse(this.users)
     
   }
 
@@ -72,13 +74,21 @@ strikesMap = {
      return index === self.indexOf(elem);
     })
   }
-
-  changeassignee(){
-    this.asigne = (Object.keys(this.assignee).filter(key=>this.assignee[key] == true))
-    console.log("assignees",this.asigne);
-
-    
-  } 
+  changeassignee(item ,event:any) {
+    // this.asigne = (Object.keys(this.assignee).filter(key => this.assignee[key] == true))
+    // console.log("assignees", this.asigne)
+    console.log("hellooooo",item);
+    if(event.target.checked){
+      this.fool.push(item)
+    }else {
+      const index = this.fool.findIndex(list => list == item);//Find the index of stored id
+      this.fool.splice(index, 1); // Then remove
+    }
+    this.asigne = this.fool.filter((element) =>{
+      return element
+    })
+    console.log("asigne ",this.asigne);
+  }
 
 
 }

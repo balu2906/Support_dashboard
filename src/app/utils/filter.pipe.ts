@@ -84,8 +84,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(items: any[], field: string, value: any, field2?: any, value2?: any): any[] {
-    console.log("values", items, value, field);
+    console.log("values", items,field, value);
+    console.log("values1",value,field);
+    
     console.log("values2", value2, field2);
+    console.log("entered filtering");
+    
 
     if (!items) {
       return [];
@@ -121,7 +125,9 @@ export class FilterPipe implements PipeTransform {
 
     }
     if (value2.length <= 0 && value.length > 0) {
-      console.log("else");
+      console.log("items in only assignees ",items);
+      
+      console.log("entered only assignee");
       let result: any = [];
       for (var i = 0; i < value.length; i++) {
         let arr = items.filter(item => item[field].toLowerCase().includes(value[i].toLocaleLowerCase()));

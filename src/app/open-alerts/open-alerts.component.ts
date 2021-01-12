@@ -53,6 +53,8 @@ export class OpenAlertsComponent implements OnInit {
     'u': 2,
     'su': 3
   }
+  users:any = [];
+  fool:any = [];
   ticketalerts: any;
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService,
     public Service: Service,
@@ -65,6 +67,8 @@ export class OpenAlertsComponent implements OnInit {
     if(!auth){
       this.router.navigate(["/login"])
     }
+    this.users = localStorage.getItem('users')
+    this.users = JSON.parse(this.users)
   }
 
   preview: any;
@@ -87,10 +91,20 @@ export class OpenAlertsComponent implements OnInit {
       return index === self.indexOf(elem);
     })
   }
-
-  changeassignee() {
-    this.asigne = (Object.keys(this.assignee).filter(key => this.assignee[key] == true))
-    console.log("assignees", this.asigne);
+  changeassignee(item ,event:any) {
+    // this.asigne = (Object.keys(this.assignee).filter(key => this.assignee[key] == true))
+    // console.log("assignees", this.asigne)
+    console.log("hellooooo",item);
+    if(event.target.checked){
+      this.fool.push(item)
+    }else {
+      const index = this.fool.findIndex(list => list == item);//Find the index of stored id
+      this.fool.splice(index, 1); // Then remove
+    }
+    this.asigne = this.fool.filter((element) =>{
+      return element
+    })
+    console.log("asigne ",this.asigne);
   }
   getallalerts() {
     this.showSpinner = true;

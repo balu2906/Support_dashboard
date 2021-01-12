@@ -6,24 +6,15 @@
                     <div class="checkbox col-md-10">
                         <span class="label-new">
                             <ul class="ngc">
-                                <li class="list">
-
-                                    <input (change)="changeassignee()" [(ngModel)]="assignee.jyothi" id="name1"
-                                        class="inp asignee1" type="checkbox"><label class="blue">Jyothi</label>
-                                </li>
-
-                                <li class="list ">
-
-                                    <input (change)="changeassignee()" [(ngModel)]="assignee.neha" id="name2"
-                                        class="inp asignee2" type="checkbox" value="neha"><label
-                                        class="red">Neha</label>
-                                </li>
-
-                                <li class="last rinki">
-                                    <input (change)="changeassignee()" [(ngModel)]="assignee.rinki" id="name3"
-                                        class="inp asignee3" type="checkbox" value="rinki"><label
-                                        class="purpul">Rinki</label>
-                                </li>
+                                <li class = "list" *ngFor="let item of users">
+                                    <input 
+                                        type="checkbox" 
+                                        (change)="changeassignee(item,$event)" 
+                                        class="inp asignee1" 
+                                        [value] = "item"
+                                    >
+                                    <label class="blue">{{item}}</label>
+                                 </li> 
                                 <li class="strike">
                                     <input (change)="changestrike()" [(ngModel)]="strikes.n" id="strike1"
                                         class="inp striker" type="checkbox" value="1"><label class="black">1</label>

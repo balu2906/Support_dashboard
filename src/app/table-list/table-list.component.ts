@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import * as _ from 'underscore';
 import * as $ from 'jquery';
+import { element } from 'protractor';
 declare var jQuery: any;
 @Component({
   selector: 'app-table-list',
@@ -26,7 +27,9 @@ export class TableListComponent implements OnInit {
   users:any = [];
   tickets: any;
   selected: any;
+  fool:any = [];
   asigne: any = [];
+  assigne:any = [];
   strike: any = [];
   query = "'Assignee':asigne";
   assignee = {
@@ -176,21 +179,22 @@ export class TableListComponent implements OnInit {
     })
   }
 
-  changeassignee() {
+  changeassignee(item ,event:any) {
     // this.asigne = (Object.keys(this.assignee).filter(key => this.assignee[key] == true))
-    // console.log("assignees", this.asigne);
-    // if (event.target.checked) {
-    //   this.Clist.push(item._id);
-    // } else {
-    //   const index = this.Clist.findIndex(list => list == item._id);//Find the index of stored id
-    //   this.Clist.splice(index, 1); // Then remove
-    // }
-    // console.log("clisttttttttttttttttttt", this.Clist);
-    console.log("hellooooo");
+    // console.log("assignees", this.asigne)
+    console.log("hellooooo",item);
+    if(event.target.checked){
+      this.fool.push(item)
+    }else {
+      const index = this.fool.findIndex(list => list == item);//Find the index of stored id
+      this.fool.splice(index, 1); // Then remove
+    }
+    this.asigne = this.fool.filter((element) =>{
+      return element
+    })
+    console.log("asigne ",this.asigne);
     
-
-
-  }
+}
   closed() {
     const popdata = {
       assignedTo: this.popupForm.get('assignedto').value,
