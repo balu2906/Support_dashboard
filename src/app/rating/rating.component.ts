@@ -13,6 +13,7 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./rating.component.css']
 })
 export class RatingComponent implements OnInit {
+  showAdmin: Boolean = false;
   ratings: any = [];
   Highcharts: typeof Highcharts = Highcharts;
 
@@ -26,6 +27,15 @@ export class RatingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getratings();
+    var auth  = localStorage.getItem('token')
+    var user = localStorage.getItem('UserType')
+    // console.log("existing users ",auth);
+    if(!auth){
+      this._router.navigate(["/login"])
+    }
+    if(user == "admin"){
+      this.showAdmin = true;
+    }
   }
 
   getRatingChartsList() {
