@@ -16,7 +16,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/open-alerts', title: 'All Alerts', icon: 'add_task', class: '' },
   { path: '/closed-alerts', title: 'Closed Alerts', icon: 'close_alert', class: '' },
   { path: '/typography', title: 'Charts', icon: 'library_books', class: '' },
-   { path: '/rating', title: 'Ratings', icon: 'library_books', class: '' }
+  { path: '/rating', title: 'Ratings', icon: 'grade', class: '' }
 ];
 
 @Component({
