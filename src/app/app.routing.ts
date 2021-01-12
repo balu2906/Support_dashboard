@@ -5,13 +5,21 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {LoginComponent} from './login/login.component';
+import {UserFormComponent} from './user-form/user-form.component';
 
 const routes: Routes =[
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
-  }, {
+  },
+  {
+    path: '',
+    redirectTo: 'user-form',
+    pathMatch: 'full',
+  },
+  
+  {
     path: '',
     component: AdminLayoutComponent,
     children: [{
@@ -19,7 +27,8 @@ const routes: Routes =[
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
     }]
   },
-  {path : 'login' , component : LoginComponent}
+  {path : 'login' , component : LoginComponent},
+  {path : 'user-form', component : UserFormComponent}
 ];
 
 @NgModule({

@@ -5,6 +5,14 @@ import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import {Service} from "./service/service"
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -35,12 +43,22 @@ import { ToastrModule } from 'ngx-toastr';
 import { HighchartsChartModule } from 'highcharts-angular';
 
 import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
-import {TokenInterceptorService} from './token-interceptor.service'
+import {TokenInterceptorService} from './token-interceptor.service';
+import { UserFormComponent } from './user-form/user-form.component';
 
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
+    MatButtonModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
     HighchartsChartModule,
     FormsModule,
     ReactiveFormsModule,
@@ -66,6 +84,7 @@ import {TokenInterceptorService} from './token-interceptor.service'
     AppComponent,
     AdminLayoutComponent,
     LoginComponent,
+    UserFormComponent,
 
     ],
   providers: [Service,

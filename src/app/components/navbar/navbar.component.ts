@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,8 +11,11 @@ import { Service } from '../../service/service';
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+
     private listTitles: any[];
     tableData: any = [];
+    user: any;
     Opentickets: any = 0;
     ResovledTickets: any = 0;
     ClosedTickets: any = 0;
@@ -32,12 +35,20 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit() {
         this.notification();
+        this.user = localStorage.getItem('user')
+        this.user = JSON.parse(this.user)
+
     }
-    logout(){
+    logout() {
         console.log("logging out...........")
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
         this.router.navigate(["/login"])
     }
+
+    // profile(){
+
+    // }
     notification() {
         this.Service.getChartinfo().subscribe((data: any) => {
             this.tableData = data
@@ -57,5 +68,6 @@ export class NavbarComponent implements OnInit {
             });
         })
     }
+
 
 }

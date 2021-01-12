@@ -229,7 +229,10 @@ export class DashboardComponent implements OnInit {
           ConfirmedAlerts++
         }
       });
-      this.AlertChartData.push(['OpenAlerts', +((OpenAlerts / (this.alertsData.length)) * 100).toFixed(1)], ['Attendedalerts', +((AttendedAlerts / (this.alertsData.length)) * 100).toFixed(1)], ['Resolvedalerts', +((ResolvedAlerts / (this.alertsData.length)) * 100).toFixed(1)], ['Confirmedalerts', +((ConfirmedAlerts / (this.alertsData.length)) * 100).toFixed(1)])
+      this.AlertChartData.push(['OpenAlerts', +((OpenAlerts / (this.alertsData.length)) * 100).toFixed(1)],
+       ['Attendedalerts', +((AttendedAlerts / (this.alertsData.length)) * 100).toFixed(1)],
+        ['Resolvedalerts', +((ResolvedAlerts / (this.alertsData.length)) * 100).toFixed(1)], 
+        ['Confirmedalerts', +((ConfirmedAlerts / (this.alertsData.length)) * 100).toFixed(1)])
       console.log(this.AlertChartData, 'chart data', OpenAlerts, AttendedAlerts, ResolvedAlerts, ConfirmedAlerts)
       this.getAlertChartsList();
 

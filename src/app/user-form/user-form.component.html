@@ -1,0 +1,27 @@
+<div class="feedback">
+    <div class="example-container">
+        <h3 style="font-weight: bold;">Rate Your Experience With Us.</h3>
+        <div class="form-group field">
+            <P><strong><b>Email:</b></strong></P>
+            <input type="text" class="form-control" placeholder="Enter Email" [(ngModel)]="email">
+        </div>
+        <mat-form-field class="field">
+            <mat-label>Select Value</mat-label>
+            <mat-select class="select" [(ngModel)]="rating">
+                <mat-option value="bad">Bad</mat-option>
+                <mat-option value="average">Average</mat-option>
+                <mat-option value="good">Good</mat-option>
+                <mat-option value="best">Best</mat-option>
+                <mat-option value="excellent">Excellent</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <div class="form-group field">
+            <P><strong><b>Comment:</b></strong></P>
+            <textarea class="form-control" rows="5" id="comment" [(ngModel)]="message"></textarea>
+        </div>
+        <button class="btn btn-success mr-4" (click)="feedback()">
+            <span *ngIf="loading_spinner">Submitting..</span>
+            <span *ngIf="!loading_spinner">Submit</span></button>
+    </div>
+</div>

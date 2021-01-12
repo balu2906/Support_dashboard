@@ -13,6 +13,8 @@ import { ClosedTicketsComponent } from "../../closed-tickets/closed-tickets.comp
 import { OpenAlertsComponent} from "../../open-alerts/open-alerts.component";
 import {ClosedAlertsComponent} from "../../closed-alerts/closed-alerts.component";
 import {AdminComponent} from "../../admin/admin.component";
+import {RatingComponent} from "../../rating/rating.component"
+// import {UserFormComponent} from "../../user-form/user-form.component";
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'user-profile', component: UserProfileComponent },
@@ -26,5 +28,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'closed-tickets', component: ClosedTicketsComponent },
     { path: 'open-alerts', component: OpenAlertsComponent},
     { path: 'closed-alerts', component: ClosedAlertsComponent},
-    { path: 'admin' , component: AdminComponent}
+    { path: 'admin' , component: AdminComponent},
+    { path: 'rating', component: RatingComponent}
 ];
